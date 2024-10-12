@@ -115,11 +115,11 @@ public class Pokedex
         // Movimientos de Larvitar 
         MovimientoDeAtaque lanzaRocas = new MovimientoDeAtaque("LanzaRocas", 50, listatiposdisponibles[6], false); // Roca
         MovimientoDeAtaque terremoto = new MovimientoDeAtaque("Terremoto", 100, listatiposdisponibles[7], true);   // Tierra (especial)
-        MovimientoDeAtaque mordisco = new MovimientoDeAtaque("Mordisco", 60, new Tipo("Siniestro"), false); // Siniestro
+        MovimientoDeAtaque mordisco = new MovimientoDeAtaque("Mordisco", 60, listatiposdisponibles[5], false); // Siniestro
 
         // Movimientos de Bulbasaur 
         MovimientoDeAtaque lluevehojas = new MovimientoDeAtaque("Lluevehojas", 95, listatiposdisponibles[3], true); // Planta (especial)
-        MovimientoDeAtaque bombaLodo = new MovimientoDeAtaque("BombaLodo", 70, new Tipo("Veneno"), false); // Veneno
+        MovimientoDeAtaque bombaLodo = new MovimientoDeAtaque("BombaLodo", 70, listatiposdisponibles[3], false); // Planta
         MovimientoDeAtaque golpeCuerpo = new MovimientoDeAtaque("Golpe Cuerpo", 65, listatiposdisponibles[5], false); // Normal
 
         // Movimientos de Charmander 
@@ -130,7 +130,7 @@ public class Pokedex
         // Movimientos de Squirtle 
         MovimientoDeAtaque hidropulso = new MovimientoDeAtaque("Hidropulso", 60, listatiposdisponibles[2], false); // Agua
         MovimientoDeAtaque hidrobomba = new MovimientoDeAtaque("Hidrobomba", 95, listatiposdisponibles[2], true); // Agua (especial)
-        MovimientoDeAtaque cabezazo = new MovimientoDeAtaque("Cabezazo", 40, listatiposdisponibles[5], false); // Normal + bonificación defensa
+        MovimientoDeAtaque cabezazo = new MovimientoDeAtaque("Cabezazo", 40, listatiposdisponibles[5], false); // Normal 
         
         MovimientoDefensivo proteccion = new MovimientoDefensivo("Protección", 40, listatiposdisponibles[5], false); // Normal + bonificación defensa
 
@@ -201,7 +201,7 @@ public class Pokedex
             listaMovimientos[11],  // Golpe Cuerpo
             listaMovimientos[18]  // Protección
         };
-        List<Tipo> tiposBulbasaur = new List<Tipo> { listatiposdisponibles[3], new Tipo("Veneno") }; // Planta, Veneno
+        List<Tipo> tiposBulbasaur = new List<Tipo> { listatiposdisponibles[3]}; // Planta
         Pokemon Bulbasaur = new Pokemon("Bulbasaur", movimientosBulbasaur, tiposBulbasaur, 90, 70);
         pokemonsdisponibles.Add(Bulbasaur);
 

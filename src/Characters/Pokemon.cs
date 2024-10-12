@@ -7,8 +7,8 @@ namespace DefaultNamespace;
 public class Pokemon
 {
     private string name;
-    private List<IMovimiento> lista_movimientos = new List<IMovimiento>();
-    private List<Tipo> lista_tipos = new List<Tipo>();
+    private List<IMovimiento> lista_movimientos;
+    private List<Tipo> lista_tipos;
     private int vida_actual;
     private int vida_total;
     private int defensa;
@@ -27,8 +27,9 @@ public class Pokemon
 
     public List<Tipo> GetTipos()
     {
-        return this.lista_tipos;
+        return lista_tipos;
     }
+    
     public bool GetIsAlive()
     {
         return is_alive;
@@ -38,31 +39,30 @@ public class Pokemon
     {
         return name;
     }
+    
     public List<IMovimiento> GetListaMovimientos()
     {
         return lista_movimientos;
     }
-    public List<Tipo> GetListaTipos()
-    {
-        return lista_tipos;
-    }
+
     public int GetVidaTotal()
     {
         return vida_total;
     }
+
     public int GetVidaActual()
     {
         return vida_actual;
     }
 
-
+    // Método para usar un movimiento, incluyendo los de defensa
     public void UsarMovimiento(IMovimiento movimiento)
     {
         if (is_alive)
         {
             foreach (IMovimiento accion in lista_movimientos)
             {
-                if (accion == movimiento)
+                if (accion.GetName() == movimiento.GetName())
                 {
                     accion.Usado_Anteriormente(true);
                 }
@@ -76,44 +76,38 @@ public class Pokemon
             {
                 defensa += defensamovimiento.GetDefensa();
             }
-            
         }
     }
-
+    
     public void RecibirAtaque(IMovimiento_Ataque movimiento)
     {
-            if (defensa > movimiento.GetAtaque())
-            {
-                Tipo tipoAtaque = movimiento.GetTipo();
-                double efectividadTipo = 1.0;
-                foreach (Tipo tipoDefensor in GetTipos())
-                {
-                    efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
-                }
-                int danio = (int)(movimiento.GetAtaque() * efectividadTipo);
-                defensa = -danio;
-            }
-            if (defensa + vida_actual >= movimiento.GetAtaque())
-            {
-                defensa = 0;
-                Tipo tipoAtaque = movimiento.GetTipo();
-                double efectividadTipo = 1.0;
+        double efectividadTipo = 1.0;
+        Tipo tipoAtaque = movimiento.GetTipo();
 
-                foreach (Tipo tipoDefensor in GetTipos())
-                {
-                    efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
-                }
+        foreach (Tipo tipoDefensor in lista_tipos)
+        {
+            efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
+        }
 
-                int danio = (int)(movimiento.GetAtaque() * efectividadTipo)-defensa;
+        int danio = (int)(movimiento.GetAtaque() * efectividadTipo);
 
-                vida_actual -= danio;
-            }
-            else
+        // Aplicar el daño a la defensa o vida o un poco y un poco
+        if (defensa > danio)
+        {
+            defensa -= danio;
+        }
+        else
+        {
+            danio -= defensa; // Resta el daño restante a la vida
+            defensa = 0;
+            vida_actual -= danio;
+
+            if (vida_actual <= 0)
             {
-                defensa = 0;
                 is_alive = false;
                 vida_actual = 0;
+                Console.WriteLine($"El pokemon {name} se ha debilitado, por que no podrá combatir más");
             }
+        }
     }
-    
 }

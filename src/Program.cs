@@ -27,6 +27,15 @@ namespace Ucu.Poo.Pokemon
             Juego_1.UsarMovimientos(2);
             Juego_1.UsarMovimientos(3);
             Juego_1.UsarMovimientos(3);
+            Juego_1.MostrarEstadoRival();
+            Juego_1.UsarMovimientos(2);
+            Juego_1.MostrarEstadoRival();
+            Juego_1.UsarMovimientos(1);
+            Juego_1.MostrarEstadoRival();
+            Juego_1.UsarMovimientos(3);
+            Juego_1.UsarMovimientos(1);
+            
         }
+        
     }
 }
