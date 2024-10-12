@@ -66,5 +66,48 @@ public class MenuTest
             menuPP.CambiarPokemon(1); // Cambiar de vuelta a Squirtle
             Assert.AreEqual(vidatortugaEsperada,  menuPP.GetHpDefensor()); //Verifica que squiertle sigue intecto
     }
-    
+    [TestMethod]
+    public void Especial() //En este test se puede ver que cuando eljugador 1 intenta usar el ataque especial de nueo no puedehacerlo
+    {
+        Menu juego1 = new Menu();
+        juego1.AgregarPokemones1("Pikachu");
+        
+        juego1.AgregarPokemones2("Pikachu");
+        
+        juego1.IniciarEnfrentamiento();
+        juego1.UsarMovimientos(1);//Jugador 1 usa Rayo(especial), vida del contrincante en 45
+        juego1.UsarMovimientos(1);//Jugador2 usa Rayo (especial)
+        juego1.UsarMovimientos(1);//Jugador 1 intenta usar el Rayo nuevamente pero no puede, vida del contrincante se mantiene
+        int vidaesperadadefensor = 45;
+        int vidaObtenidaDefensor = juego1.GetHpDefensor();
+        Assert.AreEqual(vidaesperadadefensor,vidaObtenidaDefensor);
+    }
+
+    [TestMethod]
+    public void Defensa()//Demuestra que defensa nohace daño
+    {
+        Menu juego2 = new Menu();
+        juego2.AgregarPokemones1("Pikachu");
+        juego2.AgregarPokemones2("Charmander");
+        juego2.IniciarEnfrentamiento();
+        juego2.UsarMovimientos(4);//El movimiento 4 siempre es de defensa, por lo que no provoca daño al contrincante
+        int vidaesperadadefensor = 80;
+        int vidaObtenidaDefensor = juego2.GetHpDefensor();
+        Assert.AreEqual(vidaesperadadefensor,vidaObtenidaDefensor);
+    }
+
+    [TestMethod]
+    public void CambioPokemon()//Verificacion Cambio de Pokemon de Turno
+    {
+        Menu juego3 = new Menu();
+        juego3.AgregarPokemones1("Squirtle");//Squirtle era el Pokemon en Turno al inicio porque fue agregado primero
+        juego3.AgregarPokemones2("Charmander");
+        juego3.AgregarPokemones1("Bulbasaur");//Bulbasaur era el segundo pokemon del equipo
+        juego3.IniciarEnfrentamiento();
+        juego3.CambiarPokemon(1);//Bulbasaur para a ser el Pokemon en Turno
+        juego3.UsarMovimientos(1);
+        string pokemonesperado = "Bulbasaur";
+        string pokemonobtenido = juego3.GetPokemonActual().GetName();
+        Assert.AreEqual(pokemonesperado,pokemonobtenido);
+    }
 }

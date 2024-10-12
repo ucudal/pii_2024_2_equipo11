@@ -20,7 +20,10 @@ namespace Library.Combate
         {
             return batallaActual.GetAtacante().GetPokemonEnTurno().GetVidaActual();
         }
-        
+        public Pokemon GetPokemonActual()
+        {
+            return batallaActual.GetAtacante().GetPokemonEnTurno();
+        }
 
         public void AgregarPokemones1(string nombrePokemon)
         {
