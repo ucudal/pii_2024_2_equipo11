@@ -168,6 +168,7 @@ public class Pokedex
         };
         List<Tipo> tiposPikachu = new List<Tipo>{listatiposdisponibles[0]};
         Pokemon Pikachu = new Pokemon("Pikachu", movimientosPikachu, tiposPikachu, 80, 60);
+        
         pokemonsdisponibles.Add(Pikachu);
         // Crear los movimientos para Pidgey
         List<IMovimiento> movimientosPidgey = new List<IMovimiento>
@@ -213,7 +214,7 @@ public class Pokedex
             listaMovimientos[14],  // Garra Dragon
             listaMovimientos[18]  // Protección
         };
-        List<Tipo> tiposCharmander = new List<Tipo> { listatiposdisponibles[1], new Tipo("Dragon") }; // Fuego, Dragon
+        List<Tipo> tiposCharmander = new List<Tipo> { listatiposdisponibles[1] }; // Fuego
         Pokemon Charmander = new Pokemon("Charmander", movimientosCharmander, tiposCharmander, 85, 60);
         pokemonsdisponibles.Add(Charmander);
 

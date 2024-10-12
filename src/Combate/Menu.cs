@@ -12,6 +12,16 @@ namespace Library.Combate
             batallaActual = new Batalla();
         }
 
+        public int GetHpDefensor()
+        {
+            return batallaActual.GetDefensor().GetPokemonEnTurno().GetVidaActual();
+        }
+        public int GetHpAtacante()
+        {
+            return batallaActual.GetAtacante().GetPokemonEnTurno().GetVidaActual();
+        }
+        
+
         public void AgregarPokemones1(string nombrePokemon)
         {
             batallaActual.GetAtacante().AgregarAlEquipo(nombrePokemon);
