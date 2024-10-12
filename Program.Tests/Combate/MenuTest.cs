@@ -66,5 +66,5 @@ public class MenuTest
             menuPP.CambiarPokemon(1); // Cambiar de vuelta a Squirtle
             Assert.AreEqual(vidatortugaEsperada,  menuPP.GetHpDefensor()); //Verifica que squiertle sigue intecto
     }
-
+    
 }
