@@ -33,6 +33,11 @@ public class Batalla
         return jugadordefensor;
     }
 
+    public bool GetEstadoBatalla()
+    {
+        return batallaIniciada;
+    }
+
     public bool GetBatallaTerminada()
     {
         return batallaTerminada;
@@ -54,22 +59,24 @@ public class Batalla
         
     }
 
-    public void TerminarBatalla()
+    public string TerminarBatalla()
     {
         //Aqui se revisa quien gano
         if (jugadoratacante.TeamIsAlive() == false)
         {
-            Console.WriteLine($"Ha ganado el jugador {jugadordefensor.GetName()}!");
+            return $"Ha ganado el jugador {jugadordefensor.GetName()}!";
             this.batallaTerminada = true;
         }
         else if (jugadordefensor.TeamIsAlive()==false)
         {
-            Console.WriteLine($"Ha ganado el jugador {jugadoratacante.GetName()}!");
+            return $"Ha ganado el jugador {jugadoratacante.GetName()}!";
             this.batallaTerminada = true;
         }
+
+        return "";
     }
 
-    public void AvanzarTurno()
+    public string AvanzarTurno()
     {
         if (jugadordefensor.GetPokemonEnTurno().GetIsAlive() == false)
         {
@@ -78,7 +85,7 @@ public class Batalla
                 if (pokemon.GetIsAlive())
                 {
                     jugadordefensor.CambiarPokemon(pokemon);
-                    Console.WriteLine("Ya ha terminado la batalla!");
+                    return "Ya ha terminado la batalla!";
                     break;
                 }
             }
@@ -93,10 +100,11 @@ public class Batalla
         }
         else
         {
-            Console.WriteLine("Ya ha terminado la batalla!"); 
+            return "Ya ha terminado la batalla!"; 
         }
         jugadordefensor.ActualizarEstadoEquipo();
         TerminarBatalla();
-        
+
+        return "";
     }
 }
