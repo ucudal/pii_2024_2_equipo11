@@ -104,7 +104,7 @@ public class Pokemon
                     efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
                 }
 
-                int danio = (int)(movimiento.GetAtaque() * efectividadTipo);
+                int danio = (int)(movimiento.GetAtaque() * efectividadTipo)-defensa;
 
                 vida_actual -= danio;
             }
