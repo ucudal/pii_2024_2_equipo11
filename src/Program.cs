@@ -10,23 +10,26 @@ namespace Ucu.Poo.Pokemon
     {
         static void Main(string[] args)
         {
-            Menu Juego_1 = new Menu();
-            Juego_1.AgregarPokemones1("Pikachu");
-            Juego_1.AgregarPokemones2("Charmander");
-            Juego_1.AgregarPokemones1("Snorlax");
-            Juego_1.AgregarPokemones1("Pidgey");
-            Juego_1.AgregarPokemones2("Squirtle");
-            Juego_1.AgregarPokemones1("Bulbasaur");
-            Juego_1.IniciarEnfrentamiento();
-            Juego_1.MostrarEstadoRival();
-            Juego_1.MostrarAtaquesDisponibles();
-            Juego_1.UsarMovimientos(1);
-            Juego_1.UsarMovimientos(2);
-            Juego_1.MostrarAtaquesDisponibles();
-            Juego_1.UsarMovimientos(1);
-            Juego_1.UsarMovimientos(2);
-            Juego_1.UsarMovimientos(3);
-            Juego_1.UsarMovimientos(3);
+            // Arrange
+            int dañoPorAtaque = 95; // Daño de rayo
+            int defensaCharmander = 60; // Defensa de Charmander
+            int hpCharmanderEsperado = 80; // Charmander debe iniciar con 80 de HP
+            int vidaCharmanderRestanteEsperada = hpCharmanderEsperado - (dañoPorAtaque - defensaCharmander); // Calculamos vida restante de Charmander
+            int vidaPidgeyEsperada = 60; // Pidgey debería iniciar con 60 HP
+
+            Menu menuPP = new Menu();
+            menuPP.AgregarPokemones1("Pidgey"); // Pidgey es el segundo Pokémon
+            menuPP.AgregarPokemones2("Pikachu"); // Pikachu es el primero
+            menuPP.AgregarPokemones1("Charmander"); // Charmander es el segundo Pokémon también
+            menuPP.CambiarPokemon(1); // Cambia a Charmander
+            menuPP.UsarMovimientos(1); // Pikachu usa rayo
+
+            // Assert
+            Console.WriteLine(vidaPidgeyEsperada);
+            Console.WriteLine(menuPP.GetHpAtacante());
+            Console.WriteLine(vidaCharmanderRestanteEsperada);
+            Console.WriteLine();
         }
+        
     }
 }
