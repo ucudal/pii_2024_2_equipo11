@@ -2,7 +2,7 @@
 
 namespace Ucu.Poo.Pokemon;
 
-public class MovimientoDeAtaqueDefensa: IMovimiento_Defensa, IMovimiento_Ataque
+public class MovimientoDeAtaqueDefensa: IMovimientoDefensa, IMovimientoAtaque
 {
     private string name { get; set; }
     private int ataque { get; set; }
@@ -44,11 +44,11 @@ public class MovimientoDeAtaqueDefensa: IMovimiento_Defensa, IMovimiento_Ataque
     {
         return this.tipo;
     }
-    public void Usado_Anteriormente(bool usado)
+    public void UsadoAnteriormente(bool usado)
     {
         usado_anteriormente = usado;
     }
-    public bool GetUsado_Anteriormente()
+    public bool GetUsadoAnteriormente()
     {
         return usado_anteriormente;
     }

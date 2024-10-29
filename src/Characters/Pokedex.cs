@@ -48,6 +48,7 @@ public class Pokedex
         Tipo normal = new Tipo("Normal");
         Tipo roca = new Tipo("Roca");
         Tipo tierra = new Tipo("Tierra");
+        
 
         // Definir efectividades del tipo Electrico
         electrico.CrearEfectividad(agua, 2.0);    // Electrico contra Agua -> Súper efectivo (200%)

@@ -1,6 +1,6 @@
 ﻿namespace Ucu.Poo.Pokemon
 {
-    public interface IMovimiento_Defensa : IMovimiento
+    public interface IMovimientoDefensa : IMovimiento
     {
         int GetDefensa();
 
