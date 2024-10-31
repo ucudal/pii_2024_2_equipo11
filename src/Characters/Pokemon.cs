@@ -7,27 +7,27 @@ namespace DefaultNamespace;
 public class Pokemon
 {
     private string name;
-    private List<IMovimiento> lista_movimientos;
-    private List<Tipo> lista_tipos;
-    private int vida_actual;
-    private int vida_total;
+    private List<IMovimiento> listamovimientos;
+    private List<Tipo> listatipos;
+    private int vidaactual;
+    private int vidatotal;
     private int defensa;
     private bool is_alive;
 
     public Pokemon(string nombre, List<IMovimiento> movimientos, List<Tipo> tipos, int vida, int defensa)
     {
         name = nombre;
-        lista_movimientos = movimientos;
-        lista_tipos = tipos;
-        vida_actual = vida;
-        vida_total = vida;
+        listamovimientos = movimientos;
+        listatipos = tipos;
+        vidaactual = vida;
+        vidatotal = vida;
         is_alive = true;
         this.defensa = defensa;
     }
 
     public List<Tipo> GetTipos()
     {
-        return lista_tipos;
+        return listatipos;
     }
     
     public bool GetIsAlive()
@@ -42,17 +42,17 @@ public class Pokemon
     
     public List<IMovimiento> GetListaMovimientos()
     {
-        return lista_movimientos;
+        return listamovimientos;
     }
 
     public int GetVidaTotal()
     {
-        return vida_total;
+        return vidatotal;
     }
 
     public int GetVidaActual()
     {
-        return vida_actual;
+        return vidaactual;
     }
 
     // Método para usar un movimiento, incluyendo los de defensa
@@ -60,31 +60,31 @@ public class Pokemon
     {
         if (is_alive)
         {
-            foreach (IMovimiento accion in lista_movimientos)
+            foreach (IMovimiento accion in listamovimientos)
             {
                 if (accion.GetName() == movimiento.GetName())
                 {
-                    accion.Usado_Anteriormente(true);
+                    accion.UsadoAnteriormente(true);
                 }
                 else
                 {
-                    accion.Usado_Anteriormente(false);
+                    accion.UsadoAnteriormente(false);
                 }
             }
 
-            if (movimiento is IMovimiento_Defensa defensamovimiento)
+            if (movimiento is IMovimientoDefensa defensamovimiento)
             {
                 defensa += defensamovimiento.GetDefensa();
             }
         }
     }
     
-    public void RecibirAtaque(IMovimiento_Ataque movimiento)
+    public void RecibirAtaque(IMovimientoAtaque movimiento)
     {
         double efectividadTipo = 1.0;
         Tipo tipoAtaque = movimiento.GetTipo();
 
-        foreach (Tipo tipoDefensor in lista_tipos)
+        foreach (Tipo tipoDefensor in listatipos)
         {
             efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
         }
@@ -100,12 +100,12 @@ public class Pokemon
         {
             danio -= defensa; // Resta el daño restante a la vida
             defensa = 0;
-            vida_actual -= danio;
+            vidaactual -= danio;
 
-            if (vida_actual <= 0)
+            if (vidaactual <= 0)
             {
                 is_alive = false;
-                vida_actual = 0;
+                vidaactual = 0;
                 Console.WriteLine($"El pokemon {name} se ha debilitado, por que no podrá combatir más");
             }
         }

@@ -6,6 +6,6 @@ public interface IMovimiento
 { string GetName();
     Tipo GetTipo();
     bool GetesEspecial();
-    void Usado_Anteriormente(bool usado);
-    bool GetUsado_Anteriormente();
+    void UsadoAnteriormente(bool usado);
+    bool GetUsadoAnteriormente();
 }

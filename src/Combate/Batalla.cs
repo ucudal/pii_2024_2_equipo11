@@ -16,8 +16,10 @@ namespace Library.Combate
         public Batalla()
         {
             Pokedex primitiva = new Pokedex();
-            this.jugadorAtacante = new Jugador("Ash", primitiva);
-            this.jugadorDefensor = new Jugador("Red", primitiva);
+            this.jugadorAtacante = new Jugador("Ash");
+            jugadorAtacante.Asociate(primitiva);
+            this.jugadorDefensor = new Jugador("Red");
+            jugadorDefensor.Asociate(primitiva);
             this.turnos = true;
             this.batallaTerminada = false;
             this.batallaIniciada = false;
@@ -103,7 +105,6 @@ namespace Library.Combate
                 jugadorDefensor = temporal;
                 turnos = !turnos;
             }
-            jugadorDefensor.ActualizarEstadoEquipo();
             TerminarBatalla();
         }
     }
