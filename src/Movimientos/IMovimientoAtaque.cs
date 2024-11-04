@@ -3,4 +3,5 @@
 public interface IMovimientoAtaque: IMovimiento
 {
     int GetAtaque();
+    int GetPrecision();
 }

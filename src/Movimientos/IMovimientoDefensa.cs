@@ -3,7 +3,5 @@
     public interface IMovimientoDefensa : IMovimiento
     {
         int GetDefensa();
-
-
     }
 }
