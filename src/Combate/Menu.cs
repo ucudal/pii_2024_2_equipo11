@@ -12,27 +12,27 @@ namespace Library.Combate
             batallaActual = new Batalla();
         }
 
-        public int GetHpDefensor()
+        public double GetHpDefensor()
         {
-            return batallaActual.GetDefensor().GetPokemonEnTurno().GetVidaActual();
+            return batallaActual.GetHpDefensorB(); 
         }
-        public int GetHpAtacante()
+        public double GetHpAtacante()
         {
-            return batallaActual.GetAtacante().GetPokemonEnTurno().GetVidaActual();
+            return batallaActual.GetHpAtacanteB(); 
         }
         public Pokemon GetPokemonActual()
         {
-            return batallaActual.GetAtacante().GetPokemonEnTurno();
+            return batallaActual.GetPokemonActualB();
         }
 
-        public void AgregarPokemones1(string nombrePokemon)
+        public void AgregarPokemonesA(string pokemon)
         {
-            batallaActual.GetAtacante().AgregarAlEquipo(nombrePokemon);
+            batallaActual.AgregarPokemonBA(pokemon); 
         }
 
-        public void AgregarPokemones2(string nombrePokemon)
+        public void AgregarPokemonesD(string pokemon)
         {
-            batallaActual.GetDefensor().AgregarAlEquipo(nombrePokemon);
+            batallaActual.AgregarPokemonBD(pokemon);
         }
 
         public void IniciarEnfrentamiento()
@@ -131,7 +131,7 @@ namespace Library.Combate
                         if (movimiento is IMovimientoAtaque movimientoAtaque)
                         {
                             
-                            batallaActual.GetDefensor().GetPokemonEnTurno().RecibirAtaque(movimientoAtaque);
+                            batallaActual.RecibirAtaqueB(movimientoAtaque);
                         }
                         batallaActual.AvanzarTurno();
                     }

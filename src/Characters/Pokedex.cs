@@ -3,13 +3,20 @@ using Ucu.Poo.Pokemon;
 
 namespace DefaultNamespace;
 
-public class Pokedex
+public static class Pokedex
 {
-    private List<Tipo> listatiposdisponibles = new List<Tipo>();
-    private List<Pokemon> pokemonsdisponibles = new List<Pokemon>();
-    private List<IMovimiento> listaMovimientos = new List<IMovimiento>();
+    private static List<Tipo> listatiposdisponibles = new List<Tipo>();
+    private static List<Pokemon> pokemonsdisponibles = new List<Pokemon>();
+    private static List<IMovimiento> listaMovimientos = new List<IMovimiento>();
 
-    public void MostrarCatalogo()
+    static Pokedex()
+    {
+        RegularTipos();
+        CrearMovimientos();
+        CrearPokemones();
+    }
+
+    public static void MostrarCatalogo()
     {
         foreach (Pokemon pokemon in pokemonsdisponibles)
         {
@@ -17,7 +24,7 @@ public class Pokedex
         }
     }
 
-    public Pokemon EntregarPokemon(string nombrepokemon)
+    public static Pokemon EntregarPokemon(string nombrepokemon)
     {
         foreach (Pokemon pokemon in pokemonsdisponibles)
         {
@@ -29,15 +36,9 @@ public class Pokedex
         Console.WriteLine("No se ha encontrado al pokemon");
         return null;
     }
+    
 
-    public Pokedex()
-    {
-        RegularTipos();
-        CrearMovimientos();
-        CrearPokemones();
-    }
-
-    private void RegularTipos()
+    private static void RegularTipos()
     { 
         // Crear los tipos
         Tipo electrico = new Tipo("Electrico");
@@ -101,7 +102,7 @@ public class Pokedex
         listatiposdisponibles.Add(tierra); //7
     }
 
-    private void CrearMovimientos()
+    private static void CrearMovimientos()
     {
         // Movimientos de Pidgey 
         MovimientoDeAtaque picotazo = new MovimientoDeAtaque("Picotazo", 60, listatiposdisponibles[4], false); // Volador
@@ -157,7 +158,7 @@ public class Pokedex
         listaMovimientos.Add(proteccion);
     }
 
-    private void CrearPokemones()
+    private static void CrearPokemones()
     {
 
         List<IMovimiento> movimientosPikachu = new List<IMovimiento>
