@@ -16,9 +16,8 @@ namespace Library.Combate
 
         public Batalla()
         {
-            Pokedex primitiva = new Pokedex();
-            this.jugadorAtacante = new Jugador("Ash", primitiva);
-            this.jugadorDefensor = new Jugador("Red", primitiva);
+            this.jugadorAtacante = new Jugador("Ash");
+            this.jugadorDefensor = new Jugador("Red");
             this.turnos = true;
             this.batallaTerminada = false;
             this.batallaIniciada = false;
