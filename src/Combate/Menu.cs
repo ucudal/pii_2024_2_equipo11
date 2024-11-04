@@ -12,11 +12,11 @@ namespace Library.Combate
             batallaActual = new Batalla();
         }
 
-        public int GetHpDefensor()
+        public double GetHpDefensor()
         {
             return batallaActual.GetHpDefensorB(); 
         }
-        public int GetHpAtacante()
+        public double GetHpAtacante()
         {
             return batallaActual.GetHpAtacanteB(); 
         }

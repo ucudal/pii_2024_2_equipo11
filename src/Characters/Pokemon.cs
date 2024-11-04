@@ -9,12 +9,12 @@ public class Pokemon
     private string name;
     private List<IMovimiento> lista_movimientos;
     private List<Tipo> lista_tipos;
-    private int vida_actual;
-    private int vida_total;
-    private int defensa;
+    private double vida_actual;
+    private double vida_total;
+    private double defensa;
     private bool is_alive;
 
-    public Pokemon(string nombre, List<IMovimiento> movimientos, List<Tipo> tipos, int vida, int defensa)
+    public Pokemon(string nombre, List<IMovimiento> movimientos, List<Tipo> tipos, double vida, double defensa)
     {
         name = nombre;
         lista_movimientos = movimientos;
@@ -45,12 +45,12 @@ public class Pokemon
         return lista_movimientos;
     }
 
-    public int GetVidaTotal()
+    public double GetVidaTotal()
     {
         return vida_total;
     }
 
-    public int GetVidaActual()
+    public double GetVidaActual()
     {
         return vida_actual;
     }
@@ -89,7 +89,7 @@ public class Pokemon
             efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
         }
 
-        int danio = (int)(movimiento.GetAtaque() * efectividadTipo);
+        double danio = (double)(movimiento.GetAtaque() * efectividadTipo);
 
         // Aplicar el daño a la defensa o vida o un poco y un poco
         if (defensa > danio)
@@ -109,5 +109,11 @@ public class Pokemon
                 Console.WriteLine($"El pokemon {name} se ha debilitado, por que no podrá combatir más");
             }
         }
+    }
+
+    public void RecibirDanioDeEfecto(double numero)
+    {
+        double porcentaje = (this.vida_actual * 100)/numero;
+        this.vida_actual -= porcentaje;
     }
 }

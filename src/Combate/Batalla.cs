@@ -50,12 +50,12 @@ namespace Library.Combate
         }
         
 
-        public int GetHpDefensorB()
+        public double GetHpDefensorB()
         {
             return jugadorDefensor.HpPokemonEnTurno();
         }
 
-        public int GetHpAtacanteB()
+        public double GetHpAtacanteB()
         {
             return jugadorAtacante.HpPokemonEnTurno();
         }
