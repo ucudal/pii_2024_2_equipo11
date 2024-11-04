@@ -36,7 +36,7 @@ public class BatallaTests
         Batalla PruebaBatalla2 = new Batalla();
         PruebaBatalla2.TerminarBatalla();
         string ResultadoEsperado = "Ya ha terminado la batalla!";
-        string ResultadoDado=PruebaBatalla2.AvanzarTurno();
+        string ResultadoDado=PruebaBatalla2.AvanzarTurno()ta ya ;
         Assert.AreEqual(ResultadoEsperado,ResultadoDado);
     }
 }

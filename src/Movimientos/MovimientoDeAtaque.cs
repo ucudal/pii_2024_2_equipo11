@@ -7,16 +7,15 @@ public class MovimientoDeAtaque: IMovimientoAtaque
     private string name { get; set; }
     private int ataque { get; set; }
     private Tipo tipo { get; set; }
-    private bool usado_anteriormente { get; set; }
-    private bool es_especial { get; set; }
+    
+    private int precision { get; set; }
 
-    public MovimientoDeAtaque(string name, int ataque, Tipo tipo, bool es_especial)
+    public MovimientoDeAtaque(string name, int ataque, Tipo tipo, int precision)
     {
         this.name = name;
         this.ataque = ataque;
         this.tipo = tipo;
-        usado_anteriormente = false;
-        this.es_especial = es_especial;
+        this.precision = precision;
     }
     public int GetAtaque()
     {
@@ -28,23 +27,13 @@ public class MovimientoDeAtaque: IMovimientoAtaque
         return name;
     }
 
-    public bool GetesEspecial()
-    {
-        return es_especial;
-    }
-
     public Tipo GetTipo()
     {
         return tipo;
     }
 
-    public void UsadoAnteriormente(bool usado)
+    public int GetPrecision()
     {
-        usado_anteriormente = usado;
-    }
-
-    public bool GetUsadoAnteriormente()
-    {
-        return usado_anteriormente;
+        return precision;
     }
 }

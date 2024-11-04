@@ -3,9 +3,8 @@
 namespace Ucu.Poo.Pokemon;
 //Establece las firmas que necesita cumplir cada libro para funcionar correctamente
 public interface IMovimiento
-{ string GetName();
+{ 
+    string GetName();
     Tipo GetTipo();
-    bool GetesEspecial();
-    void UsadoAnteriormente(bool usado);
-    bool GetUsadoAnteriormente();
+    
 }
