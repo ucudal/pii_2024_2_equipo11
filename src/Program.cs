@@ -18,9 +18,9 @@ namespace Ucu.Poo.Pokemon
             int vidaPidgeyEsperada = 60; // Pidgey debería iniciar con 60 HP
 
             Menu menuPP = new Menu();
-            menuPP.AgregarPokemones1("Pidgey"); // Pidgey es el segundo Pokémon
-            menuPP.AgregarPokemones2("Pikachu"); // Pikachu es el primero
-            menuPP.AgregarPokemones1("Charmander"); // Charmander es el segundo Pokémon también
+            menuPP.AgregarPokemonesA("Pidgey"); // Pidgey es el segundo Pokémon
+            menuPP.AgregarPokemonesD("Pikachu"); // Pikachu es el primero
+            menuPP.AgregarPokemonesA("Charmander"); // Charmander es el segundo Pokémon también
             menuPP.CambiarPokemon(1); // Cambia a Charmander
             menuPP.UsarMovimientos(1); // Pikachu usa rayo
 
@@ -29,6 +29,8 @@ namespace Ucu.Poo.Pokemon
             Console.WriteLine(menuPP.GetHpAtacante());
             Console.WriteLine(vidaCharmanderRestanteEsperada);
             Console.WriteLine();
+            menuPP.MostrarEstadoRival();
+            menuPP.MostrarEstadoEquipo();
         }
         
     }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using DefaultNamespace;
+using Ucu.Poo.Pokemon;
 
 namespace Library.Combate
 {
@@ -23,9 +24,40 @@ namespace Library.Combate
             this.batallaIniciada = false;
         }
 
+        public void RecibirAtaqueB(IMovimiento_Ataque ataque)
+        {
+            jugadorDefensor.PokemonAtacado(ataque);
+        }
+
         public Jugador GetAtacante()
         {
             return jugadorAtacante;
+        }
+
+        public void AgregarPokemonBA(string pokemon)
+        {
+            jugadorAtacante.AgregarAlEquipo(pokemon);
+        }
+        
+        public void AgregarPokemonBD(string pokemon)
+        {
+            jugadorDefensor.AgregarAlEquipo(pokemon);
+        }
+
+        public Pokemon GetPokemonActualB()
+        {
+            return jugadorAtacante.GetPokemonEnTurno();
+        }
+        
+
+        public int GetHpDefensorB()
+        {
+            return jugadorDefensor.HpPokemonEnTurno();
+        }
+
+        public int GetHpAtacanteB()
+        {
+            return jugadorAtacante.HpPokemonEnTurno();
         }
 
         public Jugador GetDefensor()
