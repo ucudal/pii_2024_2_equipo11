@@ -87,15 +87,15 @@ namespace Library.Combate
             Console.WriteLine($"El Pokémon {pokemon.GetName()} tiene los siguientes movimientos:");
             foreach (IMovimiento movimiento in pokemon.GetListaMovimientos())
             {
-                if (movimiento.GetesEspecial() && movimiento.GetUsadoAnteriormente())
+                if (movimiento is IMovimientoEspecial especial && especial.GetUsadoAnteriormente())
                 {
                     Console.WriteLine($"{movimiento.GetName()}(especial) no puede ser usado en este turno");
                 }
                 else
                 {
-                    if (movimiento.GetesEspecial())
+                    if (movimiento is IMovimientoEspecial movimientoEspecial)
                     {
-                        Console.WriteLine(movimiento.GetName(), "(especial)");
+                        Console.WriteLine(movimientoEspecial.GetName(), "(especial)");
                     }
                     else
                     {
@@ -120,7 +120,7 @@ namespace Library.Combate
                 {
                     IMovimiento movimiento = movimientos[numDeMovimiento - 1]; //acomodo por la lista
 
-                    if (movimiento.GetesEspecial() && movimiento.GetUsadoAnteriormente())
+                    if (movimiento is IMovimientoEspecial especial && especial.GetUsadoAnteriormente())
                     {
                         Console.WriteLine($"El movimiento {movimiento.GetName()} es especial y ya fue usado anteriormente. Elija otro movimiento.");
                     }

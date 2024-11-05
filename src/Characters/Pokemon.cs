@@ -62,24 +62,28 @@ public class Pokemon
         {
             foreach (IMovimiento accion in lista_movimientos)
             {
-                if (accion.GetName() == movimiento.GetName())
+                if (accion is MovimientoEspecial accionEspecial)
                 {
-                    accion.Usado_Anteriormente(true);
+                    if (accion.GetName() == movimiento.GetName())
+                    {
+                        accionEspecial.UsadoAnteriormente(true);
+                    }
+                    else
+                    {
+                        accionEspecial.UsadoAnteriormente(false);
+                    }
                 }
-                else
+                if (movimiento is IMovimientoDefensa defensamovimiento)
                 {
-                    accion.Usado_Anteriormente(false);
+                    defensa += defensamovimiento.GetDefensa();
                 }
             }
 
-            if (movimiento is IMovimiento_Defensa defensamovimiento)
-            {
-                defensa += defensamovimiento.GetDefensa();
-            }
+            
         }
     }
     
-    public void RecibirAtaque(IMovimiento_Ataque movimiento)
+    public void RecibirAtaque(IMovimientoAtaque movimiento)
     {
         double efectividadTipo = 1.0;
         Tipo tipoAtaque = movimiento.GetTipo();

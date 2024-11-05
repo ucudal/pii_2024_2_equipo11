@@ -211,7 +211,7 @@ public static class Pokedex
         MovimientoDeAtaque hidrobomba = new MovimientoDeAtaque("Hidrobomba", 95, listatiposdisponibles[2], true); // Agua (especial)
         MovimientoDeAtaque cabezazo = new MovimientoDeAtaque("Cabezazo", 40, listatiposdisponibles[5], false); // Normal 
         
-        MovimientoDefensivo proteccion = new MovimientoDefensivo("Protección", 40, listatiposdisponibles[5], false); // Normal + bonificación defensa
+        MovimientoDeDefensa proteccion = new MovimientoDeDefensa("Protección", 40, listatiposdisponibles[5], false); // Normal + bonificación defensa
 
         // Agregar movimientos a la lista
         listaMovimientos.Add(picotazo); // 0

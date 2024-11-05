@@ -23,7 +23,7 @@ namespace Library.Combate
             this.batallaIniciada = false;
         }
 
-        public void RecibirAtaqueB(IMovimiento_Ataque ataque)
+        public void RecibirAtaqueB(IMovimientoAtaque ataque)
         {
             jugadorDefensor.PokemonAtacado(ataque);
         }
