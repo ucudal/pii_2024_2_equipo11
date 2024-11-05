@@ -12,6 +12,11 @@ namespace Library.Combate
             batallaActual = new Batalla();
         }
 
+        public void UnirJugadores(string jugador)
+        {
+            batallaActual.AgregarJugador(new Jugador(jugador));
+        }
+
         public double GetHpDefensor()
         {
             return batallaActual.GetHpDefensorB(); 
@@ -130,8 +135,16 @@ namespace Library.Combate
                         Console.WriteLine($"{pokemonActual.GetName()} ha usado {movimiento.GetName()}.");
                         if (movimiento is IMovimientoAtaque movimientoAtaque)
                         {
-                            
-                            batallaActual.RecibirAtaqueB(movimientoAtaque);
+                            Random random = new Random();
+                            int numeroAleatorio = random.Next(1, 101); //Numero aleatorio para saber si acierto 
+                            if (numeroAleatorio <= movimientoAtaque.GetPrecision())
+                            {
+                                batallaActual.RecibirAtaqueB(movimientoAtaque);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"El ataque {movimientoAtaque.GetName()} ha fallado");
+                            }
                         }
                         batallaActual.AvanzarTurno();
                     }

@@ -16,8 +16,6 @@ namespace Library.Combate
 
         public Batalla()
         {
-            this.jugadorAtacante = new Jugador("Ash");
-            this.jugadorDefensor = new Jugador("Red");
             this.turnos = true;
             this.batallaTerminada = false;
             this.batallaIniciada = false;
@@ -26,6 +24,33 @@ namespace Library.Combate
         public void RecibirAtaqueB(IMovimientoAtaque ataque)
         {
             jugadorDefensor.PokemonAtacado(ataque);
+        }
+
+        public void AgregarJugador(Jugador jugador)
+        {
+            if (jugadorDefensor != null && jugadorAtacante != null)
+            {
+                Console.WriteLine("No podemos agregar más jugadores, ya hay 2 jugadores para jugar");
+            }
+            else
+            {
+                if (jugadorDefensor == null && jugadorAtacante == null)
+                {
+                    // Asigna aleatoriamente al jugador como defensor o atacante si ambos están vacíos.
+                    if (new Random().Next(1, 3) == 1)
+                        jugadorDefensor = jugador;
+                    else
+                        jugadorAtacante = jugador;
+                }
+                else if (jugadorDefensor == null)
+                {
+                    jugadorDefensor = jugador;
+                }
+                else
+                {
+                    jugadorAtacante = jugador;
+                }
+            }
         }
 
         public Jugador GetAtacante()
@@ -72,7 +97,7 @@ namespace Library.Combate
         public void IniciarBatalla()
         {
             // Verifica si ambos jugadores tienen equipos y la batalla no ha comenzado
-            if (!batallaIniciada && jugadorAtacante.GetPokemons().Count > 0 && jugadorDefensor.GetPokemons().Count > 0)
+            if (!batallaIniciada && jugadorAtacante.GetPokemons().Count > 0 && jugadorDefensor.GetPokemons().Count > 0 && jugadorAtacante != null && jugadorDefensor != null)
             {
                 batallaIniciada = true;
                 Console.WriteLine($"La batalla ha iniciado, comienza el jugador {jugadorAtacante.GetName()}");
