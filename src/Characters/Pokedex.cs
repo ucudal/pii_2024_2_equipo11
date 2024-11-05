@@ -1,5 +1,9 @@
 using Library.Tipos;
 using Ucu.Poo.Pokemon;
+using Dormir = Library.Tipos.Dormir;
+using Envenenar = Library.Tipos.Envenenar;
+using Paralizar = Library.Tipos.Paralizar;
+using Quemar = Library.Tipos.Quemar;
 
 namespace DefaultNamespace;
 
@@ -8,6 +12,8 @@ public static class Pokedex
     private static List<Tipo> listatiposdisponibles = new List<Tipo>();
     private static List<Pokemon> pokemonsdisponibles = new List<Pokemon>();
     private static List<IMovimiento> listaMovimientos = new List<IMovimiento>();
+    private static List<Efecto> listaEfectos = new List<Efecto>();
+
 
     static Pokedex()
     {
@@ -35,6 +41,18 @@ public static class Pokedex
         }
         Console.WriteLine("No se ha encontrado al pokemon");
         return null;
+    }
+
+    private static void RegularEfectos()
+    {
+        Efecto dormir = new Dormir();
+        Efecto paralizar = new Paralizar();
+        Efecto envenenar = new Envenenar();
+        Efecto quemar = new Quemar();
+        listaEfectos.Add(dormir);//0
+        listaEfectos.Add(paralizar);//1
+        listaEfectos.Add(envenenar);//2
+        listaEfectos.Add(quemar);//3
     }
     
 
@@ -167,7 +185,7 @@ public static class Pokedex
         veneno.CrearEfectividad(veneno,0.5);      // Veneno contra Veneno -> Poco efectivo (50%)
         
         // Se agragan a la lista todos los tipos
-        listatiposdisponibles.Add(electrico); //0
+       listatiposdisponibles.Add(electrico); //0
         listatiposdisponibles.Add(fuego);
         listatiposdisponibles.Add(agua);
         listatiposdisponibles.Add(planta);
@@ -177,39 +195,44 @@ public static class Pokedex
         listatiposdisponibles.Add(tierra); //7
         listatiposdisponibles.Add(bicho);
         listatiposdisponibles.Add(dragon);
+        listatiposdisponibles.Add(fantasma);
+        listatiposdisponibles.Add(hielo);
+        listatiposdisponibles.Add(lucha);
+        listatiposdisponibles.Add(psiquico);
+        listatiposdisponibles.Add(veneno);//14
     }
 
     private static void CrearMovimientos()
     {
         // Movimientos de Pidgey 
-        MovimientoDeAtaque picotazo = new MovimientoDeAtaque("Picotazo", 60, listatiposdisponibles[4], false); // Volador
-        MovimientoDeAtaque vendaval = new MovimientoDeAtaque("Vendaval", 110, listatiposdisponibles[4], true); // Volador (especial)
-        MovimientoDeAtaque golpeCabeza = new MovimientoDeAtaque("Golpe Cabeza", 70, listatiposdisponibles[5], false); // Normal
+        MovimientoDeAtaque picotazo = new MovimientoDeAtaque("Picotazo", 60, listatiposdisponibles[4], 100); // Volador
+        MovimientoEspecial vendaval = new MovimientoEspecial("Vendaval", 110, listatiposdisponibles[4], 70,listaEfectos[0]); // Volador (especial)
+        MovimientoDeAtaque golpeCabeza = new MovimientoDeAtaque("Golpe Cabeza", 70, listatiposdisponibles[5], 100); // Normal
 
         // Movimientos de Pikachu 
-        MovimientoDeAtaque rayo = new MovimientoDeAtaque("Rayo", 95, listatiposdisponibles[0], true); // Electrico (especial)
-        MovimientoDeAtaque electroBola = new MovimientoDeAtaque("Electro Bola", 65, listatiposdisponibles[0], false); // Electrico
-        MovimientoDeAtaque ataqueRapido = new MovimientoDeAtaque("Ataque Rápido", 60, listatiposdisponibles[5], false); // Normal
+        MovimientoEspecial rayo = new MovimientoEspecial("Rayo", 95, listatiposdisponibles[0], 100,listaEfectos[1]); // Electrico (especial)
+        MovimientoDeAtaque electroBola = new MovimientoDeAtaque("Electro Bola", 65, listatiposdisponibles[0], 100); // Electrico
+        MovimientoDeAtaque ataqueRapido = new MovimientoDeAtaque("Ataque Rápido", 60, listatiposdisponibles[5], 100); // Normal
 
         // Movimientos de Larvitar 
-        MovimientoDeAtaque lanzaRocas = new MovimientoDeAtaque("LanzaRocas", 50, listatiposdisponibles[6], false); // Roca
-        MovimientoDeAtaque terremoto = new MovimientoDeAtaque("Terremoto", 100, listatiposdisponibles[7], true);   // Tierra (especial)
-        MovimientoDeAtaque mordisco = new MovimientoDeAtaque("Mordisco", 60, listatiposdisponibles[5], false); // Siniestro
+        MovimientoDeAtaque lanzaRocas = new MovimientoDeAtaque("LanzaRocas", 50, listatiposdisponibles[6], 90); // Roca
+        MovimientoEspecial terremoto = new MovimientoEspecial("Terremoto", 100, listatiposdisponibles[7], 100,listaEfectos[1]);   // Tierra (especial)
+        MovimientoDeAtaque mordisco = new MovimientoDeAtaque("Mordisco", 60, listatiposdisponibles[5], 100); // Siniestro
 
         // Movimientos de Bulbasaur 
-        MovimientoDeAtaque lluevehojas = new MovimientoDeAtaque("Lluevehojas", 95, listatiposdisponibles[3], true); // Planta (especial)
-        MovimientoDeAtaque bombaLodo = new MovimientoDeAtaque("BombaLodo", 70, listatiposdisponibles[3], false); // Planta
-        MovimientoDeAtaque golpeCuerpo = new MovimientoDeAtaque("Golpe Cuerpo", 65, listatiposdisponibles[5], false); // Normal
+        MovimientoEspecial lluevehojas = new MovimientoEspecial("Lluevehojas", 95, listatiposdisponibles[3], 90,listaEfectos[2]); // Planta (especial)
+        MovimientoDeAtaque bombaLodo = new MovimientoDeAtaque("BombaLodo", 70, listatiposdisponibles[3], 100); // Planta
+        MovimientoDeAtaque golpeCuerpo = new MovimientoDeAtaque("Golpe Cuerpo", 65, listatiposdisponibles[5], 100); // Normal
 
         // Movimientos de Charmander 
-        MovimientoDeAtaque furiaDragon = new MovimientoDeAtaque("Furia Dragon", 40, new Tipo("Dragon"), false); // Daño fijo (o lo ajustamos a 100)
-        MovimientoDeAtaque lanzallamas = new MovimientoDeAtaque("Lanzallamas", 70, listatiposdisponibles[1], false); // Fuego
-        MovimientoDeAtaque garraDragon = new MovimientoDeAtaque("Garra Dragon", 60, new Tipo("Dragon"), false); // Dragon
+        MovimientoDeAtaque furiaDragon = new MovimientoDeAtaque("Furia Dragon", 40, listatiposdisponibles[9], 100); // Daño fijo (o lo ajustamos a 100)
+        MovimientoEspecial lanzallamas = new MovimientoEspecial("Lanzallamas", 70, listatiposdisponibles[1], 100,listaEfectos[3]); // Fuego
+        MovimientoDeAtaque garraDragon = new MovimientoDeAtaque("Garra Dragon", 60, listatiposdisponibles[9], 100); // Dragon
 
         // Movimientos de Squirtle 
-        MovimientoDeAtaque hidropulso = new MovimientoDeAtaque("Hidropulso", 60, listatiposdisponibles[2], false); // Agua
-        MovimientoDeAtaque hidrobomba = new MovimientoDeAtaque("Hidrobomba", 95, listatiposdisponibles[2], true); // Agua (especial)
-        MovimientoDeAtaque cabezazo = new MovimientoDeAtaque("Cabezazo", 40, listatiposdisponibles[5], false); // Normal 
+        MovimientoDeAtaque hidropulso = new MovimientoDeAtaque("Hidropulso", 60, listatiposdisponibles[2], 100); // Agua
+        MovimientoEspecial hidrobomba = new MovimientoEspecial("Hidrobomba", 95, listatiposdisponibles[2], 80,listaEfectos[0]); // Agua (especial)
+        MovimientoDeAtaque cabezazo = new MovimientoDeAtaque("Cabezazo", 40, listatiposdisponibles[5], 100); // Normal
         
         MovimientoDeDefensa proteccion = new MovimientoDeDefensa("Protección", 40, listatiposdisponibles[5], false); // Normal + bonificación defensa
 
