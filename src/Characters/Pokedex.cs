@@ -20,6 +20,7 @@ public static class Pokedex
         RegularTipos();
         CrearMovimientos();
         CrearPokemones();
+        RegularEfectos();
     }
 
     public static void MostrarCatalogo()
@@ -205,13 +206,13 @@ public static class Pokedex
     private static void CrearMovimientos()
     {
         // Movimientos de Pidgey 
-        MovimientoDeAtaque picotazo = new MovimientoDeAtaque("Picotazo", 60, listatiposdisponibles[4], 100); // Volador
-        MovimientoEspecial vendaval = new MovimientoEspecial("Vendaval", 110, listatiposdisponibles[4], 70,listaEfectos[0]); // Volador (especial)
+        MovimientoDeAtaque picotazo = new MovimientoDeAtaque("Picotazo", 60, listatiposdisponibles[4], 95); // Volador
+        MovimientoEspecial vendaval = new MovimientoEspecial("Vendaval", 110, listatiposdisponibles[4], 100,listaEfectos[0]); // Volador (especial)
         MovimientoDeAtaque golpeCabeza = new MovimientoDeAtaque("Golpe Cabeza", 70, listatiposdisponibles[5], 100); // Normal
 
         // Movimientos de Pikachu 
         MovimientoEspecial rayo = new MovimientoEspecial("Rayo", 95, listatiposdisponibles[0], 100,listaEfectos[1]); // Electrico (especial)
-        MovimientoDeAtaque electroBola = new MovimientoDeAtaque("Electro Bola", 65, listatiposdisponibles[0], 100); // Electrico
+        MovimientoDeAtaque electroBola = new MovimientoDeAtaque("Electro Bola", 65, listatiposdisponibles[0], 95); // Electrico
         MovimientoDeAtaque ataqueRapido = new MovimientoDeAtaque("Ataque Rápido", 60, listatiposdisponibles[5], 100); // Normal
 
         // Movimientos de Larvitar 
@@ -234,28 +235,100 @@ public static class Pokedex
         MovimientoEspecial hidrobomba = new MovimientoEspecial("Hidrobomba", 95, listatiposdisponibles[2], 80,listaEfectos[0]); // Agua (especial)
         MovimientoDeAtaque cabezazo = new MovimientoDeAtaque("Cabezazo", 40, listatiposdisponibles[5], 100); // Normal
         
+        //Movimientos de Caterpie
+        MovimientoDeAtaque picotazoCater = new MovimientoDeAtaque("Picotazo", 60, listatiposdisponibles[5],100);//Normal
+        MovimientoEspecial disparoDemora = new MovimientoEspecial("Disparo Demora", 30, listatiposdisponibles[8], 100, listaEfectos[1]);//Bicho, Paralizar
+        MovimientoDeAtaque placajeTackle = new MovimientoDeAtaque("Placaje Tackle", 40, listatiposdisponibles[8], 100);//Bicho
+        
+        //Movimientos de Dratini
+        MovimientoEspecial besoDragon = new MovimientoEspecial("Beso Dragon", 80, listatiposdisponibles[9], 100, listaEfectos[0]);
+        MovimientoDeAtaque cascada = new MovimientoDeAtaque("Cascada", 80, listatiposdisponibles[0], 100);//Agua
+        MovimientoDeAtaque acuaCola = new MovimientoDeAtaque("Acua Cola", 90, listatiposdisponibles[0], 90);//Aguac
+        
+        //Movimientos de Gengar
+        MovimientoEspecial punioFuego = new MovimientoEspecial("Puño Fuego", 75, listatiposdisponibles[1], 100, listaEfectos[3]); //Fuego, Quemar
+        MovimientoDeAtaque sombraVil = new MovimientoDeAtaque("Sombra Vil", 65, listatiposdisponibles[10], 100); //Fantasma
+        MovimientoDeAtaque puyaNociva = new MovimientoDeAtaque("Puya Nociva", 80, listatiposdisponibles[14], 100); //Veneno
+        
+        //Movimientos de Regice
+        MovimientoEspecial punioHielo = new MovimientoEspecial("Puño Hielo", 75, listatiposdisponibles[11], 100, listaEfectos[1]);// Hielo, Paralizar
+        MovimientoDeAtaque avalancha = new MovimientoDeAtaque("Avalancha", 60, listatiposdisponibles[11], 100);//Hielo
+        MovimientoDeAtaque treparrocas = new MovimientoDeAtaque("Treparrocas", 90, listatiposdisponibles[5], 85);//Normal
+        
+        //Movimientos de Stufful
+        MovimientoEspecial punioCertero = new MovimientoEspecial("Puñu Certero", 150, listatiposdisponibles[12], 100, listaEfectos[0]); //lucha, Dormir
+        MovimientoDeAtaque demolicion = new MovimientoDeAtaque("Demolicion", 75, listatiposdisponibles[12], 100); //Lucha
+        MovimientoDeAtaque derribo = new MovimientoDeAtaque("Derribo", 90, listatiposdisponibles[5], 95);//Normal
+        
+        //Movimientos de Gardevoir
+        MovimientoEspecial premonicion = new MovimientoEspecial("Premonicion", 120, listatiposdisponibles[13], 95, listaEfectos[0]);// Psiquico, Dormir
+        MovimientoDeAtaque psiocarga = new MovimientoDeAtaque("Psicocarga", 80, listatiposdisponibles[13], 100);// Psiquico
+        MovimientoDeAtaque rapidez = new MovimientoDeAtaque("Rapidez", 60, listatiposdisponibles[5], 100);// Normal
+            
+        //Movimientos de Arbok
+        MovimientoEspecial lanzaMugre = new MovimientoEspecial("Lanza Mugre", 120, listatiposdisponibles[14], 100, listaEfectos[2]);//Veneno, Envenenar
+        MovimientoDeAtaque colaVeneno = new MovimientoDeAtaque("Cola Veneno", 50, listatiposdisponibles[14], 100);//Veneno
+        MovimientoDeAtaque fuerza = new MovimientoDeAtaque("Fuerza", 80, listatiposdisponibles[5], 90);//Normal
+        
         MovimientoDeDefensa proteccion = new MovimientoDeDefensa("Protección", 40, listatiposdisponibles[5], false); // Normal + bonificación defensa
 
         // Agregar movimientos a la lista
+        
+        //Pidgey
         listaMovimientos.Add(picotazo); // 0
         listaMovimientos.Add(vendaval); //1
-        listaMovimientos.Add(golpeCabeza);
-        listaMovimientos.Add(rayo);
-        listaMovimientos.Add(electroBola);
-        listaMovimientos.Add(ataqueRapido);
-        listaMovimientos.Add(lanzaRocas);
-        listaMovimientos.Add(terremoto);
-        listaMovimientos.Add(mordisco);
-        listaMovimientos.Add(lluevehojas);
-        listaMovimientos.Add(bombaLodo);
-        listaMovimientos.Add(golpeCuerpo);
-        listaMovimientos.Add(furiaDragon);
-        listaMovimientos.Add(lanzallamas);
-        listaMovimientos.Add(garraDragon);
-        listaMovimientos.Add(hidropulso);
-        listaMovimientos.Add(hidrobomba);
-        listaMovimientos.Add(cabezazo);
-        listaMovimientos.Add(proteccion);
+        listaMovimientos.Add(golpeCabeza);//2
+        //pikachu
+        listaMovimientos.Add(rayo);//3
+        listaMovimientos.Add(electroBola);//4
+        listaMovimientos.Add(ataqueRapido);//5
+        //Larvitar
+        listaMovimientos.Add(lanzaRocas);//6
+        listaMovimientos.Add(terremoto);//7
+        listaMovimientos.Add(mordisco);//8
+        //Bulbasaur
+        listaMovimientos.Add(lluevehojas);//9
+        listaMovimientos.Add(bombaLodo);//10
+        listaMovimientos.Add(golpeCuerpo);//11
+        //Charmander
+        listaMovimientos.Add(furiaDragon);//12
+        listaMovimientos.Add(lanzallamas);//13
+        listaMovimientos.Add(garraDragon);//14
+        //Squirtle
+        listaMovimientos.Add(hidropulso);//15
+        listaMovimientos.Add(hidrobomba);//16
+        listaMovimientos.Add(cabezazo);//17
+        //Todos
+        listaMovimientos.Add(proteccion);//18
+        //caterpie
+        listaMovimientos.Add(picotazoCater);//19
+        listaMovimientos.Add(disparoDemora);//20
+        listaMovimientos.Add(placajeTackle);//21
+        //Dratini
+        listaMovimientos.Add(besoDragon);//22
+        listaMovimientos.Add(cascada);//23
+        listaMovimientos.Add(acuaCola);//24
+        //Gengar
+        listaMovimientos.Add(punioFuego);//25
+        listaMovimientos.Add(sombraVil);//26
+        listaMovimientos.Add(puyaNociva);//27
+        //Regice
+        listaMovimientos.Add(punioHielo);//28
+        listaMovimientos.Add(avalancha);//29
+        listaMovimientos.Add(treparrocas);//30
+        //Stufful
+        listaMovimientos.Add(punioCertero);//31
+        listaMovimientos.Add(demolicion);//32
+        listaMovimientos.Add(derribo);//33
+        //Gardevoir
+        listaMovimientos.Add(premonicion);//34
+        listaMovimientos.Add(psiocarga);//35
+        listaMovimientos.Add(rapidez);//36
+        //Arbok
+        listaMovimientos.Add(lanzaMugre);//37
+        listaMovimientos.Add(colaVeneno);//38
+        listaMovimientos.Add(fuerza);//39
+        
     }
 
     private static void CrearPokemones()
@@ -331,6 +404,96 @@ public static class Pokedex
         List<Tipo> tiposSquirtle = new List<Tipo> { listatiposdisponibles[2] }; // Agua
         Pokemon Squirtle = new Pokemon("Squirtle", movimientosSquirtle, tiposSquirtle, 80, 70);
         pokemonsdisponibles.Add(Squirtle);
+        
+        //Crear los movimientos para Caterpie
+        List<IMovimiento> movimientosCaterpie = new List<IMovimiento>
+        {
+            listaMovimientos[19], // Picotazo cola
+            listaMovimientos[20], //Disparo Demora
+            listaMovimientos[21], //Placaje Tackle
+            listaMovimientos[18] //Proteccion
+        };
+
+        List<Tipo> tiposCaterpie = new List<Tipo> { listatiposdisponibles[8] };//Bicho
+        Pokemon Caterpie = new Pokemon("Caterpie", movimientosCaterpie, tiposCaterpie, 45, 55);
+        pokemonsdisponibles.Add(Caterpie);
+        
+        //Crear los movimientos para Dratini
+        List<IMovimiento> movimientosDratini = new List<IMovimiento>
+        {
+            listaMovimientos[22], // Beso Dragon
+            listaMovimientos[23], //Cascada
+            listaMovimientos[24], //Acua Cola
+            listaMovimientos[18] //Proteccion
+        };
+
+        List<Tipo> tiposDratini = new List<Tipo> { listatiposdisponibles[9] };//Dragon
+        Pokemon Dratini = new Pokemon("Dratini", movimientosDratini, tiposDratini, 82, 94);
+        pokemonsdisponibles.Add(Dratini);
+        
+        //Crear los movimientos para Gengar
+        List<IMovimiento> movimientosGengar = new List<IMovimiento>
+        {
+            listaMovimientos[25], // Punio Fuego
+            listaMovimientos[26], //Sombra Vil
+            listaMovimientos[27], //Puya Nociva
+            listaMovimientos[18] //Proteccion
+        };
+
+        List<Tipo> tiposGengar = new List<Tipo> { listatiposdisponibles[10] };//Fantasma
+        Pokemon Gengar = new Pokemon("Gengar", movimientosGengar, tiposGengar, 60, 149);
+        pokemonsdisponibles.Add(Gengar);
+        
+        //Crear los movimientos para Regice
+        List<IMovimiento> movimientosRegice = new List<IMovimiento>
+        {
+            listaMovimientos[28], //Punio Hielo
+            listaMovimientos[29], //Avalancha
+            listaMovimientos[30], //Treparrocas
+            listaMovimientos[18] //Proteccion
+        };
+
+        List<Tipo> tiposRegice = new List<Tipo> { listatiposdisponibles[11] };//Hielo
+        Pokemon Regice = new Pokemon("Regice", movimientosRegice, tiposRegice, 80, 100);
+        pokemonsdisponibles.Add(Regice);
+        
+        //Crear los movimientos para Stufful
+        List<IMovimiento> movimientosStufful = new List<IMovimiento>
+        {
+            listaMovimientos[31], //Punio Certero
+            listaMovimientos[31], //Demolicion
+            listaMovimientos[33], //Derribo
+            listaMovimientos[18] //Proteccion
+        };
+
+        List<Tipo> tiposStufful = new List<Tipo> { listatiposdisponibles[12] };//Lucha
+        Pokemon Stufful = new Pokemon("Stufful", movimientosStufful, tiposStufful, 70, 50);
+        pokemonsdisponibles.Add(Stufful);
+        
+        //Crear los movimientos para Gardeovir
+        List<IMovimiento> movimientosGardevoir = new List<IMovimiento>
+        {
+            listaMovimientos[34], //Premonicion
+            listaMovimientos[35], //Psico Carga
+            listaMovimientos[36], //Rapidez
+            listaMovimientos[18] //Proteccion
+        };
+
+        List<Tipo> tiposGardevoir = new List<Tipo> { listatiposdisponibles[13] };//Psiquico
+        Pokemon Gardevoir = new Pokemon("Gardevoir", movimientosGardevoir, tiposGardevoir, 68, 65);
+        pokemonsdisponibles.Add(Gardevoir);
+        
+        //Crear los movimientos para Arbok
+        List<IMovimiento> movimientosArbok = new List<IMovimiento>
+        {
+            listaMovimientos[37], //Lanza Mugre
+            listaMovimientos[38], //Cola veneno
+            listaMovimientos[39], //Fuerza
+            listaMovimientos[18] //Proteccion
+        };
+
+        List<Tipo> tiposArbok = new List<Tipo> { listatiposdisponibles[14] };//Veneno
+        Pokemon Arbok = new Pokemon("Arbok", movimientosArbok, tiposArbok, 60, 695);
+        pokemonsdisponibles.Add(Arbok);
     }
-    
 }
