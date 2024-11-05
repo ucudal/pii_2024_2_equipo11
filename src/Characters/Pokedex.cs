@@ -49,47 +49,122 @@ public static class Pokedex
         Tipo normal = new Tipo("Normal");
         Tipo roca = new Tipo("Roca");
         Tipo tierra = new Tipo("Tierra");
+        Tipo bicho = new Tipo("Bicho");
+        Tipo dragon = new Tipo("Dragon");
+        Tipo fantasma = new Tipo("Fantasma");
+        Tipo hielo = new Tipo("Hielo");
+        Tipo lucha = new Tipo("Lucha");
+        Tipo psiquico = new Tipo("Psiquico");
+        Tipo veneno = new Tipo("Veneno");
         
 
         // Definir efectividades del tipo Electrico
         electrico.CrearEfectividad(agua, 2.0);    // Electrico contra Agua -> Súper efectivo (200%)
         electrico.CrearEfectividad(planta, 0.5);  // Electrico contra Planta -> Poco efectivo (50%)
         electrico.CrearEfectividad(volador, 2.0); // Electrico contra Volador -> Súper efectivo (200%)
-        electrico.CrearEfectividad(tierra, 0.0);  // Electrico contra Tierra -> Inmune (0%)
+        electrico.CrearEfectividad(tierra, 0.5);  // Electrico contra Tierra -> Inmune (0%)
+        electrico.CrearEfectividad(dragon,0.5);   //Electrico contra Dragon -> Poco efectivo (50%)
+        electrico.CrearEfectividad(electrico,0.0);//Electrico contra Electrico -> Inmune(0%)
+        
 
         // Definir efectividades del tipo Fuego
         fuego.CrearEfectividad(agua, 0.5);       // Fuego contra Agua -> Poco efectivo (50%)
         fuego.CrearEfectividad(planta, 2.0);     // Fuego contra Planta -> Súper efectivo (200%)
         fuego.CrearEfectividad(roca, 0.5);       // Fuego contra Roca -> Poco efectivo (50%)
+        fuego.CrearEfectividad(bicho,2.0);       // Fuego contra Bicho -> Super efectivo (200%)
+        fuego.CrearEfectividad(dragon,0.5);      //Fuego contra Dragon -> Poco efectivo (50%)
+        fuego.CrearEfectividad(fuego,0.5);       //Fuego contra Fuego -> Poco efectivo (50%)
+        fuego.CrearEfectividad(hielo,2.0);       //Fuego contra Hielo -> Super efectivo (200%)
 
         // Definir efectividades del tipo Agua
         agua.CrearEfectividad(fuego, 2.0);       // Agua contra Fuego -> Súper efectivo (200%)
         agua.CrearEfectividad(planta, 0.5);      // Agua contra Planta -> Poco efectivo (50%)
         agua.CrearEfectividad(roca, 2.0);        // Agua contra Roca -> Súper efectivo (200%)
         agua.CrearEfectividad(tierra, 2.0);      // Agua contra Tierra -> Súper efectivo (200%)
-
+        agua.CrearEfectividad(agua,0.5);         // Agua contra Agua -> Poco efectivo (50%)
+        agua.CrearEfectividad(dragon,0.5);       // Agua contra Dragon -> Poco efectivo (50%)
+        
         // Definir efectividades del tipo Planta
         planta.CrearEfectividad(fuego, 0.5);      // Planta contra Fuego -> Poco efectivo (50%)
         planta.CrearEfectividad(agua, 2.0);       // Planta contra Agua -> Súper efectivo (200%)
         planta.CrearEfectividad(volador, 0.5);    // Planta contra Volador -> Poco efectivo (50%)
         planta.CrearEfectividad(roca, 2.0);       // Planta contra Roca -> Súper efectivo (200%)
         planta.CrearEfectividad(tierra, 2.0);     // Planta contra Tierra -> Súper efectivo (200%)
+        planta.CrearEfectividad(bicho,0.5);       //Planta contra Bicho-> Poco efectivo (50%)
+        planta.CrearEfectividad(dragon,0.5);      //Planta contra Dragon-> Poco efectivo (50%)
+        planta.CrearEfectividad(planta,0.5);      //Planta contra Planta-> Poco efectivo (50%)
+        planta.CrearEfectividad(veneno,0.5);      // Planta contra Veneno -> Súper efectivo (200%)
 
         // Definir efectividades del tipo Volador
         volador.CrearEfectividad(electrico, 0.5); // Volador contra Electrico -> Poco efectivo (50%)
         volador.CrearEfectividad(planta, 2.0);    // Volador contra Planta -> Súper efectivo (200%)
         volador.CrearEfectividad(roca, 0.5);      // Volador contra Roca -> Poco efectivo (50%)
+        volador.CrearEfectividad(bicho,2.0);      // Volador contra Bicho -> Súper efectivo (200%)
+        volador.CrearEfectividad(lucha,2.0);      // Volador contra Lucha -> Súper efectivo (200%)
+        
+        //Definir efectividades del tipo Normal
+        normal.CrearEfectividad(fantasma,0.5);    // Normal contra Fantasma -> Poco efectivo (50%)
+        normal.CrearEfectividad(roca,0.5);        // Normal contra Roca -> Poco efectivo (50%)
 
         // Definir efectividades del tipo Roca
         roca.CrearEfectividad(fuego, 2.0);        // Roca contra Fuego -> Súper efectivo (200%)
         roca.CrearEfectividad(volador, 2.0);      // Roca contra Volador -> Súper efectivo (200%)
+        roca.CrearEfectividad(bicho,2.0);         // Roca contra Bicho -> Súper efectivo (200%)
+        roca.CrearEfectividad(hielo,2.0);         // Roca contra Hielo -> Súper efectivo (200%)
+        roca.CrearEfectividad(lucha,2.0);         // Roca contra Lucha -> Súper efectivo (200%)
+        roca.CrearEfectividad(tierra,2.0);        // Roca contra Tierra -> Súper efectivo (200%)
 
         // Definir efectividades del tipo Tierra
         tierra.CrearEfectividad(electrico, 2.0);  // Tierra contra Electrico -> Súper efectivo (200%)
         tierra.CrearEfectividad(fuego, 2.0);      // Tierra contra Fuego -> Súper efectivo (200%)
         tierra.CrearEfectividad(planta, 0.5);     // Tierra contra Planta -> Poco efectivo (50%)
-        tierra.CrearEfectividad(volador, 0.0);    // Tierra contra Volador -> Inmune (0%)
+        tierra.CrearEfectividad(volador, 0.5);    // Tierra contra Volador -> Inmune (0%)
         tierra.CrearEfectividad(roca, 2.0);       // Tierra contra Roca -> Súper efectivo (200%)
+        tierra.CrearEfectividad(bicho,0.5);       // Tierra contra Bicho -> Poco efectivo (50%)
+        tierra.CrearEfectividad(veneno,2.0);      // Tierra contra Veneno -> Súper efectivo (200%)
+        
+        //Definir efectividades del tipo Bicho
+        bicho.CrearEfectividad(fuego,0.5);        // Bicho contra Fuego -> Poco efectivo (50%)
+        bicho.CrearEfectividad(lucha,2.0);        // Bicho contra Lucha -> Super efectivo (200%)
+        bicho.CrearEfectividad(planta,2.0);       // Bicho contra Planta -> Super efectivo (200%)
+        bicho.CrearEfectividad(psiquico,2.0);     // Bicho contra Psiquico -> Super efectivo (200%)
+        bicho.CrearEfectividad(veneno,2.0);       // Bicho contra Veneno -> Super efectivo (200%)
+        bicho.CrearEfectividad(volador,0.5);      // Bicho contra Volador -> Poco efectivo (50%)
+        
+        //Definir efectividades del tipo Dragon
+        dragon.CrearEfectividad(dragon,2.0);      // Dragon contra Dragon -> Super efectivo (200%)
+        
+        //Definir efectividades del tipo Fantasma
+        fantasma.CrearEfectividad(psiquico,2.0);  // Fantasma contra Psiquico -> Super efectivo (200%)
+        
+        //Definir efectividades del tipo Hielo
+        hielo.CrearEfectividad(agua, 0.5);        // Hielo contra Agua -> Poco efectivo (50%)
+        hielo.CrearEfectividad(dragon,2.0);       // Hielo contra Dragon -> Super efectivo (200%)
+        hielo.CrearEfectividad(hielo,0.5);        // Hielo contra Hielo -> Poco efectivo (50%)
+        hielo.CrearEfectividad(tierra,2.0);       // Hielo contra Tierra -> Super efectivo (200%)
+        hielo.CrearEfectividad(volador,2.0);      // Hielo contra Volador -> Super efectivo (200%)
+        
+        //Definir efectividades del tipo Lucha
+        lucha.CrearEfectividad(bicho,0.5);        // Lucha contra Bicho -> Poco efectivo (50%)
+        lucha.CrearEfectividad(fantasma,0.5);     // Lucha contra Fantasma -> Poco efectivo (50%)
+        lucha.CrearEfectividad(hielo,2.0);        // Lucha contra Hielo -> Super efectivo (200%)
+        lucha.CrearEfectividad(normal,2.0);       // Lucha contra Normal -> Super efectivo (200%)
+        lucha.CrearEfectividad(psiquico,2.0);     // Lucha contra Psiquico -> Super efectivo (200%)
+        lucha.CrearEfectividad(roca,2.0);         // Lucha contra Roca -> Super efectivo (200%)
+        lucha.CrearEfectividad(veneno,2.0);       // Lucha contra Veneno -> Super efectivo (200%)
+        lucha.CrearEfectividad(volador,0.5);      // Lucha contra Volador -> Poco efectivo (50%)
+        
+        //Definir efectividades del tipo Psiquico
+        psiquico.CrearEfectividad(lucha,2.0);     // Psiquico contra Lucha -> Super efectivo (200%)
+        psiquico.CrearEfectividad(veneno,2.0);    // Psiquico contra Veneno -> Super efectivo (200%)
+        
+        //Definir efectividades del tipo Veneno
+        veneno.CrearEfectividad(bicho,2.0);       // Veneno contra Bicho -> Super efectivo (200%)
+        veneno.CrearEfectividad(fantasma,0.5);    // Veneno contra Fantasma -> Poco efectivo (50%)
+        veneno.CrearEfectividad(planta,2.0);      // Veneno contra Planta -> Super efectivo (200%)
+        veneno.CrearEfectividad(roca,0.5);        // Veneno contra Roca -> Poco efectivo (50%)
+        veneno.CrearEfectividad(tierra,2.0);      // Veneno contra Tierra -> Super efectivo (200%)
+        veneno.CrearEfectividad(veneno,0.5);      // Veneno contra Veneno -> Poco efectivo (50%)
         
         // Se agragan a la lista todos los tipos
         listatiposdisponibles.Add(electrico); //0
@@ -100,6 +175,8 @@ public static class Pokedex
         listatiposdisponibles.Add(normal);
         listatiposdisponibles.Add(roca);
         listatiposdisponibles.Add(tierra); //7
+        listatiposdisponibles.Add(bicho);
+        listatiposdisponibles.Add(dragon);
     }
 
     private static void CrearMovimientos()
