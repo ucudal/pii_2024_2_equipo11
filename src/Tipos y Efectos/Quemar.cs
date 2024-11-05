@@ -4,13 +4,12 @@ namespace Library.Tipos;
 
 public class Quemar:Efecto
 {
-    private Pokemon pokemon;
     public Quemar()
     {
         
     }
 
-    public override void HacerEfecto()
+    public override void HacerEfecto(Pokemon pokemon)
     {
         Console.WriteLine(pokemon.GetName()," ha sido Quemado");
         pokemon.RecibirDanioDeEfecto(10);

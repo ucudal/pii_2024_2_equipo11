@@ -1,4 +1,6 @@
-﻿namespace Library.Tipos;
+﻿using DefaultNamespace;
+
+namespace Library.Tipos;
 
 public class Efecto
 {
@@ -7,7 +9,7 @@ public class Efecto
         
     }
 
-    public virtual void HacerEfecto()
+    public virtual void HacerEfecto(Pokemon pokemon)
     {
         
     }

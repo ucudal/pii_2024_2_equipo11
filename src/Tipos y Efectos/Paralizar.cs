@@ -4,7 +4,6 @@ namespace Library.Tipos;
 
 public class Paralizar:Efecto
 {
-    private Pokemon pokemon;
     private Random random = new Random();
     public Paralizar()
     {
@@ -21,7 +20,7 @@ public class Paralizar:Efecto
        return false;
     }
 
-    public override void HacerEfecto()
+    public override void HacerEfecto(Pokemon pokemon)
     {
         if (!this.Jugar())
         {

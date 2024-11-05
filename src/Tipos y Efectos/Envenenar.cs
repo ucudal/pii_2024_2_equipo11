@@ -4,13 +4,12 @@ namespace Library.Tipos;
 
 public class Envenenar:Efecto
 {
-    private Pokemon pokemon;
     public Envenenar()
     {
         
     }
 
-    public override void HacerEfecto()
+    public override void HacerEfecto(Pokemon pokemon)
     {
         Console.WriteLine(pokemon.GetName()," ha sido envenenado");
         pokemon.RecibirDanioDeEfecto(5);
