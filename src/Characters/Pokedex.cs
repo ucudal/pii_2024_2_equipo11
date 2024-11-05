@@ -17,10 +17,10 @@ public static class Pokedex
 
     static Pokedex()
     {
+        RegularEfectos();
         RegularTipos();
         CrearMovimientos();
         CrearPokemones();
-        RegularEfectos();
     }
 
     public static void MostrarCatalogo()
