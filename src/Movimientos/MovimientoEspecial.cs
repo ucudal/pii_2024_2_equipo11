@@ -6,7 +6,7 @@ public class MovimientoEspecial
 {
     private string name { get; set; }
     private int ataque { get; set; }
-    private Efecto efecto { get; set; }
+    private IEfecto efecto { get; set; }
     private Tipo tipo { get; set; }
     private int precision { get; set; }
     private bool usado_anteriormente { get; set; }
