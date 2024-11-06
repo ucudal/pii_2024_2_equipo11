@@ -14,6 +14,8 @@ public class MenuTest
         // 95 de daño del ataque rayo * efectividad (2) 
         int vidaesperada = 0; // tiene 60 de vida y 40 de defensa así que aguantría un golpe de 99 de daño como mucho 
         Menu menuPP = new Menu();
+        menuPP.UnirJugadores("Ash");
+        menuPP.UnirJugadores("Red");
         menuPP.AgregarPokemonesA("Pikachu");
         menuPP.AgregarPokemonesD("Pidgey");
         menuPP.UsarMovimientos(1); //Pikachu usa royo
@@ -32,6 +34,8 @@ public class MenuTest
         int vidaPidgeyEsperada = 60; // Pidgey debería iniciar con 60 de vida
 
         Menu menuPP = new Menu();
+        menuPP.UnirJugadores("Ash");
+        menuPP.UnirJugadores("Red");
         menuPP.AgregarPokemonesA("Pidgey"); 
         menuPP.AgregarPokemonesD("Pikachu");
         menuPP.AgregarPokemonesA("Charmander");
@@ -55,6 +59,8 @@ public class MenuTest
             int vidatortugaEsperada = 80; 
 
             Menu menuPP = new Menu();
+            menuPP.UnirJugadores("Ash");
+            menuPP.UnirJugadores("Red");
             menuPP.AgregarPokemonesA("Squirtle"); 
             menuPP.AgregarPokemonesD("Pikachu"); 
             menuPP.AgregarPokemonesA("Bulbasaur"); 
@@ -70,6 +76,8 @@ public class MenuTest
     public void Especial() //En este test se puede ver que cuando eljugador 1 intenta usar el ataque especial de nueo no puedehacerlo
     {
         Menu juego1 = new Menu();
+        juego1.UnirJugadores("Ash");
+        juego1.UnirJugadores("Red");
         juego1.AgregarPokemonesA("Pikachu");
         
         juego1.AgregarPokemonesD("Pikachu");
@@ -87,6 +95,8 @@ public class MenuTest
     public void Defensa()//Demuestra que defensa nohace daño
     {
         Menu juego2 = new Menu();
+        juego2.UnirJugadores("Ash");
+        juego2.UnirJugadores("Red");
         juego2.AgregarPokemonesA("Pikachu");
         juego2.AgregarPokemonesD("Charmander");
         juego2.IniciarEnfrentamiento();
@@ -100,6 +110,8 @@ public class MenuTest
     public void CambioPokemon()//Verificacion Cambio de Pokemon de Turno
     {
         Menu juego3 = new Menu();
+        juego3.UnirJugadores("Ash");
+        juego3.UnirJugadores("Red");
         juego3.AgregarPokemonesA("Squirtle");//Squirtle era el Pokemon en Turno al inicio porque fue agregado primero
         juego3.AgregarPokemonesD("Charmander");
         juego3.AgregarPokemonesA("Bulbasaur");//Bulbasaur era el segundo pokemon del equipo

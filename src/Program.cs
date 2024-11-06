@@ -10,27 +10,16 @@ namespace Ucu.Poo.Pokemon
     {
         static void Main(string[] args)
         {
-            // Arrange
-            int dañoPorAtaque = 95; // Daño de rayo
-            int defensaCharmander = 60; // Defensa de Charmander
-            int hpCharmanderEsperado = 80; // Charmander debe iniciar con 80 de HP
-            int vidaCharmanderRestanteEsperada = hpCharmanderEsperado - (dañoPorAtaque - defensaCharmander); // Calculamos vida restante de Charmander
-            int vidaPidgeyEsperada = 60; // Pidgey debería iniciar con 60 HP
-
-            Menu menuPP = new Menu();
-            menuPP.AgregarPokemonesA("Pidgey"); // Pidgey es el segundo Pokémon
-            menuPP.AgregarPokemonesD("Pikachu"); // Pikachu es el primero
-            menuPP.AgregarPokemonesA("Charmander"); // Charmander es el segundo Pokémon también
-            menuPP.CambiarPokemon(1); // Cambia a Charmander
-            menuPP.UsarMovimientos(1); // Pikachu usa rayo
-
-            // Assert
-            Console.WriteLine(vidaPidgeyEsperada);
-            Console.WriteLine(menuPP.GetHpAtacante());
-            Console.WriteLine(vidaCharmanderRestanteEsperada);
-            Console.WriteLine();
-            menuPP.MostrarEstadoRival();
-            menuPP.MostrarEstadoEquipo();
+            Console.WriteLine("--------------------------------------------------------------");
+            Menu juego3 = new Menu();
+            juego3.UnirJugadores("Red");
+            juego3.UnirJugadores("Ash");
+            juego3.AgregarPokemonesA("Squirtle");//Squirtle era el Pokemon en Turno al inicio porque fue agregado primero
+            juego3.AgregarPokemonesD("Charmander");
+            juego3.AgregarPokemonesA("Bulbasaur");//Bulbasaur era el segundo pokemon del equipo
+            juego3.MostrarEstadoEquipo();
+            juego3.MostrarEstadoRival();
+           
         }
         
     }
