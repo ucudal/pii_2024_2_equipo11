@@ -170,7 +170,7 @@ namespace Library.Combate
             jugador.Mostrar_items();
         }
 
-        public void Usar_item(string item, int numero_de_pokemon)
+        public void UsarItem(string item, int numero_de_pokemon)
         {
             Jugador jugadorAtacante = batallaActual.GetAtacante();
             List<Pokemon> pokemons = jugadorAtacante.GetPokemons();

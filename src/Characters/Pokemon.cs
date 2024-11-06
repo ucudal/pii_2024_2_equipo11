@@ -136,7 +136,7 @@ public class Pokemon
 
     public void Revivir()
     {
-        this.vida_actual = vida_total / 2;
+        this.vida_actual = vida_total/2;
     }
     
 }
