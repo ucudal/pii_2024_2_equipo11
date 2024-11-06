@@ -13,6 +13,8 @@ public class Pokemon
     private double vida_total;
     private double defensa;
     private bool is_alive;
+    private Efecto estado;
+    private bool puedeatacar;
 
     public Pokemon(string nombre, List<IMovimiento> movimientos, List<Tipo> tipos, double vida, double defensa)
     {
@@ -23,6 +25,7 @@ public class Pokemon
         vida_total = vida;
         is_alive = true;
         this.defensa = defensa;
+        puedeatacar = true;
     }
 
     public List<Tipo> GetTipos()
@@ -78,8 +81,6 @@ public class Pokemon
                     defensa += defensamovimiento.GetDefensa();
                 }
             }
-
-            
         }
     }
     
@@ -113,6 +114,10 @@ public class Pokemon
                 Console.WriteLine($"El pokemon {name} se ha debilitado, por que no podrá combatir más");
             }
         }
+        if (movimiento is IMovimientoEspecial movimientoEspecial)
+        {
+            AgregarEfecto(movimientoEspecial.GetEfecto());
+        }
     }
 
     public void RecibirDanioDeEfecto(double numero)
@@ -120,6 +125,46 @@ public class Pokemon
         double porcentaje = (this.vida_actual * 100)/numero;
         this.vida_actual -= porcentaje;
     }
-    
+
+    public void SetPuedeAtacar(bool valor) //Funciona para cambiar el valor dentro de los efectos de paralisis y de dormir
+    {
+        puedeatacar = valor; 
+    }
+
+    public void AgregarEfecto(Efecto efecto)
+    {
+        if (estado == null)
+        {
+            estado = Efecto.CrearCopia(efecto.GetType()); // Usa el tipo del efecto para crear una nueva instancia
+        }
+    }
+    public void EliminarEfectoActual()
+    {
+        estado = null;
+        // Acá iría el método para eliminar el cambio de estado del pokemon
+    }
+
+    public Efecto GetEfecto()
+    {
+        return estado;
+    }
+    public void Curar(int vidacurada)
+    {
+        this.vida_actual += vidacurada;
+        if (vida_actual > vida_total)
+        {
+            vida_actual = vida_total;
+        }
+    }
+
+    public void Revivir()
+    {
+        this.vida_actual = vida_total/2;
+    }
+
+    public bool GetPuedeAtacar()
+    {
+        return puedeatacar;
+    }
     
 }

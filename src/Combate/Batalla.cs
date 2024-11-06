@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using DefaultNamespace;
+using Library.Tipos;
 using Ucu.Poo.Pokemon;
 
 namespace Library.Combate
@@ -152,15 +153,27 @@ namespace Library.Combate
                     return;
                 }
             }
-            if (batallaTerminada == false && jugadorDefensor.TeamIsAlive() && jugadorAtacante.TeamIsAlive())
+            if (jugadorDefensor.GetPokemonEnTurno().GetEfecto() != null)
             {
-                Jugador temporal = jugadorAtacante;
-                jugadorAtacante = jugadorDefensor;
-                jugadorDefensor = temporal;
-                turnos = !turnos;
+                jugadorDefensor.GetPokemonEnTurno().GetEfecto().HacerEfecto(jugadorDefensor.GetPokemonEnTurno());
             }
-            jugadorDefensor.ActualizarEstadoEquipo();
-            TerminarBatalla();
+
+            // Cambia de turno
+            Jugador temporal = jugadorAtacante;
+            jugadorAtacante = jugadorDefensor;
+            jugadorDefensor = temporal;
+            turnos = !turnos;
+
+            if (!jugadorAtacante.GetPokemonEnTurno().GetPuedeAtacar())
+            {
+                Console.WriteLine($"{jugadorDefensor.GetName()} no puede atacar este turno.");
+                AvanzarTurno();
+            }
+            else
+            {
+                jugadorDefensor.ActualizarEstadoEquipo();
+                TerminarBatalla();
+            }
         }
     }
 }

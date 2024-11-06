@@ -26,12 +26,11 @@ public class MenuTest
     [TestMethod]
     public void PidgeyPorCharmanderParaAguantarAPikachu()
     {
-        // Arrange
-        int dañoPorAtaque = 95; // Daño de rayo
-        int defensaCharmander = 60; // Defensa de Charmander
-        int hpCharmanderEsperado = 85; // Charmander arranca con 85 de vida
-        int vidaCharmanderRestanteEsperada = hpCharmanderEsperado - (dañoPorAtaque - defensaCharmander); // Calculos de supuesta vida charmander
-        int vidaPidgeyEsperada = 60; // Pidgey debería iniciar con 60 de vida
+        double dañoPorAtaque = 95; // Daño de rayo
+        double defensaCharmander = 60; // Defensa de Charmander
+        double hpCharmander = 85; // Charmander arranca con 85 de vida
+        double vidaCharmanderRestanteEsperada = hpCharmander - (dañoPorAtaque - defensaCharmander); // Calculos de supuesta vida charmander
+        double vidaPidgeyEsperada = 60; // Pidgey debería iniciar con 60 de vida
 
         Menu menuPP = new Menu();
         menuPP.UnirJugadores("Ash");
@@ -40,12 +39,12 @@ public class MenuTest
         menuPP.AgregarPokemonesD("Pikachu");
         menuPP.AgregarPokemonesA("Charmander");
         menuPP.CambiarPokemon(1); // Cambia a Charmander
-        menuPP.UsarMovimientos(1);
-
-        // Assert
+        menuPP.UsarMovimientos(1);//Pikachu usa rayo, danio de rayo: 95, defensa de Charmander: vida 85, defensa: 60
+        menuPP.Mostrar_items_disponibles();
         Assert.AreEqual(vidaCharmanderRestanteEsperada, menuPP.GetHpAtacante()); // Verificar que la vida de Charmander es la esperada
-        menuPP.CambiarPokemon(1);
-        Assert.AreEqual( menuPP.GetHpDefensor(), vidaPidgeyEsperada); //Verifica que pidgey sigue intecto
+        menuPP.CambiarPokemon(1);//Cambio a Pidgey, pasa a ser defensor al usar su turno
+        menuPP.UsarMovimientos(4);//Pikachu usa proteccion
+        Assert.AreEqual( menuPP.GetHpAtacante(), vidaPidgeyEsperada); //Verifica que pidgey sigue intecto
     }
     [TestMethod]
     //  REVISAR ESTOOOOOOO

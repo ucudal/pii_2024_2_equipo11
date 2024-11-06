@@ -2,7 +2,7 @@
 
 namespace Library.Tipos;
 
-public class Efecto
+public abstract class Efecto
 {
     protected Efecto()
     {
@@ -13,4 +13,10 @@ public class Efecto
     {
         
     }
+    public static Efecto CrearCopia(Type tipoEfecto)
+    {
+        // Usamos Activator para crear una instancia del tipo de efecto
+        return (Efecto)Activator.CreateInstance(tipoEfecto);
+    }
+
 }
