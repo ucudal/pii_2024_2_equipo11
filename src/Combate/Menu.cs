@@ -164,5 +164,41 @@ namespace Library.Combate
                 Console.WriteLine($"{i}. {pokemon.GetName()}");
             }
         }
+        public void Mostrar_items_disponibles()
+        {
+            Jugador jugador = batallaActual.GetAtacante();
+            jugador.Mostrar_items();
+        }
+
+        public void Usar_item(string item, int numero_de_pokemon)
+        {
+            Jugador jugadorAtacante = batallaActual.GetAtacante();
+            List<Pokemon> pokemons = jugadorAtacante.GetPokemons();
+            
+            if (numero_de_pokemon >= 0 && numero_de_pokemon < pokemons.Count)
+            {
+                Pokemon pokemonElegido = pokemons[numero_de_pokemon];
+                
+                if (item == "SuperPocion")
+                {
+                    jugadorAtacante.Curar(pokemonElegido);
+                    batallaActual.AvanzarTurno();
+                }
+                if (item == "Revivir")
+                {
+                    jugadorAtacante.Revivir(pokemonElegido);
+                    batallaActual.AvanzarTurno();
+                }
+                if (item == "CuraTotal")
+                {
+                    jugadorAtacante.Curar_estado(pokemonElegido);
+                    batallaActual.AvanzarTurno();
+                }
+                else
+                {
+                    Console.WriteLine("Seleccione una opcion correcta por favor, 'SuperPocion' para usar una superposión, 'Revivir' para usar un revivir o 'CuraTotal' para usar un curatotal");
+                }
+            }
+        }
     }
 }
