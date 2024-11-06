@@ -11,7 +11,13 @@ public class Super_Pocion : Item
     {
         if (pokemon.GetIsAlive())
         {
-            pokemon.Curar(70);
+            double vidaActual = pokemon.GetVidaActual();
+            double vidaTotal = pokemon.GetVidaTotal();
+            vidaActual += 70;
+            if (vidaActual > vidaTotal)
+            {
+                vidaActual = vidaTotal;
+            }
             Console.WriteLine($"{pokemon.GetName()} recuperó 70 puntos de vida.");
         }
         else

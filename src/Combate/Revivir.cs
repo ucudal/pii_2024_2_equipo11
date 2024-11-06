@@ -10,7 +10,9 @@ public class Revivir : Item
     {
         if (pokemon.GetIsAlive() == false)
         {
-            pokemon.Revivir();
+            double vidaActual = pokemon.GetVidaActual();
+            double vidaTotal = pokemon.GetVidaTotal();
+            vidaActual = vidaTotal / 2;
             Console.WriteLine($"{pokemon.GetName()} ha revivido con la mitad de su HP.");
         }
         else

@@ -121,22 +121,5 @@ public class Pokemon
         this.vida_actual -= porcentaje;
     }
     
-    public void EliminarEfectoActual()
-    {
-        // Acá iría el método para eliminar el cambio de estado del pokemon
-    }
-    public void Curar(int vidacurada)
-    {
-        this.vida_actual += vidacurada;
-        if (vida_actual > vida_total)
-        {
-            vida_actual = vida_total;
-        }
-    }
-
-    public void Revivir()
-    {
-        this.vida_actual = vida_total/2;
-    }
     
 }

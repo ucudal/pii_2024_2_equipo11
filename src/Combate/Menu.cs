@@ -164,13 +164,13 @@ namespace Library.Combate
                 Console.WriteLine($"{i}. {pokemon.GetName()}");
             }
         }
-        public void Mostrar_items_disponibles()
+        public void Mostrar_items_disponibles() //Llama al método de jugador para mostrar los items
         {
             Jugador jugador = batallaActual.GetAtacante();
             jugador.Mostrar_items();
         }
 
-        public void UsarItem(string item, int numero_de_pokemon)
+        public void UsarItem(string item, int numero_de_pokemon) //Este método utiliza el item que le pases por string
         {
             Jugador jugadorAtacante = batallaActual.GetAtacante();
             List<Pokemon> pokemons = jugadorAtacante.GetPokemons();
@@ -178,26 +178,12 @@ namespace Library.Combate
             if (numero_de_pokemon >= 0 && numero_de_pokemon < pokemons.Count)
             {
                 Pokemon pokemonElegido = pokemons[numero_de_pokemon];
-                
-                if (item == "SuperPocion")
-                {
-                    jugadorAtacante.Curar(pokemonElegido);
-                    batallaActual.AvanzarTurno();
-                }
-                if (item == "Revivir")
-                {
-                    jugadorAtacante.Revivir(pokemonElegido);
-                    batallaActual.AvanzarTurno();
-                }
-                if (item == "CuraTotal")
-                {
-                    jugadorAtacante.Curar_estado(pokemonElegido);
-                    batallaActual.AvanzarTurno();
-                }
-                else
-                {
-                    Console.WriteLine("Seleccione una opcion correcta por favor, 'SuperPocion' para usar una superposión, 'Revivir' para usar un revivir o 'CuraTotal' para usar un curatotal");
-                }
+                jugadorAtacante.UsarItem(item, pokemonElegido);
+                batallaActual.AvanzarTurno();
+            }
+            else
+            {
+                Console.WriteLine("Seleccione el pokemon correctamente");
             }
         }
     }
