@@ -48,9 +48,9 @@ public class MenuTest
         Assert.AreEqual( menuPP.GetHpDefensor(), vidaPidgeyEsperada); //Verifica que pidgey sigue intecto
     }
     [TestMethod]
+    //  REVISAR ESTOOOOOOO
     public void BulbasaurPorSquirtleParaAguantarAPikachu()
     {
-        
             // Arrange
             int dañoPorAtaque = 95 / 2 ;
             int defensaBulbasaur = 70; 
@@ -68,25 +68,43 @@ public class MenuTest
             menuPP.UsarMovimientos(1); // Pikachu usa rayo, daño de 95/2 = 48 (redondeo)
             
             
-            Assert.AreEqual(vidabulbasaurRestanteEsperada, menuPP.GetHpAtacante()); // Verificar que la vida de bulbasaur es la esperada
-            menuPP.CambiarPokemon(1); // Cambiar de vuelta a Squirtle
-            Assert.AreEqual(vidatortugaEsperada,  menuPP.GetHpDefensor()); //Verifica que squiertle sigue intecto
+            Assert.AreEqual(vidatortugaEsperada, menuPP.GetHpAtacante()); // Verificar que la vida de squirtle es la esperada
+            menuPP.CambiarPokemon(1); // Cambiar a Bulbasaur
+            Assert.AreEqual(vidabulbasaurRestanteEsperada,  menuPP.GetHpDefensor()); //Verifica que bulbasaur sigue intecto
     }
     [TestMethod]
-    public void Especial() //En este test se puede ver que cuando eljugador 1 intenta usar el ataque especial de nueo no puedehacerlo
+    public void Especial() //En este test se puede ver que cuando eljugador 1 intenta usar el ataque especial de nuevo no puede hacerlo
     {
         Menu juego1 = new Menu();
         juego1.UnirJugadores("Ash");
         juego1.UnirJugadores("Red");
         juego1.AgregarPokemonesA("Pikachu");
         
-        juego1.AgregarPokemonesD("Pikachu");
+        juego1.AgregarPokemonesD("Caterpie");
         
         juego1.IniciarEnfrentamiento();
         juego1.UsarMovimientos(1);//Jugador 1 usa Rayo(especial), vida del contrincante en 45
-        juego1.UsarMovimientos(1);//Jugador2 usa Rayo (especial)
+        juego1.UsarMovimientos(19);//Jugador2 usa picotazo cola
         juego1.UsarMovimientos(1);//Jugador 1 intenta usar el Rayo nuevamente pero no puede, vida del contrincante se mantiene
         int vidaesperadadefensor = 45;
+        double vidaObtenidaDefensor = juego1.GetHpDefensor();
+        Assert.AreEqual(vidaesperadadefensor,vidaObtenidaDefensor);
+    }
+    
+    [TestMethod]
+    public void Inmune() //En este test se puede ver que cuando un Pokemon que es inmune a otro es atacado, su vida no se ve afectada
+    {
+        Menu juego1 = new Menu();
+        juego1.UnirJugadores("Ash");
+        juego1.UnirJugadores("Red");
+        juego1.AgregarPokemonesA("Pikachu");
+        //Usamos a pikachu porque electrico es inmune a electrico y el ataque Rayo es de tipo electrico
+        juego1.AgregarPokemonesD("Pikachu");
+        
+        juego1.IniciarEnfrentamiento();
+        juego1.UsarMovimientos(1);//Jugador 1 usa Rayo(electrico)
+        juego1.UsarMovimientos(1);//Jugador2 usa Rayo(electrico)
+        int vidaesperadadefensor = 80;
         double vidaObtenidaDefensor = juego1.GetHpDefensor();
         Assert.AreEqual(vidaesperadadefensor,vidaObtenidaDefensor);
     }

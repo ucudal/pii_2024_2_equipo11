@@ -10,16 +10,25 @@ namespace Ucu.Poo.Pokemon
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("--------------------------------------------------------------");
-            Menu juego3 = new Menu();
-            juego3.UnirJugadores("Red");
-            juego3.UnirJugadores("Ash");
-            juego3.AgregarPokemonesA("Squirtle");//Squirtle era el Pokemon en Turno al inicio porque fue agregado primero
-            juego3.AgregarPokemonesD("Charmander");
-            juego3.AgregarPokemonesA("Bulbasaur");//Bulbasaur era el segundo pokemon del equipo
-            juego3.MostrarEstadoEquipo();
-            juego3.MostrarEstadoRival();
-           
+            int dañoPorAtaque = 95 / 2 ;
+            int defensaBulbasaur = 70; 
+            int hpBulbasaurEsperado = 90;
+            int vidabulbasaurRestanteEsperada = 90; // Sabemos que no alzcanza para romper su defensa
+            int vidatortugaEsperada = 80; 
+
+            Menu menuPP = new Menu();
+            menuPP.UnirJugadores("Ash");
+            menuPP.UnirJugadores("Red");
+            menuPP.AgregarPokemonesA("Squirtle"); 
+            menuPP.AgregarPokemonesD("Pikachu"); 
+            menuPP.AgregarPokemonesA("Bulbasaur"); 
+            Console.WriteLine(menuPP.GetPokemonActual().GetName());
+            menuPP.CambiarPokemon(1); // Cambia a bulbasaur
+            Console.WriteLine(menuPP.GetPokemonActual().GetName());
+            menuPP.UsarMovimientos(1);
+            Console.WriteLine(menuPP.GetPokemonActual().GetName());
+            Console.WriteLine(menuPP.GetHpDefensor());
+
         }
         
     }
