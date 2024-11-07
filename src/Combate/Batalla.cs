@@ -124,49 +124,45 @@ namespace Library.Combate
             }
         }
 
+        private void VerificarPokemonDefensorDebilitado()
+        {
+            if (!jugadorDefensor.GetPokemonEnTurno().GetIsAlive())
+            {
+                foreach (var pokemon in jugadorDefensor.GetPokemons())
+                {
+                    if (pokemon.GetIsAlive())
+                    {
+                        Pokemon pokemonDebilitado = jugadorDefensor.GetPokemonEnTurno();
+                        jugadorDefensor.CambiarPokemon(pokemon);
+                        Console.WriteLine($"{pokemonDebilitado.GetName()} ha sido debilitado y cambiado por {jugadorDefensor.GetPokemonEnTurno().GetName()} automáticamente");
+                        return;
+                    }
+                }
+                Console.WriteLine($"A {jugadorDefensor.GetName()} no le quedan más Pokémon en condiciones de combatir.");
+                TerminarBatalla();
+            }
+        }
+
         public void AvanzarTurno()
         {
             if (batallaTerminada)
             {
                 Console.WriteLine("La batalla ya ha terminado.");
-                return; //Corta lo que iba a hacer el metodo y no retorna nada (void)
+                return;
             }
 
-            // Cambia el Pokémon del jugador defensor si el actual está debilitado
-            if (!jugadorDefensor.GetPokemonEnTurno().GetIsAlive())
-            {
-                bool cambiopermitido = false;
-                foreach (var pokemon in jugadorDefensor.GetPokemons())
-                {
-                    if (pokemon.GetIsAlive())
-                    {
-                        jugadorDefensor.CambiarPokemon(pokemon);
-                        cambiopermitido = true;
-                        break;
-                    }
-                }
+            VerificarPokemonDefensorDebilitado();
 
-                if (!cambiopermitido)
-                {
-                    Console.WriteLine($"A {jugadorDefensor.GetName()} no le quedan más Pokemones en condiciones de combatir");
-                    TerminarBatalla();
-                    return;
-                }
-            }
             if (jugadorDefensor.GetPokemonEnTurno().GetEfecto() != null)
             {
                 jugadorDefensor.GetPokemonEnTurno().GetEfecto().HacerEfecto(jugadorDefensor.GetPokemonEnTurno());
             }
 
-            // Cambia de turno
-            Jugador temporal = jugadorAtacante;
-            jugadorAtacante = jugadorDefensor;
-            jugadorDefensor = temporal;
-            turnos = !turnos;
+            CambiarTurno();
 
             if (!jugadorAtacante.GetPokemonEnTurno().GetPuedeAtacar())
             {
-                Console.WriteLine($"{jugadorDefensor.GetName()} no puede atacar este turno.");
+                Console.WriteLine($"{jugadorAtacante.GetName()} no puede atacar este turno.");
                 AvanzarTurno();
             }
             else
@@ -175,5 +171,15 @@ namespace Library.Combate
                 TerminarBatalla();
             }
         }
+
+        private void CambiarTurno()
+        {
+            Jugador temporal = jugadorAtacante;
+            jugadorAtacante = jugadorDefensor;
+            jugadorDefensor = temporal;
+            turnos = !turnos;
+            Console.WriteLine($"Es el turno de {jugadorAtacante.GetName()} con el Pokémon {jugadorAtacante.GetPokemonEnTurno().GetName()}.");
+        }
+
     }
 }

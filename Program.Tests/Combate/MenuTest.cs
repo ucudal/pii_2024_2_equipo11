@@ -26,6 +26,7 @@ public class MenuTest
     [TestMethod]
     public void PidgeyPorCharmanderParaAguantarAPikachu()
     {
+        // Arrange
         double dañoPorAtaque = 95; // Daño de rayo
         double defensaCharmander = 60; // Defensa de Charmander
         double hpCharmander = 85; // Charmander arranca con 85 de vida
@@ -40,11 +41,13 @@ public class MenuTest
         menuPP.AgregarPokemonesA("Charmander");
         menuPP.CambiarPokemon(1); // Cambia a Charmander
         menuPP.UsarMovimientos(1);//Pikachu usa rayo, danio de rayo: 95, defensa de Charmander: vida 85, defensa: 60
-        menuPP.Mostrar_items_disponibles();
-        Assert.AreEqual(vidaCharmanderRestanteEsperada, menuPP.GetHpAtacante()); // Verificar que la vida de Charmander es la esperada
+        double vidaCharmanderRestanteDada = menuPP.GetHpAtacante();
+        
+        Assert.AreEqual(vidaCharmanderRestanteEsperada, vidaCharmanderRestanteDada); // Verificar que la vida de Charmander es la esperada
         menuPP.CambiarPokemon(1);//Cambio a Pidgey, pasa a ser defensor al usar su turno
         menuPP.UsarMovimientos(4);//Pikachu usa proteccion
-        Assert.AreEqual( menuPP.GetHpAtacante(), vidaPidgeyEsperada); //Verifica que pidgey sigue intecto
+        double vidaPidgeyRestanteDada = menuPP.GetHpAtacante();
+        Assert.AreEqual( vidaPidgeyRestanteDada, vidaPidgeyEsperada); //Verifica que pidgey sigue intecto
     }
     [TestMethod]
     //  REVISAR ESTOOOOOOO

@@ -64,7 +64,7 @@ namespace Library.Combate
             Jugador jugadorAtacante = batallaActual.GetAtacante();
             List<Pokemon> pokemons = jugadorAtacante.GetPokemons();
             
-            if (numeroDePokemon >= 0 && numeroDePokemon < pokemons.Count)
+            if (numeroDePokemon >= 0 && numeroDePokemon < pokemons.Count )
             {
                 Pokemon pokemonElegido = pokemons[numeroDePokemon];
                 
@@ -139,6 +139,7 @@ namespace Library.Combate
                             int numeroAleatorio = random.Next(1, 101); //Numero aleatorio para saber si acierto 
                             if (numeroAleatorio <= movimientoAtaque.GetPrecision())
                             {
+                                Console.WriteLine($"{pokemonActual.GetName()} ha acertado su ataque");
                                 batallaActual.RecibirAtaqueB(movimientoAtaque);
                             }
                             else

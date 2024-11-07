@@ -6,7 +6,6 @@ public class Quemar:Efecto
 {
     public Quemar()
     {
-        
     }
 
     public override void HacerEfecto(Pokemon pokemon)

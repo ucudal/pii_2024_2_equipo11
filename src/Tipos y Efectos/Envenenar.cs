@@ -6,12 +6,11 @@ public class Envenenar:Efecto
 {
     public Envenenar()
     {
-        
     }
 
     public override void HacerEfecto(Pokemon pokemon)
     {
-        Console.WriteLine(pokemon.GetName()," ha sido envenenado");
+        Console.WriteLine(pokemon.GetName()," Está envenenado");
         pokemon.RecibirDanioDeEfecto(5);
     }
 }

@@ -24,7 +24,6 @@ namespace Ucu.Poo.Pokemon
             menuPP.AgregarPokemonesA("Bulbasaur"); 
             Console.WriteLine(menuPP.GetPokemonActual().GetName());
             menuPP.CambiarPokemon(1); // Cambia a bulbasaur
-            Console.WriteLine(menuPP.GetPokemonActual().GetName());
             menuPP.UsarMovimientos(1);
             Console.WriteLine($"El que ataca ahora es {menuPP.GetPokemonActual().GetName()}"); //El que ataca es
             Console.WriteLine(menuPP.GetHpDefensor());

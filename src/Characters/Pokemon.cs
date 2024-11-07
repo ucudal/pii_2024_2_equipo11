@@ -76,9 +76,15 @@ public class Pokemon
                         accionEspecial.UsadoAnteriormente(false);
                     }
                 }
+
+                if (accion.GetName() == movimiento.GetName() && movimiento is IMovimientoAtaque ataque)
+                {
+                    
+                }
                 if (movimiento is IMovimientoDefensa defensamovimiento)
                 {
                     defensa += defensamovimiento.GetDefensa();
+                    Console.WriteLine($"{GetName()} ha usado su {movimiento.GetName()} para subir su defensa {defensamovimiento.GetDefensa()} puntos");
                 }
             }
         }
@@ -95,24 +101,32 @@ public class Pokemon
         }
 
         double danio = (double)(movimiento.GetAtaque() * efectividadTipo);
-
+        int numero = new Random().Next(5);
+        if (numero == 0)
+        {
+            danio *= 1.2;
+                Console.WriteLine($"Ha sido un ataque crítico");
+        }
+        
         // Aplicar el daño a la defensa o vida o un poco y un poco
         if (defensa > danio)
         {
             defensa -= danio;
+            Console.WriteLine($"{GetName()} ha perdido {danio} de defensa, quedandose a {defensa} de defensa y {vida_actual} de vida");
         }
         else
         {
             danio -= defensa; // Resta el daño restante a la vida
             defensa = 0;
             vida_actual -= danio;
-
             if (vida_actual <= 0)
             {
                 is_alive = false;
                 vida_actual = 0;
                 Console.WriteLine($"El pokemon {name} se ha debilitado, por que no podrá combatir más");
+                return;
             }
+            Console.WriteLine($"{GetName()} ha perdido toda su defensa y se ha quedado con {vida_actual}");
         }
         if (movimiento is IMovimientoEspecial movimientoEspecial)
         {
@@ -136,6 +150,7 @@ public class Pokemon
         if (estado == null)
         {
             estado = Efecto.CrearCopia(efecto.GetType()); // Usa el tipo del efecto para crear una nueva instancia
+            Console.WriteLine($"{GetName()} caído bajo el efecto {efecto.GetType().Name}");
         }
     }
     public void EliminarEfectoActual()
