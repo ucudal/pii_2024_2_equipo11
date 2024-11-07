@@ -25,7 +25,7 @@ namespace Library.Combate
         {
             jugadorDefensor.PokemonAtacado(ataque);
         }
-
+        
         public void AgregarJugador(Jugador jugador)
         {
             if (jugadorDefensor != null && jugadorAtacante != null)

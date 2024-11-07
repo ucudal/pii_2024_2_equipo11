@@ -25,6 +25,7 @@ namespace Library.Combate
         {
             return batallaActual.GetHpAtacanteB(); 
         }
+        
         public Pokemon GetPokemonActual()
         {
             return batallaActual.GetPokemonActualB();

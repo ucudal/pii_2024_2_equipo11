@@ -24,8 +24,8 @@ public class MenuTest
         menuPP.AgregarPokemonesD("Pidgey");
         menuPP.UsarMovimientos(1); //Pikachu usa royo
         
-        //Assert.AreEqual(vidaesperada, menuPP.GetHpDefensor()); // Verificar que la vida de Pidgey es 0
-        //Assert.AreEqual(80, menuPP.GetHpAtacante()); // Verificar que Pikachu mantiene su HP
+        Assert.That(vidaesperada,Is.EqualTo(menuPP.GetHpDefensor())); // Verificar que la vida de Pidgey es 0
+        Assert.That(80,Is.EqualTo(menuPP.GetHpAtacante())); // Verificar que Pikachu mantiene su HP
     }
     [Test]
     public void PidgeyPorCharmanderParaAguantarAPikachu()
@@ -46,10 +46,10 @@ public class MenuTest
         menuPP.CambiarPokemon(1); // Cambia a Charmander
         menuPP.UsarMovimientos(1);//Pikachu usa rayo, danio de rayo: 95, defensa de Charmander: vida 85, defensa: 60
         
-        //Assert.AreEqual(vidaCharmanderRestanteEsperada, menuPP.GetHpAtacante()); // Verificar que la vida de Charmander es la esperada
+        Assert.That(vidaCharmanderRestanteEsperada,Is.EqualTo(menuPP.GetHpAtacante())); // Verificar que la vida de Charmander es la esperada
         menuPP.CambiarPokemon(1);//Cambio a Pidgey, pasa a ser defensor al usar su turno
         menuPP.UsarMovimientos(4);//Pikachu usa proteccion
-        //Assert.AreEqual( menuPP.GetHpAtacante(), vidaPidgeyEsperada); //Verifica que pidgey sigue intecto
+        Assert.That( menuPP.GetHpAtacante(),Is.EqualTo(vidaPidgeyEsperada)); //Verifica que pidgey sigue intecto
     }
     [Test]
     //  REVISAR ESTOOOOOOO
@@ -72,9 +72,9 @@ public class MenuTest
             menuPP.UsarMovimientos(1); // Pikachu usa rayo, daño de 95/2 = 48 (redondeo)
             
             
-            //Assert.AreEqual(vidatortugaEsperada, menuPP.GetHpAtacante()); // Verificar que la vida de squirtle es la esperada
+            Assert.That(vidatortugaEsperada,Is.EqualTo(menuPP.GetHpAtacante())); // Verificar que la vida de squirtle es la esperada
             menuPP.CambiarPokemon(1); // Cambiar a Bulbasaur
-            //Assert.AreEqual(vidabulbasaurRestanteEsperada,  menuPP.GetHpDefensor()); //Verifica que bulbasaur sigue intecto
+            Assert.That(vidabulbasaurRestanteEsperada,Is.EqualTo(menuPP.GetHpDefensor())); //Verifica que bulbasaur sigue intecto
     }
     [Test]
     public void Especial() //En este test se puede ver que cuando eljugador 1 intenta usar el ataque especial de nuevo no puede hacerlo
@@ -92,7 +92,7 @@ public class MenuTest
         juego1.UsarMovimientos(1);//Jugador 1 intenta usar el Rayo nuevamente pero no puede, vida del contrincante se mantiene
         int vidaesperadadefensor = 45;
         double vidaObtenidaDefensor = juego1.GetHpDefensor();
-        //Assert.AreEqual(vidaesperadadefensor,vidaObtenidaDefensor);
+        Assert.That(vidaesperadadefensor,Is.EqualTo(vidaObtenidaDefensor));
     }
     
     [Test]
@@ -110,7 +110,7 @@ public class MenuTest
         juego1.UsarMovimientos(1);//Jugador2 usa Rayo(electrico)
         int vidaesperadadefensor = 80;
         double vidaObtenidaDefensor = juego1.GetHpDefensor();
-        //Assert.AreEqual(vidaesperadadefensor,vidaObtenidaDefensor);
+        Assert.That(vidaesperadadefensor,Is.EqualTo(vidaObtenidaDefensor));
     }
 
     [Test]
@@ -125,7 +125,7 @@ public class MenuTest
         juego2.UsarMovimientos(4);//El movimiento 4 siempre es de defensa, por lo que no provoca daño al contrincante
         double vidaesperadadefensor = 80;
         double vidaObtenidaDefensor = juego2.GetHpDefensor();
-        //Assert.AreEqual(vidaesperadadefensor,vidaObtenidaDefensor);
+        Assert.That(vidaesperadadefensor,Is.EqualTo(vidaObtenidaDefensor));
     }
 
     [Test]
@@ -142,7 +142,7 @@ public class MenuTest
         juego3.UsarMovimientos(1);
         string pokemonesperado = "Bulbasaur";
         string pokemonobtenido = juego3.GetPokemonActual().GetName();
-        //Assert.AreEqual(pokemonesperado,pokemonobtenido);
+        Assert.That(pokemonesperado,Is.EqualTo(pokemonobtenido));
     }
 
     [Test]
@@ -194,6 +194,18 @@ public class MenuTest
 
     [Test]
     public void VeoAtaquesDisponiblesDeMisPokemones()
+    {
+        Menu juego5 = new Menu();
+        juego5.UnirJugadores("Bombon");
+        juego5.UnirJugadores("Burbuja");
+        juego5.AgregarPokemonesA("Bulbasaur");
+        string textoEsperado =
+            $"El Pokémon Bulbasaur tiene los siguientes movimientos:\nLluevehojas\nBombaLodo\nGolpe Cuerpo\nProtección";
+        //Assert.That(juego5.MostrarAtaquesDisponibles(),Is.EqualTo(textoEsperado)); HAY QUE CAMBIAR EL METODO MOSTRAR ATAQUES A STRING PARA SER COMPARABLE
+    }
+
+    [Test]
+    public void GanoBatalla()
     {
         
     }
