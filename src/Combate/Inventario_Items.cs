@@ -26,7 +26,7 @@ public class Inventario_Items
 
     public void UsarItem(string nombre, Pokemon pokemon)
     {
-        if (items.Contains<>(nombre) && items[nombre].Cantidad > 0)
+        if (items.ContainsKey(nombre) && items[nombre].Cantidad > 0)
         {
             items[nombre].AplicarEfecto(pokemon);
             items[nombre].Cantidad--;

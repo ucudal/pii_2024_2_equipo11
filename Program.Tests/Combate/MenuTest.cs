@@ -1,4 +1,7 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.Collections.Generic;
+using DefaultNamespace;
+using JetBrains.Annotations;
 using Library.Combate;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -139,5 +142,50 @@ public class MenuTest
         string pokemonesperado = "Bulbasaur";
         string pokemonobtenido = juego3.GetPokemonActual().GetName();
         Assert.AreEqual(pokemonesperado,pokemonobtenido);
+    }
+
+    [TestMethod]
+    public void Agrego6Pokemons()
+    {
+        Menu juego4 = new Menu();
+        juego4.UnirJugadores("Don Dimadon");
+        juego4.AgregarPokemonesA("Charmander");
+        juego4.AgregarPokemonesA("Squirtle");
+        juego4.AgregarPokemonesA("Bulbasaur");
+        juego4.AgregarPokemonesA("Dratini");
+        juego4.AgregarPokemonesA("Arbok");
+        List<Pokemon> listadada = juego4.GetPokemonsAtacante();
+        List<string> listadadaAstring = new List<string>();
+        foreach (Pokemon pokemon in listadada)
+        {
+            listadadaAstring.Add(pokemon.GetName());
+        }
+        List<string> listaesperada = new List<string>
+        {
+            "Charmander",
+            "Squirtle",
+            "Bulbasaur",
+            "Dratini",
+            "Arbok"
+        };
+        CollectionAssert.AreEqual(listaesperada,listadadaAstring);
+    }
+
+    [TestMethod]
+    public void VeoHPDeMisPokemonsYPokemonsOponentes()
+    {
+        Menu juego4 = new Menu();
+        juego4.UnirJugadores("Don Dimadon");
+        juego4.UnirJugadores("Bellota");
+        juego4.AgregarPokemonesA("Charmander");//85
+        juego4.AgregarPokemonesD("Squirtle");//80
+        string vidasdadas= $"{juego4.GetHpAtacante()}/{juego4.GetHpDefensor()}";
+        string vidasesperadas = "85/80";
+        Assert.AreEqual(vidasesperadas,vidasdadas);
+    }
+
+    [TestMethod]
+    public void VeoAtaquesDisponiblesDeMisPokemones()
+    {
     }
 }

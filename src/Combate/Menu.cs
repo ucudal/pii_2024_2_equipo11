@@ -16,7 +16,7 @@ namespace Library.Combate
         {
             batallaActual.AgregarJugador(new Jugador(jugador));
         }
-
+        
         public double GetHpDefensor()
         {
             return batallaActual.GetHpDefensorB(); 
@@ -30,6 +30,16 @@ namespace Library.Combate
             return batallaActual.GetPokemonActualB();
         }
 
+        public List<Pokemon> GetPokemonsAtacante()
+        {
+            return batallaActual.GetPokemonsAtacante();
+        }
+        
+        public List<Pokemon> GetPokemonsDefensor()
+        {
+            return batallaActual.GetPokemonsDefensor();
+        }
+        
         public void AgregarPokemonesA(string pokemon)
         {
             batallaActual.AgregarPokemonBA(pokemon); 

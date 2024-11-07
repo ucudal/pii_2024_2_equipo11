@@ -88,6 +88,16 @@ namespace Library.Combate
         {
             return jugadorDefensor;
         }
+        
+        public List<Pokemon> GetPokemonsAtacante()
+        {
+            return jugadorAtacante.GetPokemons();
+        }
+        
+        public List<Pokemon> GetPokemonsDefensor()
+        {
+            return jugadorDefensor.GetPokemons();
+        }
 
         public bool GetBatallaTerminada()
         {
