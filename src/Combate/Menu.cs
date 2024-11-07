@@ -70,8 +70,9 @@ namespace Library.Combate
                 
                 if (pokemonElegido.GetIsAlive())
                 {
+                    Pokemon pokemon = jugadorAtacante.GetPokemonEnTurno();
                     jugadorAtacante.CambiarPokemon(pokemonElegido);
-                    Console.WriteLine($"El Pokémon {pokemonElegido.GetName()} ha entrado en combate");
+                    Console.WriteLine($"El Pokémon {pokemonElegido.GetName()} ha entrado en combate y {pokemon.GetName()} ha sido guardado en su pokebola");
                     batallaActual.AvanzarTurno();
                 }
                 else

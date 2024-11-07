@@ -100,12 +100,13 @@ public class Pokemon
             efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
         }
 
-        double danio = (double)(movimiento.GetAtaque() * efectividadTipo);
-        int numero = new Random().Next(5);
+        double danio = (movimiento.GetAtaque() * efectividadTipo);
+        int numero = new Random().Next(10);
+        Console.WriteLine(numero);
         if (numero == 0)
         {
             danio *= 1.2;
-                Console.WriteLine($"Ha sido un ataque crítico");
+            Console.WriteLine($"Ha sido un ataque crítico");
         }
         
         // Aplicar el daño a la defensa o vida o un poco y un poco
