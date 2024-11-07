@@ -11,8 +11,7 @@ public class MenuTest
     [TestMethod]
     public void PikachuDañaAPidgey()
     {
-        // 95 de daño del ataque rayo * efectividad (2) 
-        int vidaesperada = 0; // tiene 60 de vida y 40 de defensa así que aguantría un golpe de 99 de daño como mucho 
+        double vidaesperada = 0; // tiene 60 de vida y 40 de defensa así que aguantría un golpe de 99 de daño como mucho 
         Menu menuPP = new Menu();
         menuPP.UnirJugadores("Ash");
         menuPP.UnirJugadores("Red");
@@ -20,8 +19,8 @@ public class MenuTest
         menuPP.AgregarPokemonesD("Pidgey");
         menuPP.UsarMovimientos(1); //Pikachu usa royo
         
-        Assert.AreEqual(vidaesperada, menuPP.GetHpDefensor()); // Verificar que la vida de Pidgey es 0
-        Assert.AreEqual(80, menuPP.GetHpAtacante()); // Verificar que Pikachu mantiene su HP
+        Assert.AreEqual(vidaesperada, menuPP.GetHpAtacante()); // Verificar que la vida de Pidgey es 0
+        Assert.AreEqual(80, menuPP.GetHpDefensor()); // Verificar que Pikachu mantiene su HP
     }
     [TestMethod]
     public void PidgeyPorCharmanderParaAguantarAPikachu()
@@ -41,13 +40,11 @@ public class MenuTest
         menuPP.AgregarPokemonesA("Charmander");
         menuPP.CambiarPokemon(1); // Cambia a Charmander
         menuPP.UsarMovimientos(1);//Pikachu usa rayo, danio de rayo: 95, defensa de Charmander: vida 85, defensa: 60
-        double vidaCharmanderRestanteDada = menuPP.GetHpAtacante();
         
-        Assert.AreEqual(vidaCharmanderRestanteEsperada, vidaCharmanderRestanteDada); // Verificar que la vida de Charmander es la esperada
+        Assert.AreEqual(vidaCharmanderRestanteEsperada,(menuPP.GetHpAtacante())); // Verificar que la vida de Charmander es la esperada
         menuPP.CambiarPokemon(1);//Cambio a Pidgey, pasa a ser defensor al usar su turno
         menuPP.UsarMovimientos(4);//Pikachu usa proteccion
-        double vidaPidgeyRestanteDada = menuPP.GetHpAtacante();
-        Assert.AreEqual( vidaPidgeyRestanteDada, vidaPidgeyEsperada); //Verifica que pidgey sigue intecto
+        Assert.AreEqual( menuPP.GetHpAtacante(),(vidaPidgeyEsperada)); //Verifica que pidgey sigue intecto
     }
     [TestMethod]
     //  REVISAR ESTOOOOOOO
