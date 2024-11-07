@@ -168,6 +168,12 @@ public class MenuTest
             "Dratini",
             "Arbok"
         };
+
+        foreach (string nombre in listaesperada)
+        {
+            //Assert.That(listadada, Does.Contain(nombre));
+        }
+        
         CollectionAssert.AreEqual(listaesperada,listadadaAstring);
     }
 
