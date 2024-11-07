@@ -207,6 +207,25 @@ public class MenuTest
     [Test]
     public void GanoBatalla()
     {
-        
+        Menu juego6 = new Menu();
+        juego6.UnirJugadores("Ash");
+        juego6.UnirJugadores("Red");
+        juego6.AgregarPokemonesA("Pikachu");
+        juego6.AgregarPokemonesD("Pidgey");
+        juego6.UsarMovimientos(1); //Pikachu usa royo
+        juego6.MostrarEstadoRival();
+        juego6.UsarMovimientos(3);
+        juego6.TerminarBatalla();
+        //NO IMPRIME EL TEXTO DE QUIEN GANO
+    }
+
+    public void UsoItemEnBatalla()
+    {
+        Menu juego6 = new Menu();
+        juego6.UnirJugadores("Ash");
+        juego6.UnirJugadores("Red");
+        juego6.AgregarPokemonesA("Pikachu");
+        juego6.AgregarPokemonesD("Pidgey");
+        //juego6.UsarItem();
     }
 }

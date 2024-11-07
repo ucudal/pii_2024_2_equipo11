@@ -211,5 +211,10 @@ namespace Library.Combate
                 }
             }
         }
+
+        public void TerminarBatalla()
+        {
+            batallaActual.TerminarBatalla();
+        }
     }
 }
