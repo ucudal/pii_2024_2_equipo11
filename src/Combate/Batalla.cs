@@ -100,6 +100,7 @@ namespace Library.Combate
         }
         public void IniciarBatalla()
         {
+            Console.WriteLine("..........");
             // Verifica si ambos jugadores tienen equipos y la batalla no ha comenzado
             if (!batallaIniciada && jugadorAtacante.GetPokemons().Count > 0 && jugadorDefensor.GetPokemons().Count > 0 && jugadorAtacante != null && jugadorDefensor != null)
             {
@@ -150,7 +151,6 @@ namespace Library.Combate
 
         public void AvanzarTurno()
         {
-
             VerificarPokemonDefensorDebilitado();
 
             if (jugadorDefensor.GetPokemonEnTurno().GetEfecto() != null)
@@ -168,6 +168,7 @@ namespace Library.Combate
             else
             {
                 jugadorDefensor.ActualizarEstadoEquipo();
+                Console.WriteLine($"Es el turno de {jugadorAtacante.GetName()} con el Pokémon {jugadorAtacante.GetPokemonEnTurno().GetName()}.");
                 TerminarBatalla();
             }
         }
@@ -178,7 +179,7 @@ namespace Library.Combate
             jugadorAtacante = jugadorDefensor;
             jugadorDefensor = temporal;
             turnos = !turnos;
-            Console.WriteLine($"Es el turno de {jugadorAtacante.GetName()} con el Pokémon {jugadorAtacante.GetPokemonEnTurno().GetName()}.");
+            Console.WriteLine("..........");
         }
 
     }

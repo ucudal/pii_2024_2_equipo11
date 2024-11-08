@@ -92,7 +92,6 @@ public class Pokemon
 
         double danio = (movimiento.GetAtaque() * efectividadTipo);
         int numero = new Random().Next(10);
-        Console.WriteLine(numero);
         if (numero == 0)
         {
             danio *= 1.2;
