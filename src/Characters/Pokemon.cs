@@ -126,9 +126,9 @@ public class Pokemon
 
     public void RecibirDanioDeEfecto(double numero)
     {
-        double porcentaje = (numero * 100) / this.vida_total;
-        this.vida_actual -= (int)porcentaje;
-        Console.WriteLine($"{GetName()} ha recibido {(int)porcentaje} de daño adicional");
+        double porcentaje = (numero *this.vida_total) / 100;
+        this.vida_actual -= porcentaje;
+        Console.WriteLine($"{GetName()} ha recibido {porcentaje} de daño adicional");
     }
 
     public void SetPuedeAtacar(bool valor) //Funciona para cambiar el valor dentro de los efectos de paralisis y de dormir
