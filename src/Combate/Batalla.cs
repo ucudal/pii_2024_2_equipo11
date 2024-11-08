@@ -39,17 +39,27 @@ namespace Library.Combate
                 {
                     // Asigna aleatoriamente al jugador como defensor o atacante si ambos están vacíos.
                     if (new Random().Next(1, 3) == 1)
+                    {
                         jugadorDefensor = jugador;
+                        Console.WriteLine($"{jugadorDefensor.GetName()} te va tocar esperar, empieza tu oponente");
+                    }
+
                     else
+                    {
                         jugadorAtacante = jugador;
+                        Console.WriteLine($"{jugadorAtacante.GetName()} tu empezaras el combate");
+                    }
+                       
                 }
                 else if (jugadorDefensor == null)
                 {
                     jugadorDefensor = jugador;
+                    Console.WriteLine($"{jugadorDefensor.GetName()} te va tocar esperar, empieza tu oponente");
                 }
                 else
                 {
                     jugadorAtacante = jugador;
+                    Console.WriteLine($"{jugadorAtacante.GetName()} tu empezaras el combate");
                 }
             }
         }
@@ -153,12 +163,24 @@ namespace Library.Combate
         {
             VerificarPokemonDefensorDebilitado();
 
+            if (batallaTerminada)
+            {
+                Console.WriteLine("La batalla ha terminado.");
+                return;
+            }
+
             if (jugadorDefensor.GetPokemonEnTurno().GetEfecto() != null)
             {
                 jugadorDefensor.GetPokemonEnTurno().GetEfecto().HacerEfecto(jugadorDefensor.GetPokemonEnTurno());
             }
 
             CambiarTurno();
+
+            if (batallaTerminada) // Verifica de nuevo por si el efecto finalizó la batalla
+            {
+                Console.WriteLine("La batalla ha terminado.");
+                return;
+            }
 
             if (!jugadorAtacante.GetPokemonEnTurno().GetPuedeAtacar())
             {
@@ -168,10 +190,12 @@ namespace Library.Combate
             else
             {
                 jugadorDefensor.ActualizarEstadoEquipo();
+                jugadorAtacante.ActualizarEstadoEquipo();
+                Console.WriteLine("..........");
                 Console.WriteLine($"Es el turno de {jugadorAtacante.GetName()} con el Pokémon {jugadorAtacante.GetPokemonEnTurno().GetName()}.");
-                TerminarBatalla();
             }
         }
+
 
         private void CambiarTurno()
         {
@@ -179,7 +203,6 @@ namespace Library.Combate
             jugadorAtacante = jugadorDefensor;
             jugadorDefensor = temporal;
             turnos = !turnos;
-            Console.WriteLine("..........");
         }
 
     }
