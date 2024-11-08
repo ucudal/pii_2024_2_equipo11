@@ -19,8 +19,8 @@ namespace Ucu.Poo.Pokemon
             Menu menuPP = new Menu();
             menuPP.UnirJugadores("Ash");//Atacante
             menuPP.UnirJugadores("Red");//Defensor
-            menuPP.AgregarPokemonesA("Pikachu"); //1
-            menuPP.AgregarPokemonesD("Pikachu"); //0
+            menuPP.AgregarPokemonesA("Charmander"); //1
+            menuPP.AgregarPokemonesD("Bulbasaur"); //0
             menuPP.IniciarEnfrentamiento();
             menuPP.UsarMovimientos(1);
             menuPP.UsarMovimientos(1);

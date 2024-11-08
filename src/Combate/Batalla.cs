@@ -161,6 +161,7 @@ namespace Library.Combate
 
         public void AvanzarTurno()
         {
+            
             VerificarPokemonDefensorDebilitado();
 
             if (batallaTerminada)
@@ -176,12 +177,6 @@ namespace Library.Combate
 
             CambiarTurno();
 
-            if (batallaTerminada) // Verifica de nuevo por si el efecto finalizó la batalla
-            {
-                Console.WriteLine("La batalla ha terminado.");
-                return;
-            }
-
             if (!jugadorAtacante.GetPokemonEnTurno().GetPuedeAtacar())
             {
                 Console.WriteLine($"{jugadorAtacante.GetName()} no puede atacar este turno.");
@@ -192,10 +187,17 @@ namespace Library.Combate
                 jugadorDefensor.ActualizarEstadoEquipo();
                 jugadorAtacante.ActualizarEstadoEquipo();
                 Console.WriteLine("..........");
+            }
+            if (!jugadorAtacante.TeamIsAlive() || !jugadorDefensor.TeamIsAlive())
+            {
+                TerminarBatalla();
+            }
+            else
+            {
                 Console.WriteLine($"Es el turno de {jugadorAtacante.GetName()} con el Pokémon {jugadorAtacante.GetPokemonEnTurno().GetName()}.");
             }
+            
         }
-
 
         private void CambiarTurno()
         {

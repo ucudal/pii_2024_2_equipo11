@@ -172,7 +172,6 @@ namespace Library.Combate
                             movimientoEspecial.UsadoAnteriormente(true);
                         }
                     }
-                    
                     batallaActual.AvanzarTurno();
                 }
             }
