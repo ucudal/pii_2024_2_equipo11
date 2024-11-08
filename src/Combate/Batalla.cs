@@ -1,4 +1,4 @@
-﻿﻿using System.ComponentModel.Design;
+﻿using System.ComponentModel.Design;
 using DefaultNamespace;
 using Library.Tipos;
 using Ucu.Poo.Pokemon;
