@@ -69,7 +69,16 @@ public class Pokemon
 
                 if (accion.GetName() == movimiento.GetName() && movimiento is IMovimientoAtaque ataque)
                 {
-                    
+                    if (ataque is MovimientoDeAtaque) //Verifica si el movimiento usado en este momento Es de Ataque y no especial
+                    {
+                        foreach (IMovimiento mov in lista_movimientos)//Recorre todoslos movimientos de lalista hasta dar con el especial
+                        {
+                            if (mov is IMovimientoEspecial movesp)
+                            {
+                                movesp.UsadoAnteriormente(false);//Pone su estado de Uado anteriormente en false, ya que en este ataque se uso un movimiento comun y no uno especial
+                            }
+                        }
+                    }
                 }
                 if (movimiento is IMovimientoDefensa defensamovimiento)
                 {
