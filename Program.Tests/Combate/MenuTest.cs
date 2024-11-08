@@ -155,11 +155,11 @@ public class MenuTest
         juego4.AgregarPokemonesA("Bulbasaur");
         juego4.AgregarPokemonesA("Dratini");
         juego4.AgregarPokemonesA("Arbok");
-        List<Pokemon> listadada = juego4.GetPokemonsAtacante();
+        //List<Pokemon> listadada = juego4.(); falta getear el equipo del atacantes
         List<string> listadadaAstring = new List<string>();
-        foreach (Pokemon pokemon in listadada)
+        //foreach (Pokemon pokemon in listadada)
         {
-            listadadaAstring.Add(pokemon.GetName());
+            //listadadaAstring.Add(pokemon.GetName());
         }
         List<string> listaesperada = new List<string>
         {
@@ -215,7 +215,6 @@ public class MenuTest
         juego6.UsarMovimientos(1); //Pikachu usa royo
         juego6.MostrarEstadoRival();
         juego6.UsarMovimientos(3);
-        juego6.TerminarBatalla();
         //NO IMPRIME EL TEXTO DE QUIEN GANO
     }
 

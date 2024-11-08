@@ -21,10 +21,17 @@ namespace Ucu.Poo.Pokemon
             menuPP.UnirJugadores("Red");//Defensor
             menuPP.AgregarPokemonesA("Pikachu"); 
             menuPP.AgregarPokemonesD("Pikachu"); 
-            Console.WriteLine("Atacante");
-            menuPP.UsarMovimientos(4);
-            Console.WriteLine("Defensor");
-            menuPP.UsarMovimientos(4);
+            menuPP.IniciarEnfrentamiento();
+            menuPP.UsarMovimientos(1);
+            menuPP.UsarMovimientos(1);
+            menuPP.UsarMovimientos(1);
+            menuPP.UsarMovimientos(2);
+            
+            menuPP.UsarMovimientos(2);
+            
+            menuPP.UsarMovimientos(2);
+            
+            menuPP.UsarMovimientos(2);
         }
     }
 }

@@ -4,20 +4,26 @@ namespace Library.Tipos;
 
 public class Dormir:Efecto
 {
-    public Dormir()
-    {
-        
-    }
     private int Turnos;
     private Random random = new Random();
     
-    public void CalcularTurnos()
+    public Dormir()
     {
         this.Turnos = random.Next(1, 5);
     }
     public override void HacerEfecto(Pokemon pokemon)
     {
-        Console.WriteLine($"{pokemon.GetName()} dormira durante {Turnos} turnos");
+       
+        if (this.Turnos == 0)
+        {
+            pokemon.SetPuedeAtacar(true);
+            pokemon.EliminarEfectoActual();
+        }
+        else
+        {
+            Console.WriteLine($"{pokemon.GetName()} dormira durante {Turnos} turnos");
+            pokemon.SetPuedeAtacar(false);
+        }
         this.Turnos -= 1;
     }
 }

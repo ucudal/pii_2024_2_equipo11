@@ -35,13 +35,44 @@ public static class Pokedex
     {
         foreach (Pokemon pokemon in pokemonsdisponibles)
         {
-            if (nombrepokemon == pokemon.GetName())
+            if (nombrepokemon == pokemon.GetName()) //Busca que el nombre sea identico
             {
-                return pokemon;
+                return CrearCopia(pokemon); //Genera una copia identica del pokemon de la pokedex y se lo entre al usaurio
             }
         }
         Console.WriteLine("No se ha encontrado al pokemon");
         return null;
+    }
+
+    public static Pokemon CrearCopia(Pokemon pokemon)
+    {
+        List<IMovimiento> listaMovs = new List<IMovimiento>();
+        foreach (IMovimiento movimiento in pokemon.GetListaMovimientos())
+        {
+            IMovimiento movimientoAgregar;
+        
+            if (movimiento is MovimientoEspecial movimientoEspecial)
+            {
+                // Crear una nueva instancia de MovimientoEspecial con los mismos atributos
+                movimientoAgregar = new MovimientoEspecial(
+                    movimientoEspecial.GetName(),
+                    movimientoEspecial.GetAtaque(),
+                    movimientoEspecial.GetTipo(),
+                    movimientoEspecial.GetPrecision(),
+                    movimientoEspecial.GetEfecto()
+                );
+            }
+            else
+            {
+                // Si no es MovimientoEspecial ni MovimientoDeAtaque, simplemente copia la referencia
+                movimientoAgregar = movimiento;
+            }
+        
+            listaMovs.Add(movimientoAgregar);
+        }
+        // Crear una nueva instancia del Pokémon con el mismo nombre y lista de movimientos clonada
+        Pokemon pokemonCreado = new Pokemon(pokemon.GetName(), listaMovs, pokemon.GetTipos(), pokemon.GetVidaTotal(), pokemon.GetDefensa());
+        return pokemonCreado;
     }
 
     private static void RegularEfectos()

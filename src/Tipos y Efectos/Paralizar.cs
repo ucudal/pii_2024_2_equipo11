@@ -7,26 +7,21 @@ public class Paralizar:Efecto
     private Random random = new Random();
     public Paralizar()
     {
-        
     }
-    public bool Jugar()
+    private bool Jugar(Pokemon pokemon)
     {
-       int numero= random.Next(1, 4);
-       if (numero == 1)
-       {
-           return true;
-       }
-
-       return false;
+        int numero= random.Next(1, 4);
+        if (numero == 1)
+        {
+            Console.WriteLine($"El pokemon {pokemon.GetName()} puede atacar en este turno a pesar de estar paralizado");
+            return true;
+        }
+        Console.WriteLine($"El pokemon {pokemon.GetName()} no puede atacar, ha sido paralizado");
+        return false;
     }
 
     public override void HacerEfecto(Pokemon pokemon)
     {
-        if (!this.Jugar())
-        {
-            Console.WriteLine(pokemon.GetName(), " ha sido paralizado y no puede atacar");
-        }
-
-        Console.WriteLine(pokemon.GetName(), " puede atacar");
+        pokemon.SetPuedeAtacar(Jugar(pokemon));
     }
 }

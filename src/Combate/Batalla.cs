@@ -94,7 +94,10 @@ namespace Library.Combate
         {
             return batallaTerminada;
         }
-
+        public bool GetBatallaIniciada()
+        {
+            return batallaIniciada;
+        }
         public void IniciarBatalla()
         {
             // Verifica si ambos jugadores tienen equipos y la batalla no ha comenzado

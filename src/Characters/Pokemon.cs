@@ -66,17 +66,6 @@ public class Pokemon
         {
             foreach (IMovimiento accion in lista_movimientos)
             {
-                if (accion is MovimientoEspecial accionEspecial)
-                {
-                    if (accion.GetName() == movimiento.GetName())
-                    {
-                        accionEspecial.UsadoAnteriormente(true);
-                    }
-                    else
-                    {
-                        accionEspecial.UsadoAnteriormente(false);
-                    }
-                }
 
                 if (accion.GetName() == movimiento.GetName() && movimiento is IMovimientoAtaque ataque)
                 {
@@ -140,6 +129,7 @@ public class Pokemon
     {
         double porcentaje = (this.vida_actual * 100)/numero;
         this.vida_actual -= porcentaje;
+        Console.WriteLine($"{GetName()} ha recibido {porcentaje} de daño adicional");
     }
 
     public void SetPuedeAtacar(bool valor) //Funciona para cambiar el valor dentro de los efectos de paralisis y de dormir
