@@ -13,4 +13,9 @@ public class Efecto
     {
         
     }
+
+    public static Efecto CrearCopia(Type tipoEfecto)
+    {
+        return (Efecto)Activator.CreateInstance(tipoEfecto);
+    }
 }

@@ -11,7 +11,7 @@ public class Paralizar:Efecto
     }
     public bool Jugar()
     {
-       int numero= random.Next(1, 6);
+       int numero= random.Next(1, 4);
        if (numero == 1)
        {
            return true;

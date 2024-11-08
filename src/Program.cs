@@ -17,19 +17,14 @@ namespace Ucu.Poo.Pokemon
             int vidatortugaEsperada = 80; 
 
             Menu menuPP = new Menu();
-            menuPP.UnirJugadores("Ash");
-            menuPP.UnirJugadores("Red");
-            menuPP.AgregarPokemonesA("Squirtle"); 
+            menuPP.UnirJugadores("Ash");//Atacante
+            menuPP.UnirJugadores("Red");//Defensor
+            menuPP.AgregarPokemonesA("Pikachu"); 
             menuPP.AgregarPokemonesD("Pikachu"); 
-            menuPP.AgregarPokemonesA("Bulbasaur"); 
-            Console.WriteLine(menuPP.GetPokemonActual().GetName());
-            menuPP.CambiarPokemon(1); // Cambia a bulbasaur
-            Console.WriteLine(menuPP.GetPokemonActual().GetName());
-            menuPP.UsarMovimientos(1);
-            Console.WriteLine(menuPP.GetPokemonActual().GetName());
-            Console.WriteLine(menuPP.GetHpDefensor());
-
+            Console.WriteLine("Atacante");
+            menuPP.UsarMovimientos(4);
+            Console.WriteLine("Defensor");
+            menuPP.UsarMovimientos(4);
         }
-        
     }
 }

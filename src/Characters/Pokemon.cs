@@ -1,4 +1,4 @@
-﻿using Library.Combate;
+﻿﻿using Library.Combate;
 using Library.Tipos;
 using Ucu.Poo.Pokemon;
 
@@ -13,6 +13,9 @@ public class Pokemon
     private double vida_total;
     private double defensa;
     private bool is_alive;
+    private Efecto estado;
+    private bool puedeatacar;
+    
 
     public Pokemon(string nombre, List<IMovimiento> movimientos, List<Tipo> tipos, double vida, double defensa)
     {
@@ -23,6 +26,7 @@ public class Pokemon
         vida_total = vida;
         is_alive = true;
         this.defensa = defensa;
+        puedeatacar = true;
     }
 
     public List<Tipo> GetTipos()
@@ -73,13 +77,17 @@ public class Pokemon
                         accionEspecial.UsadoAnteriormente(false);
                     }
                 }
+
+                if (accion.GetName() == movimiento.GetName() && movimiento is IMovimientoAtaque ataque)
+                {
+                    
+                }
                 if (movimiento is IMovimientoDefensa defensamovimiento)
                 {
                     defensa += defensamovimiento.GetDefensa();
+                    Console.WriteLine($"{GetName()} ha usado su {movimiento.GetName()} para subir su defensa {defensamovimiento.GetDefensa()} puntos");
                 }
             }
-
-            
         }
     }
     
@@ -93,25 +101,38 @@ public class Pokemon
             efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
         }
 
-        double danio = (double)(movimiento.GetAtaque() * efectividadTipo);
-
+        double danio = (movimiento.GetAtaque() * efectividadTipo);
+        int numero = new Random().Next(10);
+        Console.WriteLine(numero);
+        if (numero == 0)
+        {
+            danio *= 1.2;
+            Console.WriteLine($"Ha sido un ataque crítico");
+        }
+        
         // Aplicar el daño a la defensa o vida o un poco y un poco
         if (defensa > danio)
         {
             defensa -= danio;
+            Console.WriteLine($"{GetName()} ha perdido {danio} de defensa, quedandose a {defensa} de defensa y {vida_actual} de vida");
         }
         else
         {
             danio -= defensa; // Resta el daño restante a la vida
             defensa = 0;
             vida_actual -= danio;
-
             if (vida_actual <= 0)
             {
                 is_alive = false;
                 vida_actual = 0;
                 Console.WriteLine($"El pokemon {name} se ha debilitado, por que no podrá combatir más");
+                return;
             }
+            Console.WriteLine($"{GetName()} ha perdido toda su defensa y se ha quedado con {vida_actual}");
+        }
+        if (movimiento is IMovimientoEspecial movimientoEspecial)
+        {
+            AgregarEfecto(movimientoEspecial.GetEfecto());
         }
     }
 
@@ -120,10 +141,29 @@ public class Pokemon
         double porcentaje = (this.vida_actual * 100)/numero;
         this.vida_actual -= porcentaje;
     }
-    
+
+    public void SetPuedeAtacar(bool valor) //Funciona para cambiar el valor dentro de los efectos de paralisis y de dormir
+    {
+        puedeatacar = valor; 
+    }
+
+    public void AgregarEfecto(Efecto efecto)
+    {
+        if (estado == null)
+        {
+            estado = Efecto.CrearCopia(efecto.GetType()); // Usa el tipo del efecto para crear una nueva instancia
+            Console.WriteLine($"{GetName()} caído bajo el efecto {efecto.GetType().Name}");
+        }
+    }
     public void EliminarEfectoActual()
     {
+        estado = null;
         // Acá iría el método para eliminar el cambio de estado del pokemon
+    }
+
+    public Efecto GetEfecto()
+    {
+        return estado;
     }
     public void Curar(int vidacurada)
     {
@@ -137,6 +177,16 @@ public class Pokemon
     public void Revivir()
     {
         this.vida_actual = vida_total/2;
+    }
+
+    public bool GetPuedeAtacar()
+    {
+        return puedeatacar;
+    }
+
+    public double GetDefensa()
+    {
+        return this.defensa;
     }
     
 }

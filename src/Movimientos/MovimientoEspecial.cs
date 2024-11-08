@@ -45,9 +45,9 @@ public class MovimientoEspecial : IMovimientoEspecial
     {
         return precision;
     }
-
     public Efecto GetEfecto()
     {
         return efecto;
     }
+    
 }

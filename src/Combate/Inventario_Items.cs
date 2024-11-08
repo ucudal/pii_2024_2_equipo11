@@ -1,22 +1,26 @@
-﻿using DefaultNamespace;
+﻿﻿using DefaultNamespace;
 using Ucu.Poo.Pokemon;
 
 namespace Library.Combate;
-public class Inventario_Items
+public class InventarioItems
 {
-    private Dictionary<string, Item> items;
+    private Dictionary<String, Item> items;
+    private Super_Pocion superpocion;
+    private Revivir revivir;
+    private Cura_Total curatotal;
+    
 
-    public Inventario_Items()
+    public InventarioItems()
     {
-        items = new Dictionary<string, Item>
+        items = new Dictionary<String, Item> //Crea un diccionario en el que registra cada item y cuanta cantidad hay de cada uno
         {
-            { "SuperPocion", new Super_Pocion(4) },
-            { "Revivir", new Revivir(1) },
-            { "CuraTotal", new Cura_Total(2) }
+            { "SuperPocion",  superpocion = new Super_Pocion(4) },
+            { "Revivir", revivir = new Revivir(1) },
+            { "CuraTotal", curatotal = new Cura_Total(2) }
         };
     }
 
-    public void MostrarItems()
+    public void MostrarItems() //Imprime en pantalla cuales items y cuantos de cada uno le queda al jugador 
     {
         foreach (var item in items)
         {
@@ -24,14 +28,30 @@ public class Inventario_Items
         }
     }
 
-    public void UsarItem(string nombre, Pokemon pokemon)
+    public void UsarItem(string item, Pokemon pokemon) //Busca el item que le pasaste, llama al AplicarEfecto para que haga su efecto y baja en 1 su cantidad
     {
-        if (items.ContainsKey(nombre) && items[nombre].Cantidad > 0)
+        if (items.ContainsKey(item) && items[item].Cantidad > 0)
         {
-            items[nombre].AplicarEfecto(pokemon);
-            items[nombre].Cantidad--;
+            if (item == "Superpocion") //Si escribiste Superpocion, llamará al curar del revivir
+            {
+                superpocion.AplicarEfecto(pokemon);
+                items[item].Cantidad--;
+            }
+            if (item == "Revivir") //Si escribiste Revivir, llamará al revivir del jugador
+            {
+                revivir.AplicarEfecto(pokemon);
+                items[item].Cantidad--;
+            }
+            if (item == "Curatotal")//Si escribiste Curatotal, llamará al CurarEstado del jugador
+            {
+                curatotal.AplicarEfecto(pokemon);
+                items[item].Cantidad--;
+            }
+            else
+            {
+                Console.WriteLine("Seleccione una opcion correcta por favor, 'SuperPocion' para usar una superposión, 'Revivir' para usar un revivir o 'CuraTotal' para usar un curatotal");
+            }
         }
         Console.WriteLine("Ítem no disponible o cantidad insuficiente.");
-        
     }
 }

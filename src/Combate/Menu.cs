@@ -1,4 +1,4 @@
-﻿using DefaultNamespace;
+﻿﻿using DefaultNamespace;
 using Ucu.Poo.Pokemon;
 
 namespace Library.Combate
@@ -16,7 +16,7 @@ namespace Library.Combate
         {
             batallaActual.AgregarJugador(new Jugador(jugador));
         }
-        
+
         public double GetHpDefensor()
         {
             return batallaActual.GetHpDefensorB(); 
@@ -25,22 +25,11 @@ namespace Library.Combate
         {
             return batallaActual.GetHpAtacanteB(); 
         }
-        
         public Pokemon GetPokemonActual()
         {
             return batallaActual.GetPokemonActualB();
         }
 
-        public List<Pokemon> GetPokemonsAtacante()
-        {
-            return batallaActual.GetPokemonsAtacante();
-        }
-        
-        public List<Pokemon> GetPokemonsDefensor()
-        {
-            return batallaActual.GetPokemonsDefensor();
-        }
-        
         public void AgregarPokemonesA(string pokemon)
         {
             batallaActual.AgregarPokemonBA(pokemon); 
@@ -75,14 +64,15 @@ namespace Library.Combate
             Jugador jugadorAtacante = batallaActual.GetAtacante();
             List<Pokemon> pokemons = jugadorAtacante.GetPokemons();
             
-            if (numeroDePokemon >= 0 && numeroDePokemon < pokemons.Count)
+            if (numeroDePokemon >= 0 && numeroDePokemon < pokemons.Count )
             {
                 Pokemon pokemonElegido = pokemons[numeroDePokemon];
                 
                 if (pokemonElegido.GetIsAlive())
                 {
+                    Pokemon pokemon = jugadorAtacante.GetPokemonEnTurno();
                     jugadorAtacante.CambiarPokemon(pokemonElegido);
-                    Console.WriteLine($"El Pokémon {pokemonElegido.GetName()} ha entrado en combate");
+                    Console.WriteLine($"El Pokémon {pokemonElegido.GetName()} ha entrado en combate y {pokemon.GetName()} ha sido guardado en su pokebola");
                     batallaActual.AvanzarTurno();
                 }
                 else
@@ -150,6 +140,7 @@ namespace Library.Combate
                             int numeroAleatorio = random.Next(1, 101); //Numero aleatorio para saber si acierto 
                             if (numeroAleatorio <= movimientoAtaque.GetPrecision())
                             {
+                                Console.WriteLine($"{pokemonActual.GetName()} ha acertado su ataque");
                                 batallaActual.RecibirAtaqueB(movimientoAtaque);
                             }
                             else
@@ -175,13 +166,13 @@ namespace Library.Combate
                 Console.WriteLine($"{i}. {pokemon.GetName()}");
             }
         }
-        public void Mostrar_items_disponibles()
+        public void Mostrar_items_disponibles() //Llama al método de jugador para mostrar los items
         {
             Jugador jugador = batallaActual.GetAtacante();
             jugador.Mostrar_items();
         }
 
-        public void UsarItem(string item, int numero_de_pokemon)
+        public void UsarItem(string item, int numero_de_pokemon) //Este método utiliza el item que le pases por string
         {
             Jugador jugadorAtacante = batallaActual.GetAtacante();
             List<Pokemon> pokemons = jugadorAtacante.GetPokemons();
@@ -189,32 +180,13 @@ namespace Library.Combate
             if (numero_de_pokemon >= 0 && numero_de_pokemon < pokemons.Count)
             {
                 Pokemon pokemonElegido = pokemons[numero_de_pokemon];
-                
-                if (item == "SuperPocion")
-                {
-                    jugadorAtacante.Curar(pokemonElegido);
-                    batallaActual.AvanzarTurno();
-                }
-                if (item == "Revivir")
-                {
-                    jugadorAtacante.Revivir(pokemonElegido);
-                    batallaActual.AvanzarTurno();
-                }
-                if (item == "CuraTotal")
-                {
-                    jugadorAtacante.Curar_estado(pokemonElegido);
-                    batallaActual.AvanzarTurno();
-                }
-                else
-                {
-                    Console.WriteLine("Seleccione una opcion correcta por favor, 'SuperPocion' para usar una superposión, 'Revivir' para usar un revivir o 'CuraTotal' para usar un curatotal");
-                }
+                jugadorAtacante.UsarItem(item, pokemonElegido);
+                batallaActual.AvanzarTurno();
             }
-        }
-
-        public void TerminarBatalla()
-        {
-            batallaActual.TerminarBatalla();
+            else
+            {
+                Console.WriteLine("Seleccione el pokemon correctamente");
+            }
         }
     }
 }
