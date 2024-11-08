@@ -9,7 +9,7 @@ public class MovimientoEspecial : IMovimientoEspecial
     private Efecto efecto { get; set; }
     private Tipo tipo { get; set; }
     private int precision { get; set; }
-    private bool usado_anteriormente { get; set; }
+    private bool usadoAnteriormente { get; set; }
     public MovimientoEspecial(string name, int ataque, Tipo tipo, int precision, Efecto efecto)
     {
         this.name = name;
@@ -20,7 +20,7 @@ public class MovimientoEspecial : IMovimientoEspecial
     }
     public void UsadoAnteriormente(bool valor) //Setea el valor de los ataques especiales para saber si se pueden usar
     { 
-        usado_anteriormente = valor; 
+        usadoAnteriormente = valor; 
     }
     public int GetAtaque()
     {
@@ -29,7 +29,7 @@ public class MovimientoEspecial : IMovimientoEspecial
     
     public bool GetUsadoAnteriormente()
     {
-        return usado_anteriormente;
+        return usadoAnteriormente;
     }
     public string GetName()
     {

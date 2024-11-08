@@ -7,36 +7,36 @@ namespace DefaultNamespace;
 public class Pokemon
 {
     private string name;
-    private List<IMovimiento> lista_movimientos;
-    private List<Tipo> lista_tipos;
-    private double vida_actual;
-    private double vida_total;
+    private List<IMovimiento> listaMovimientos;
+    private List<Tipo> listaTipos;
+    private double vidaActual;
+    private double vidaTotal;
     private double defensa;
-    private bool is_alive;
+    private bool isAlive;
     private Efecto estado;
-    private bool puedeatacar;
+    private bool puedeAtacar;
     
 
     public Pokemon(string nombre, List<IMovimiento> movimientos, List<Tipo> tipos, double vida, double defensa)
     {
         name = nombre;
-        lista_movimientos = movimientos;
-        lista_tipos = tipos;
-        vida_actual = vida;
-        vida_total = vida;
-        is_alive = true;
+        listaMovimientos = movimientos;
+        listaTipos = tipos;
+        vidaActual = vida;
+        vidaTotal = vida;
+        isAlive = true;
         this.defensa = defensa;
-        puedeatacar = true;
+        puedeAtacar = true;
     }
 
     public List<Tipo> GetTipos()
     {
-        return lista_tipos;
+        return listaTipos;
     }
     
     public bool GetIsAlive()
     {
-        return is_alive;
+        return isAlive;
     }
 
     public string GetName()
@@ -46,32 +46,32 @@ public class Pokemon
     
     public List<IMovimiento> GetListaMovimientos()
     {
-        return lista_movimientos;
+        return listaMovimientos;
     }
 
     public double GetVidaTotal()
     {
-        return vida_total;
+        return vidaTotal;
     }
 
     public double GetVidaActual()
     {
-        return vida_actual;
+        return vidaActual;
     }
 
     // Método para usar un movimiento, incluyendo los de defensa
     public void UsarMovimiento(IMovimiento movimiento)
     {
-        if (is_alive)
+        if (isAlive)
         {
-            foreach (IMovimiento accion in lista_movimientos)
+            foreach (IMovimiento accion in listaMovimientos)
             {
 
                 if (accion.GetName() == movimiento.GetName() && movimiento is IMovimientoAtaque ataque)
                 {
                     if (ataque is MovimientoDeAtaque) //Verifica si el movimiento usado en este momento Es de Ataque y no especial
                     {
-                        foreach (IMovimiento mov in lista_movimientos)//Recorre todoslos movimientos de lalista hasta dar con el especial
+                        foreach (IMovimiento mov in listaMovimientos)//Recorre todoslos movimientos de lalista hasta dar con el especial
                         {
                             if (mov is IMovimientoEspecial movesp)
                             {
@@ -94,7 +94,7 @@ public class Pokemon
         double efectividadTipo = 1.0;
         Tipo tipoAtaque = movimiento.GetTipo();
 
-        foreach (Tipo tipoDefensor in lista_tipos)
+        foreach (Tipo tipoDefensor in listaTipos)
         {
             efectividadTipo *= tipoAtaque.DarEfectividad(tipoDefensor);
         }
@@ -111,21 +111,21 @@ public class Pokemon
         if (defensa > danio)
         {
             defensa -= danio;
-            Console.WriteLine($"{GetName()} ha perdido {danio} de defensa, quedandose a {defensa} de defensa y {vida_actual} de vida");
+            Console.WriteLine($"{GetName()} ha perdido {danio} de defensa, quedandose a {defensa} de defensa y {vidaActual} de vida");
         }
         else
         {
             danio -= defensa; // Resta el daño restante a la vida
             defensa = 0;
-            vida_actual -= danio;
-            if (vida_actual <= 0)
+            vidaActual -= danio;
+            if (vidaActual <= 0)
             {
-                is_alive = false;
-                vida_actual = 0;
+                isAlive = false;
+                vidaActual = 0;
                 Console.WriteLine($"El pokemon {name} se ha debilitado, por que no podrá combatir más");
                 return;
             }
-            Console.WriteLine($"{GetName()} ha perdido toda su defensa y se ha quedado con {vida_actual}");
+            Console.WriteLine($"{GetName()} ha perdido toda su defensa y se ha quedado con {vidaActual}");
         }
         if (movimiento is IMovimientoEspecial movimientoEspecial)
         {
@@ -135,14 +135,14 @@ public class Pokemon
 
     public void RecibirDanioDeEfecto(double numero)
     {
-        double porcentaje = (numero *this.vida_total) / 100;
-        this.vida_actual -= porcentaje;
+        double porcentaje = (numero *this.vidaTotal) / 100;
+        this.vidaActual -= porcentaje;
         Console.WriteLine($"{GetName()} ha recibido {porcentaje} de daño adicional");
     }
 
     public void SetPuedeAtacar(bool valor) //Funciona para cambiar el valor dentro de los efectos de paralisis y de dormir
     {
-        puedeatacar = valor; 
+        puedeAtacar = valor; 
     }
 
     public void AgregarEfecto(Efecto efecto)
@@ -165,21 +165,21 @@ public class Pokemon
     }
     public void Curar(int vidacurada)
     {
-        this.vida_actual += vidacurada;
-        if (vida_actual > vida_total)
+        this.vidaActual += vidacurada;
+        if (vidaActual > vidaTotal)
         {
-            vida_actual = vida_total;
+            vidaActual = vidaTotal;
         }
     }
 
     public void Revivir()
     {
-        this.vida_actual = vida_total/2;
+        this.vidaActual = vidaTotal/2;
     }
 
     public bool GetPuedeAtacar()
     {
-        return puedeatacar;
+        return puedeAtacar;
     }
 
     public double GetDefensa()

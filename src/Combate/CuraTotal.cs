@@ -2,9 +2,9 @@
 using Ucu.Poo.Pokemon;
 
 namespace Library.Combate;
-public class Cura_Total : Item
+public class CuraTotal : Item
 {
-    public Cura_Total(int cantidad) : base( cantidad) { }
+    public CuraTotal(int cantidad) : base( cantidad) { }
     
     //La Cura total quita el efecto actual del Pokemon indicado, siempre y cuando el pokemon tenga un efecto y no este muerto
 

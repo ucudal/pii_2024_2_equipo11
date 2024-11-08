@@ -5,18 +5,18 @@ namespace Library.Combate;
 public class InventarioItems
 {
     private Dictionary<String, Item> items;
-    private Super_Pocion superpocion;
+    private SuperPocion superpocion;
     private Revivir revivir;
-    private Cura_Total curatotal;
+    private CuraTotal curatotal;
     
 
     public InventarioItems()
     {
         items = new Dictionary<String, Item> //Crea un diccionario en el que registra cada item y cuanta cantidad hay de cada uno
         {
-            { "SuperPocion",  superpocion = new Super_Pocion(4) },
+            { "SuperPocion",  superpocion = new SuperPocion(4) },
             { "Revivir", revivir = new Revivir(1) },
-            { "CuraTotal", curatotal = new Cura_Total(2) }
+            { "CuraTotal", curatotal = new CuraTotal(2) }
         };
     }
 

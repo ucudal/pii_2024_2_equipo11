@@ -3,9 +3,9 @@ using Ucu.Poo.Pokemon;
 
 namespace Library.Combate;
 
-public class Super_Pocion : Item
+public class SuperPocion : Item
 {
-    public Super_Pocion(int cantidad) : base(cantidad) { }
+    public SuperPocion(int cantidad) : base(cantidad) { }
 
     public override void AplicarEfecto(Pokemon pokemon)
     {
