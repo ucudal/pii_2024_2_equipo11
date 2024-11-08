@@ -29,6 +29,11 @@ public class Pokemon
         puedeAtacar = true;
     }
 
+    public void HacerEfectoPokemon(Pokemon pokemon)
+    {
+        estado.HacerEfecto(pokemon);
+    }
+
     public List<Tipo> GetTipos()
     {
         return listaTipos;
