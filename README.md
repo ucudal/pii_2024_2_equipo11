@@ -13,7 +13,7 @@ También se nos complicó crear la lógica de los métodos ya que hay muchos que
 
 ## Qué cosas aprendieron enfrentándose al proyecto que no aprendieron en clase como parte de la currícula
 
-Para empezar (puse esto pq no se si vamos a poner algo más, sino lo dejamos así y fue, esto no nos lo va a corregir, solo mirar por arriba), pudimos ver el verdadero uso que se le da a varios principios ya que cuando re-hicimos todo el diagrama, al implementar menos clases pudimos verlo mucho más prolijo y al hacerlo más flexible es más fácil notar en donde están los errores cuando nos equivoquemos. También aprendimos cosas más específicas como el uso de los diccionarios. 
+Para empezar, pudimos ver el verdadero uso que se le da a varios principios ya que cuando re-hicimos todo el diagrama, al implementar menos clases pudimos verlo mucho más prolijo y al hacerlo más flexible es más fácil notar en donde están los errores cuando nos equivoquemos. También aprendimos cosas más específicas como el uso de los diccionarios. 
 
 ## Qué recursos (páginas web, libros, foros, etc) encontraron que les fueron valiosos para sortear los desafíos que encontraron
 
