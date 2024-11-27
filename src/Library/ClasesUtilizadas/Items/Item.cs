@@ -31,7 +31,9 @@ public abstract class Item
     {
         this.Cantidad = cantidad;
     }
-
+    /// <summary>
+    /// Disminuye la cantidad disponible del ítem en uno, si es mayor a cero.
+    /// </summary>
     public void SetCantidad()
     {
         if (this.Cantidad > 0)
@@ -40,6 +42,10 @@ public abstract class Item
         }
     }
 
+    /// <summary>
+    /// Obtiene la cantidad actual de este ítem disponible.
+    /// </summary>
+    /// <returns>La cantidad actual del ítem.</returns>
     public int GetCantidad()
     {
         return this.Cantidad;

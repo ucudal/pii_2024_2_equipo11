@@ -27,7 +27,10 @@ namespace Library.Combate
         batallaActual = new Batalla();
         this.precision = new StrategyPrecisoRandom();
     }
-
+    /// <summary>
+    /// Establece una estrategia personalizada para la precisión de los movimientos.
+    /// </summary>
+    /// <param name="pres">Instancia de la estrategia de precisión a utilizar.</param>
     public void SetStrategyPresicion(IStrategyPresicion pres)
     {
         this.precision = pres;
@@ -388,12 +391,18 @@ namespace Library.Combate
     
         return texto;
     }
-
+    /// <summary>
+    /// Obtiene el nombre del Pokémon en turno del jugador atacante.
+    /// </summary>
+    /// <returns>El nombre del Pokémon en turno del jugador atacante.</returns>
     public string GetNamePokemonA()
     {
         return JugadorA().GetNamePokemonTurno();
     }
-    
+    /// <summary>
+    /// Obtiene el nombre del Pokémon en turno del jugador defensor.
+    /// </summary>
+    /// <returns>El nombre del Pokémon en turno del jugador defensor.</returns>
     public string GetNamePokemonD()
     {
         return JugadorD().GetNamePokemonTurno();
