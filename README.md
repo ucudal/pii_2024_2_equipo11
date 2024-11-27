@@ -27,3 +27,4 @@ OCP: https://www.youtube.com/watch?v=ViKWVjyMUwQ
 
 El ejercicio de trabajar en equipo para este proyecto esta muy bueno, ya que nos acerca a la vida laboral y a como colaborar con tus compañeros y llegar a acuerdos para soluconar diferentes problemas, a escuchar las ideas de los demas y a dividir las tareas equitativamente.
 Disfrutamos de la modalidad del curso, fue a través de lo que se va aprendiendo en clase y de pequeños trabajos más chicos que pudimos armar algo más grande que incluso involucra una aplicación como lo es discord en este caso, de esta manera no solo aprendiendo más de C# sino también de cómo crear un bot de discord. Además pudimos reafirmar los conceptos de SOLID y GRASP.
+Trello del equipo : https://trello.com/invite/b/6703de242e7c12ea36f149ca/ATTIa4b81dab83d12c92c5250814b5f6dd54FA2D7669/proyecto-pokemon
