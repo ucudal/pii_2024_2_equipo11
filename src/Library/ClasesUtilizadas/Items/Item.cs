@@ -42,6 +42,11 @@ public abstract class Item
         }
     }
 
+    public void SetCero()
+    {
+        this.Cantidad = 0;
+    }
+
     /// <summary>
     /// Obtiene la cantidad actual de este ítem disponible.
     /// </summary>

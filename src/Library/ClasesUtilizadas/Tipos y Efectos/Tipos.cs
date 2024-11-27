@@ -26,6 +26,11 @@ namespace Library.Tipos
             this.name = name;
         }
 
+        public string GetName()
+        {
+            return this.name;
+        }
+
         /// <summary>  
         /// Agrega o actualiza la efectividad de este tipo respecto a otro tipo.  
         /// </summary>  

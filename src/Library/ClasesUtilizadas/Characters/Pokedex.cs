@@ -20,6 +20,7 @@ public static class Pokedex
     private static List<Pokemon> pokemonsdisponibles = new List<Pokemon>();
     private static List<IMovimiento> listaMovimientos = new List<IMovimiento>();
     private static List<Efecto> listaEfectos = new List<Efecto>();
+   
 
 
     /// <summary>  
@@ -34,6 +35,7 @@ public static class Pokedex
         CrearPokemones();
     }
 
+   
     /// <summary>  
     /// Muestra el catálogo de Pokémon disponibles en la Pokédex.  
     /// </summary>  
@@ -567,4 +569,39 @@ public static class Pokedex
         Pokemon Arbok = new Pokemon("Arbok", movimientosArbok, tiposArbok, 60, 195);
         pokemonsdisponibles.Add(Arbok);
     }
+    
+    public static List<Pokemon> GetPokemons()
+    {
+        return pokemonsdisponibles;
+    }
+    
+    public static List<Tipo> GetTiposDisponibles()
+    {
+        RegularTipos();
+        return listatiposdisponibles;
+    }
+
+    
+    public static string RemoveTipo(Tipo tipo)
+    {
+        RegularTipos();
+        string texto = "";
+        listatiposdisponibles.Remove(tipo);
+        foreach (Pokemon pokemon in pokemonsdisponibles)
+        {
+            if (pokemon.GetTipos().Contains(tipo))
+            {
+                pokemonsdisponibles.Remove(pokemon);
+                texto += "Se ha eliminado a" + pokemon.GetName() + "porque era de ede tipo";
+            }
+        }
+
+        return texto;
+    }
+
+    public static void EliminarPokemon(Pokemon pokemon)
+    {
+        pokemonsdisponibles.Remove(pokemon);
+    }
+
 }

@@ -277,4 +277,77 @@ public class Facade
         return Menu.GetNamePokemonD();
     }
 
+    public string EliminarTipo(string tipo)
+    {
+        return Menu.EliminarTipo(tipo);
+    }
+    
+    public string EliminarPokemon(string pokemon)
+    {
+        return Menu.EliminarPokemon(pokemon);
+    }
+    public string EliminarItem(string item)
+    {
+        return Menu.EliminarItem(item);
+    }
+
+    public bool GetRTA()
+    {
+        return Menu.GetRTBA();
+    }
+    
+    public bool GetRTD()
+    {
+        return Menu.GetRTBD();
+    }
+    
+    public void SetRTA()
+    {
+        Menu.SetRTA();
+    }
+    
+    public void SetRTD()
+    {
+        Menu.SetRTD();
+    }
+    
+    public bool GetRPA()
+    {
+        return Menu.GetRPBA();
+    }
+    
+    public bool GetRPD()
+    {
+        return Menu.GetRPBD();
+    }
+    
+    public void SetRPA()
+    {
+        Menu.SetRPA();
+    }
+    
+    public void SetRPD()
+    {
+        Menu.SetRPD();
+    }
+    public bool GetRIA()
+    {
+        return Menu.GetRIA();
+    }
+    
+    public bool GetRID()
+    {
+        return Menu.GetRIBD();
+    }
+    
+    public void SetRIA()
+    {
+        Menu.SetRIA();
+    }
+    
+    public void SetRID()
+    {
+        Menu.SetRTD();
+    }
+
 }

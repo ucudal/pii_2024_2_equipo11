@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using DefaultNamespace;
 using Library.Combate;
 using Library.Tipos;
@@ -672,6 +673,76 @@ public class UnitTest
         string mensaje = menu.UsarItem("curatotal", 0);
         Assert.That("El pokemon no está bajo ningún efecto, no hay porque usar un curatotal", Is.EqualTo(mensaje));
     }
+
+    [Test]
+
+    public void EliminarTipocorrectamente()
+    {
+        Menu menu = new Menu();
+        menu.UnirJugadores("ash");
+        menu.UnirJugadores("red");
+        string mensaje = menu.EliminarTipo("Fuego");
+        Assert.That(mensaje,Does.Contain("Se ha removido el tipo Fuego"));
+    }
+
+    [Test]
+    public void EliminarTipoNoExiste()
+    {
+        Menu menu = new Menu();
+        string mensaje=menu.EliminarTipo("Hola");
+        Assert.That(mensaje,Does.Contain("Este tipo no existe"));
+    }
+
+    [Test]
+    public void EliminarPokemonCorrectamente()
+    {
+        Menu menu = new Menu();
+        string mensaje = menu.EliminarPokemon("Pikachu");
+        Assert.That(mensaje,Does.Contain("Se ha removido el pokemon "));
+    }
+    
+    [Test]
+    public void EliminarPokemonIncorrectamente()
+    {
+        Menu menu = new Menu();
+        string mensaje = menu.EliminarPokemon("Hola");
+        Assert.That(mensaje,Does.Contain("Este pokemon no existe"));
+    }
+
+    [Test]
+    public void EliminarItemCorrectamente()
+    {
+        Menu menu = new Menu();
+        string mensaje = menu.EliminarItem("revivir");
+        Assert.That(mensaje,Does.Contain("Se ha eliminado el item revivir"));
+    }
+    
+    [Test]
+    public void EliminarItemIncorrectamente()
+    {
+        Menu menu = new Menu();
+        string mensaje = menu.EliminarItem("hola");
+        Assert.That(mensaje,Does.Contain("Este item no existe"));
+    }
+    
+    //Mi idea era crearuna nueva lista escluyendo el tipo y el pkemon elegidos
+    //y a esa lista cargarla en la pokedex haciendo listatipo=nuevalista
+    //ya que el remove no funciona con un static y de esomi di cuenta a ultimo momento cunado no tenia tiempo.
+    //en los metodos de Menu para eliminar cosas iba a verificar si esas cosas a eliminar existian y si es
+    //asi se eliminas, sinosalta un mensaje con que no existe
+    //Con respectoa  que el otro jugador acepte lo del otro hacer un nuevo atributo al jugador de acpeto cambiar tipo, pokemones e items
+    //cad uno por separado
+    //Y para hacer que acepten se me ocurrio hacer comados de cada uno De AcceptRemveT(para aceeptar remover el tipo)
+    //y en el otro comando de modificar eso verifica si el juagdoroponente acepto coambiarlos antes de que el que lo usa los cambie
+    //Esto repetirlo con todos los Remove, solo me diotiempo de hacer el AcceptRemoveTipo y RemoveTipo, peroesa es mi idea central.
+    //Se me ocurrio que antes de llamar al metodo de iniciar batalla en start battle, que salga un string concatenado de
+    //todo lo que se quito, concatenando con cada metodo un nuevo sting llamado cambios, al cual se le suma el resultadode cada metodo de
+    //eliminar. 
+    //Por ultimo eliminar item no me dio tiempo para verificarlo pero segui la continuidad entre las clases y supuestamente tendria que funcionar de esa forma
+    //Espero que tengan en cuenta mis ideas, ya que no me dio el tipo de ponerlas en prueba a todas y mis tests no funcionad debido a que
+    //use Remove en lugar de crear una nueva lista y poner el nuevo valor de esa  como la listadetipos, y de pokemones.
+    //Con toda mi sinceridad les digo que el codigo lo entiendo perfectamente, que colabore con el mismo constantemente, y que se como hacer las cosas pero
+    //debido al tiempo no las puede ejecutar como hubiera querido.Muchas gracias.
     
 }
 

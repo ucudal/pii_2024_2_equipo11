@@ -50,6 +50,11 @@ public class Pokemon
         this.ataquedanio = new AtaqueRandom();
     }
 
+    public List<Tipo> GetListaTipos()
+    {
+        return listaTipos;
+    }
+
     /// <summary>
     /// Establece una nueva estrategia de daño para el Pokémon.
     /// </summary>

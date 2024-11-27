@@ -39,6 +39,31 @@ public class InventarioItems
     {
         return this.items;
     }
+
+    public string EliminarItemI(string item)
+    {
+        if (items.ContainsKey(item))
+        {
+            if (item == "revivir")
+            {
+                revivir.SetCero();
+            }
+            if (item == "superpocion")
+            {
+                superpocion.SetCero();
+            }
+            if (item == "curatotal")
+            {
+                curatotal.SetCero();
+            }
+            return "Se ha eliminado el item " + item;
+        }
+
+        return "Este item no existe";
+    }
+    
+    
+    
     /// <summary>
     /// Muestra en consola los ítems disponibles en el inventario y su cantidad.
     /// </summary>

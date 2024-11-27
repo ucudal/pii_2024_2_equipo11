@@ -23,6 +23,10 @@ public class Jugador
     private Pokemon pokemonEnTurno;
     private bool teamIsAlive;
     private InventarioItems inventarioJugador;
+    private bool acceptRemoveTipo;
+    private bool acceptRemovePokemon;
+    private bool acceptRemoveItem;
+    
 
     /// <summary>
     /// Constructor que inicializa un nuevo jugador con un nombre.
@@ -34,6 +38,42 @@ public class Jugador
         this.listaPokemons = new List<Pokemon>();
         this.teamIsAlive = true;
         this.inventarioJugador = new InventarioItems();
+        this.acceptRemoveTipo = false;
+        this.acceptRemovePokemon = false;
+        this.acceptRemoveItem = false;
+    }
+
+    public void AcceptRemoveTipo()
+    {
+        this.acceptRemoveTipo = true;
+    }
+    public void AcceptRemovePokemon()
+    {
+        this.acceptRemovePokemon = true;
+    }
+    public void AcceptRemoveItem()
+    {
+        this.acceptRemoveItem= true;
+    }
+
+    public bool GetRT()
+    {
+        return this.acceptRemoveTipo;
+    }
+    public bool GetRP()
+    {
+        return this.acceptRemovePokemon;
+    }
+    public bool GetRI()
+    {
+        return this.acceptRemoveItem;
+    }
+    
+    
+
+    public string EliminarItemJ(string item)
+    {
+        return inventarioJugador.EliminarItemI(item);
     }
     
     /// <summary>

@@ -32,6 +32,74 @@ namespace Library.Combate
             this.BatallaTerminada = false;
             this.BatallaIniciada = false;
         }
+
+        public string EliminarItemB(string item)
+        {
+            JugadorAtacante.EliminarItemJ(item);
+            return JugadorDefensor.EliminarItemJ(item);
+        }
+
+        public bool GetRTA()
+        {
+            return JugadorAtacante.GetRT();
+        }
+        
+        public bool GetRTD()
+        {
+            return JugadorDefensor.GetRT();
+        }
+        
+        public void SetRTA()
+        {
+             JugadorAtacante.AcceptRemoveTipo();
+        }
+        
+        public void SetRTD()
+        {
+            JugadorDefensor.AcceptRemoveTipo();
+        }
+        
+        public bool GetRPA()
+        {
+            return JugadorAtacante.GetRP();
+        }
+        
+        public bool GetRPD()
+        {
+            return JugadorDefensor.GetRP();
+        }
+        
+        public void SetRPA()
+        {
+            JugadorAtacante.AcceptRemovePokemon();
+        }
+        
+        public void SetRPD()
+        {
+            JugadorDefensor.AcceptRemovePokemon();
+        }
+        
+        public bool GetRIA()
+        {
+            return JugadorAtacante.GetRI();
+        }
+        
+        public bool GetRID()
+        {
+            return JugadorDefensor.GetRI();
+        }
+        
+        public void SetRIA()
+        {
+            JugadorAtacante.AcceptRemoveItem();
+        }
+        
+        public void SetRID()
+        {
+            JugadorDefensor.AcceptRemoveItem();
+        }
+        
+        
         
         /// <summary>
         /// Recibe un ataque y lo aplica al Pokémon defensor.

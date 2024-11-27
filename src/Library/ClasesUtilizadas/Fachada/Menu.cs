@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using DefaultNamespace;
+using Library.Tipos;
 using Library.Tipos.Paralisis_Strategy;
 using Ucu.Poo.DiscordBot.ClasesUtilizadas.Characters.Strategy_Ataque;
 using Ucu.Poo.Pokemon;
@@ -27,6 +28,116 @@ namespace Library.Combate
         batallaActual = new Batalla();
         this.precision = new StrategyPrecisoRandom();
     }
+
+    public string EliminarTipo(string tipo)
+    {
+        string texto = "";
+        int contador = 0;
+        foreach (Tipo tip in Pokedex.GetTiposDisponibles())
+        {
+            if (tip.GetName() == tipo)
+            {
+                contador += 1;
+                texto+="Se ha removido el tipo "+tipo;
+                texto+=Pokedex.RemoveTipo(tip);
+            }
+        }
+        if (contador == 0)
+        {
+            texto += "Este tipo no existe";
+        }
+        return texto;
+    }
+
+    public string EliminarPokemon(string pokemon)
+    {
+        int contador = 0;
+        string texto = "";
+        List<Pokemon> lista = Pokedex.GetPokemons();
+        foreach (Pokemon p in Pokedex.GetPokemons())
+        {
+            if (p.GetName() == pokemon)
+            {
+                contador += 1;
+                texto+="Se ha removido el pokemon "+ pokemon;
+                Pokedex.EliminarPokemon(p);
+            }
+        }
+        if (contador == 0)
+        {
+            texto += "Este pokemon no existe";
+        }
+        return texto;
+    }
+
+    public string EliminarItem(string item)
+    {
+        return batallaActual.EliminarItemB(item);
+    }
+    
+    public bool GetRTBA()
+    {
+       return batallaActual.GetRTA();
+    }
+    
+    public bool GetRTBD()
+    {
+        return batallaActual.GetRTD();
+    }
+
+    public void SetRTA()
+    {
+        batallaActual.SetRTA();
+    }
+    
+    public void SetRTD()
+    {
+        batallaActual.SetRTD();
+    }
+    
+    public bool GetRPBA()
+    {
+        return batallaActual.GetRPA();
+    }
+    
+    public bool GetRPBD()
+    {
+        return batallaActual.GetRPD();
+    }
+
+    public void SetRPA()
+    {
+        batallaActual.SetRPA();
+    }
+    
+    public void SetRPD()
+    {
+        batallaActual.SetRPD();
+    }
+    public bool GetRIA()
+    {
+        return batallaActual.GetRIA();
+    }
+    
+    public bool GetRIBD()
+    {
+        return batallaActual.GetRID();
+    }
+
+    public void SetRIA()
+    {
+        batallaActual.SetRIA();
+    }
+    
+    public void SetRID()
+    {
+        batallaActual.SetRID();
+    }
+    
+    
+    
+    
+    
     /// <summary>
     /// Establece una estrategia personalizada para la precisión de los movimientos.
     /// </summary>
@@ -366,6 +477,7 @@ namespace Library.Combate
         }
     
         Pokemon pokemonElegido = pokemons[numeroDePokemon];
+        
     
         try
         {
