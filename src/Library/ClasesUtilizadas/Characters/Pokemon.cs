@@ -50,6 +50,16 @@ public class Pokemon
         this.ataquedanio = new AtaqueRandom();
     }
 
+    /// <summary>
+    /// Establece una nueva estrategia de daño para el Pokémon.
+    /// </summary>
+    /// <param name="ataque">
+    /// La estrategia de ataque que se asignará al Pokémon. Debe implementar la interfaz <see cref="IAtaqueDanioStrategy"/>.
+    /// </param>
+    /// <remarks>
+    /// Este método sigue el principio de inversión de dependencias (DIP) al trabajar con una abstracción en lugar de una implementación concreta.
+    /// Permite cambiar dinámicamente el comportamiento de ataque del Pokémon, cumpliendo con el principio abierto/cerrado (OCP).
+    /// </remarks>
     public void SetStrategy(IAtaqueDanioStrategy ataque)
     {
         this.ataquedanio = ataque;
