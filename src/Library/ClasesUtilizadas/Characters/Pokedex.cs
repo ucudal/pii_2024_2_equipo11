@@ -16,6 +16,7 @@ namespace DefaultNamespace;
 
 public static class Pokedex
 {
+    
     private static List<Tipo> listatiposdisponibles = new List<Tipo>();
     private static List<Pokemon> pokemonsdisponibles = new List<Pokemon>();
     private static List<IMovimiento> listaMovimientos = new List<IMovimiento>();
@@ -33,6 +34,18 @@ public static class Pokedex
         CrearMovimientos();
         CrearPokemones();
     }
+    public static void Reiniciar()
+    {
+        pokemonsdisponibles = new List<Pokemon>();
+        listatiposdisponibles = new List<Tipo>();
+        listaMovimientos = new List<IMovimiento>();
+        listaEfectos = new List<Efecto>();
+        RegularEfectos();
+        RegularTipos();
+        CrearMovimientos();
+        CrearPokemones();
+    }
+    
 
     /// <summary>  
     /// Muestra el catálogo de Pokémon disponibles en la Pokédex.  
@@ -45,6 +58,43 @@ public static class Pokedex
             catalogo += $"{pokemon.GetName()} \n";
         }
         return catalogo;
+    }
+    public static string RestringirPokemon(string pokemonelegido)
+    {
+        string texto = "";
+        for (int i = 0; i < pokemonsdisponibles.Count; i++)
+        {
+            Pokemon pokemonaprobar = pokemonsdisponibles[i];
+            if (pokemonaprobar.GetName() == pokemonelegido)
+            {
+                pokemonsdisponibles.Remove(pokemonaprobar);
+                return $"Se ha prohibido a {pokemonaprobar.GetName()} para este combate";
+            }
+        }
+        return "No se ha encontrado el pokemon";
+    }
+    public static string RestringirTipos(string tipoelegido)
+    {
+        string texto = "";
+        for (int i = 0; i < pokemonsdisponibles.Count; i++)
+        {
+            Pokemon pokemonaprobar = pokemonsdisponibles[i];
+            for (int n = 0; n < pokemonaprobar.GetTipos().Count; n++)
+            {
+                Tipo tipo = pokemonaprobar.GetTipos()[n];
+                if (tipo.GetName() == tipoelegido)
+                {
+                    pokemonsdisponibles.Remove(pokemonaprobar);
+                    texto+= $"Se ha prohibido a {pokemonaprobar.GetName()} para este combate por ser de tipo {tipo.GetName()}\n";
+                    break;
+                }
+            }
+        }
+        if (texto == "")
+        {
+            return "No se ha encontrado ningún pokemon con el tipo solicitado";
+        }
+        return texto;
     }
 
     /// <summary>  

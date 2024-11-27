@@ -22,7 +22,12 @@ public class InitializeBattleCommand : ModuleBase<SocketCommandContext>
     {
         // Llama al método InitializeBattle y obtiene el resultado
         string result = Facade.Instance.InitializeBattle();
-
+        string cadena = Facade.Instance.ShowRestricciones();
+        if (cadena == "")
+        {
+            cadena = "No hubieron restricciones";
+        }
+        result += "Y las restricciones fueron las siguiente: \n" + cadena;
         // Responde al usuario con el resultado
         await ReplyAsync(result);
     }

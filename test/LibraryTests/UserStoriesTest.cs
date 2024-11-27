@@ -329,7 +329,6 @@ public class UserStoriesTests
         Facade.Instance.StartBattle("Ash", "Red");
         Facade.Instance.AddPokemosA("Pikachu");
         Facade.Instance.AddPokemosD("Arbok");
-        Facade.Instance.InitializeBattle();
         Facade.Instance.UsePokemonMove(2);//Jugador 1 usa Electrobola
         Facade.Instance.UsePokemonMove(1);//Jugador2 usa LanzaMugre
         Facade.Instance.UseItem("superpocion", 0); //Cura a Pikachu

@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Library.Combate;
 
 namespace Ucu.Poo.DiscordBot.Domain;
@@ -144,6 +145,7 @@ public class Facade
     /// <returns>Un mensaje con el resultado.</returns>
     public string StartBattle(string playerDisplayName, string? opponentDisplayName)
     {
+        Pokedex.Reiniciar();
         Menu = new Menu();
         //Une a los jugadores a la partida de manera aleatoria
         string result = this.Menu.UnirJugadores(playerDisplayName);
@@ -277,4 +279,22 @@ public class Facade
         return Menu.GetNamePokemonD();
     }
 
+    public string RestringeType(string type)
+    {
+        return Menu.RestringirTipo(type);
+    }
+    public string RestringePokemon(string pokemon)
+    {
+        return Menu.RestringirPokemon(pokemon);
+    }
+    public string RestringeItem(string item)
+    {
+        return Menu.RestringirItem(item);
+    }
+
+    public string ShowRestricciones()
+    {
+        return Menu.MostrarRestricciones();
+    }
+    
 }

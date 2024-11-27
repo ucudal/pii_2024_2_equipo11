@@ -22,6 +22,7 @@ namespace Library.Combate
         private Jugador JugadorDefensor { get; set; }
         private bool BatallaTerminada { get; set; }
         public bool BatallaIniciada { get; set; }
+        public string restricciones { get; set; }
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase Batalla, estableciendo los valores iniciales.
@@ -32,7 +33,7 @@ namespace Library.Combate
             this.BatallaTerminada = false;
             this.BatallaIniciada = false;
         }
-        
+
         /// <summary>
         /// Recibe un ataque y lo aplica al Pokémon defensor.
         /// </summary>
@@ -58,6 +59,7 @@ namespace Library.Combate
                     JugadorDefensor = jugador;
                     return $"{JugadorDefensor.GetName()} te va tocar esperar, empieza tu oponente";
                 }
+
                 JugadorAtacante = jugador;
                 return $"{JugadorAtacante.GetName()} tu empezaras el combate";
             }
@@ -67,6 +69,7 @@ namespace Library.Combate
                 JugadorDefensor = jugador;
                 return $"{JugadorDefensor.GetName()} te va tocar esperar, empieza tu oponente";
             }
+
             JugadorAtacante = jugador;
             return $"{JugadorAtacante.GetName()} tu empezaras el combate";
         }
@@ -93,7 +96,7 @@ namespace Library.Combate
 
             return "La batalla ya ha iniciado";
         }
-        
+
         /// <summary>
         /// Agrega un Pokémon al equipo del jugador defensor.
         /// </summary>
@@ -116,7 +119,7 @@ namespace Library.Combate
         {
             return JugadorAtacante.GetPokemonEnTurno();
         }
-        
+
         /// <summary>
         /// Obtiene el valor de vida del Pokémon defensor en turno.
         /// </summary>
@@ -152,6 +155,7 @@ namespace Library.Combate
         {
             return BatallaTerminada;
         }
+
         /// <summary>
         /// Obtiene el estado de la batalla, indicando si ha sido iniciada.
         /// </summary>
@@ -165,18 +169,21 @@ namespace Library.Combate
         {
             return JugadorAtacante.GetPokemons();
         }
+
         /// <summary>
         /// Inicia la batalla si ambos jugadores tienen Pokémon en sus equipos y la batalla no ha comenzado.
         /// </summary>
         public string IniciarBatalla()
         {
-            string texto ="..........\n";
+            string texto = "..........\n";
             // Verifica si ambos jugadores tienen equipos y la batalla no ha comenzado
-            if (!BatallaIniciada && JugadorAtacante.GetCantpokemon() > 0 && JugadorDefensor.GetCantpokemon()> 0 && JugadorAtacante != null && JugadorDefensor != null)
+            if (!BatallaIniciada && JugadorAtacante.GetCantpokemon() > 0 && JugadorDefensor.GetCantpokemon() > 0 &&
+                JugadorAtacante != null && JugadorDefensor != null)
             {
                 BatallaIniciada = true;
                 return $"La batalla ha iniciado, comienza el jugador {JugadorAtacante.GetName()}";
             }
+
             return ($"La batalla ya ha comenzado o uno de los jugadores no tiene Pokémon.");
         }
 
@@ -197,6 +204,7 @@ namespace Library.Combate
                 texto += $"¡Ha ganado el jugador {JugadorAtacante.GetName()}!" + " \nLa batalla ha terminado";
                 BatallaTerminada = true;
             }
+
             return texto;
         }
 
@@ -213,11 +221,15 @@ namespace Library.Combate
                     {
                         Pokemon pokemonDebilitado = JugadorDefensor.GetPokemonEnTurno();
                         JugadorDefensor.CambiarPokemon(pokemon);
-                        return $"{pokemonDebilitado.GetName()} ha sido debilitado y cambiado por {JugadorDefensor.GetNamePokemonTurno()} automáticamente";
+                        return
+                            $"{pokemonDebilitado.GetName()} ha sido debilitado y cambiado por {JugadorDefensor.GetNamePokemonTurno()} automáticamente";
                     }
                 }
-                return ($"A {JugadorDefensor.GetName()} no le quedan más Pokémon en condiciones de combatir.") +  TerminarBatalla();
+
+                return ($"A {JugadorDefensor.GetName()} no le quedan más Pokémon en condiciones de combatir.") +
+                       TerminarBatalla();
             }
+
             return "";
         }
 
@@ -227,7 +239,7 @@ namespace Library.Combate
         public string AvanzarTurno()
         {
             string texto = "";
-            texto += VerificarPokemonDefensorDebilitado()+ "\n";
+            texto += VerificarPokemonDefensorDebilitado() + "\n";
 
             if (BatallaTerminada)
             {
@@ -237,7 +249,7 @@ namespace Library.Combate
             if (JugadorDefensor.GetEfectoPokemonTurno() != null)
             {
                 Pokemon pokemon = JugadorDefensor.GetPokemonEnTurno();
-                texto += JugadorDefensor.HacerEfectoPokemonEnTurno(pokemon); 
+                texto += JugadorDefensor.HacerEfectoPokemonEnTurno(pokemon);
             }
 
             CambiarTurno();
@@ -252,6 +264,7 @@ namespace Library.Combate
                 JugadorDefensor.ActualizarEstadoEquipo();
                 JugadorAtacante.ActualizarEstadoEquipo();
             }
+
             if (!JugadorAtacante.TeamIsAlive() || !JugadorDefensor.TeamIsAlive())
             {
                 TerminarBatalla();
@@ -260,7 +273,8 @@ namespace Library.Combate
             }
             else
             {
-                texto += $"Es el turno de {JugadorAtacante.GetName()} con el Pokémon {JugadorAtacante.GetNamePokemonTurno()}.";
+                texto +=
+                    $"Es el turno de {JugadorAtacante.GetName()} con el Pokémon {JugadorAtacante.GetNamePokemonTurno()}.";
             }
 
             return texto;
@@ -277,5 +291,51 @@ namespace Library.Combate
             Turnos = !Turnos;
             return $"Ahora es turno de {JugadorAtacante.GetName()} \n";
         }
+
+        public string RestringirTipo(string tipo)
+        {
+            if (BatallaIniciada && !BatallaTerminada)
+            {
+                return "La batalla ya ha iniciado";
+            }
+            if (BatallaTerminada)
+            {
+                return "La batalla ya ha terminado";
+            }
+
+            string restriccionesturno = Pokedex.RestringirTipos(tipo);
+            restricciones += restriccionesturno + "\n ";
+            return restriccionesturno;
+        }
+        public string RestringirPokemon(string pokemon)
+        {
+            if (BatallaIniciada && !BatallaTerminada)
+            {
+                return "La batalla ya ha iniciado";
+            }
+            if (BatallaTerminada)
+            {
+                return "La batalla ya ha terminado";
+            }
+            string restriccionesturno = Pokedex.RestringirPokemon(pokemon);
+            restricciones += restriccionesturno + "\n ";
+            return restriccionesturno;
+        }
+        public string RestringirItem(string item)
+        {
+            if (BatallaIniciada && !BatallaTerminada)
+            {
+                return "La batalla ya ha iniciado";
+            }
+            if (BatallaTerminada)
+            {
+                return "La batalla ya ha terminado";
+            }
+            string restriccionesturno = JugadorDefensor.RestringirItem(item);
+            JugadorAtacante.RestringirItem(item);
+            restricciones += restriccionesturno + "\n ";
+            return restriccionesturno;
+        }
+        
     }
 }

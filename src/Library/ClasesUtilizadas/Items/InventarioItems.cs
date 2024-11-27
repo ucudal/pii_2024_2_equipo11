@@ -39,6 +39,18 @@ public class InventarioItems
     {
         return this.items;
     }
+    public string RestringirInventario(string item)
+    {
+        for (int i = 0; i < items.Keys.Count; i++)
+        {
+            if (items.Keys.Contains(item))
+            { 
+                items.Remove(item);
+                return $"Se ha removido el item {item}";
+            }
+        }
+        return "No se ha podido retirar el item";
+    }
     /// <summary>
     /// Muestra en consola los ítems disponibles en el inventario y su cantidad.
     /// </summary>

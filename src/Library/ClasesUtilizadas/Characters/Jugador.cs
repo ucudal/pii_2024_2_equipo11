@@ -48,11 +48,17 @@ public class Jugador
     public bool ItemInInventory(string item)
     {
         Item ite = inventarioJugador.GetItemInInventory()[item];
+        
         if (ite.GetCantidad()>0)
         {
             return true;
         }
         return false;
+    }
+
+    public string RestringirItem(string item)
+    {
+        return inventarioJugador.RestringirInventario(item);
     }
 
     public bool PokemonNumAlive(int numpokemon)
