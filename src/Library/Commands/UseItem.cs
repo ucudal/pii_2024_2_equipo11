@@ -7,8 +7,20 @@ using Library.Tipos;
 using Ucu.Poo.Pokemon;
 namespace Ucu.Poo.DiscordBot.Commands;
 
+/// <summary>
+/// Esta clase implementa el comando 'useitem' del bot.
+/// Permite al jugador usar items para sus pokemons durante la batalla
+/// usando un turno
+/// </summary>
+// ReSharper disable once UnusedType.Global
 public class UseItem: ModuleBase<SocketCommandContext>
 {
+    /// <summary>
+    /// Implementa el comando "useitem"
+    /// este comando permite usar items durante la batalla
+    /// </summary>
+    /// <param name="item">el item a usar</param>
+    /// <param name="pokemon">pokemon que recibe el item</param>
     [Command("useitem")]
     [Summary("Usa un item disponible del jugador en el pokemon elegido segun su numero")]
     // ReSharper disable once UnusedMember.Global
