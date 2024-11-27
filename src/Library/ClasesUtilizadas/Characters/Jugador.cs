@@ -252,4 +252,9 @@ public class Jugador
     {
         return inventarioJugador.MostrarItems();
     }
+
+    public void CambiarInventario(string itemsrestringidos)
+    {
+        inventarioJugador.ItemsRestringidos(itemsrestringidos);
+    }
 }

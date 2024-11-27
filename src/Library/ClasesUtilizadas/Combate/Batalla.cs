@@ -23,6 +23,7 @@ namespace Library.Combate
         private bool BatallaTerminada { get; set; }
         public bool BatallaIniciada { get; set; }
 
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase Batalla, estableciendo los valores iniciales.
         /// </summary>
@@ -143,6 +144,7 @@ namespace Library.Combate
         {
             return JugadorDefensor;
         }
+        
 
         /// <summary>
         /// Obtiene el estado de la batalla, indicando si está terminada o no.

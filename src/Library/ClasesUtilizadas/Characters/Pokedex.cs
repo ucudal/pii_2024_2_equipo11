@@ -46,6 +46,38 @@ public static class Pokedex
         }
         return catalogo;
     }
+    public static string MostrarCatalogoPokemonRestringido(string pokemonrestringido)
+    {
+        string catalogo = "Los pokemones disponibles son:\n";
+        foreach (Pokemon pokemon in pokemonsdisponibles)
+        {
+            if (pokemon.GetName() != pokemonrestringido)
+            {
+                catalogo += $"{pokemon.GetName()} \n";
+            }
+        }
+        return catalogo;
+    }
+    /*
+    public static string MostrarCatalogoTiposRestringidos(string tiposrestringidos)
+    {
+        List<Tipo> Tipos = new List<Tipo>();
+       // Tipos.Add(tiposrestringidos);
+        string catalogo = "Los pokemones disponibles son:\n";
+        foreach (Pokemon pokemon in pokemonsdisponibles)
+        {
+            List<Tipo> Tipospokemon = pokemon.GetTipos();
+          //  foreach (Tipo tipo in tiposrestringidos)
+            {
+                if (!Tipos.Contains(tipo))
+                {
+                    catalogo += $"{pokemon.GetName()} \n";
+                }
+            }
+        }
+        return catalogo;
+    }
+    */
 
     /// <summary>  
     /// Entrega una copia de un Pokémon basado en su nombre.  

@@ -18,6 +18,7 @@ namespace Library.Combate
 {
     private Batalla batallaActual;
     private IStrategyPresicion precision;
+
     /// <summary>
     /// Constructor de la clase `Menu`.
     /// Inicializa un nuevo objeto `Menu` y una instancia de `Batalla`.
@@ -44,6 +45,7 @@ namespace Library.Combate
     {
         return batallaActual.AgregarJugador(new Jugador(jugador));
     }
+
 
     /// <summary>
     /// Verifica si la batalla ha terminado.
@@ -77,6 +79,7 @@ namespace Library.Combate
     {
         return batallaActual.GetHpDefensorB(); 
     }
+
 
     /// <summary>
     /// Obtiene la salud del atacante.
@@ -338,6 +341,25 @@ namespace Library.Combate
         return "";
     }
 
+
+
+    public string RestriccionTipoPokemon(string tiposRestringidos)
+    {
+        return Pokedex.MostrarCatalogoTiposRestringidos(tiposRestringidos);
+        
+    }
+
+    public string RestriccionPokemon(string pokemonrestringido)
+    {
+        return Pokedex.MostrarCatalogoPokemonRestringido(pokemonrestringido);
+    }
+/*
+    public string RestriccionItems(string itemsrestringidos)
+    {
+        return batallaActual.GetAtacante().CambiarInventario(itemsrestringidos);
+
+    }
+    */
     /// <summary>
     /// Usa un ítem específico en el Pokémon indicado.
     /// </summary>
@@ -409,4 +431,5 @@ namespace Library.Combate
     }
     
     }
+   
 }

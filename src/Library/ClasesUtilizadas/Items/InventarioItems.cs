@@ -39,6 +39,15 @@ public class InventarioItems
     {
         return this.items;
     }
+
+    public Dictionary<String, Item> ItemsRestringidos(string itemsrestringidos)
+    {
+        if (items.ContainsKey(itemsrestringidos))
+        {
+            items.Remove(itemsrestringidos);
+        }
+        return items;
+    }
     /// <summary>
     /// Muestra en consola los ítems disponibles en el inventario y su cantidad.
     /// </summary>

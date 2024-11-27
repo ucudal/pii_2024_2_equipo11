@@ -17,6 +17,8 @@ namespace Ucu.Poo.DiscordBot.Domain;
 public class Facade
 {
     private static Facade? _instance;
+    private bool rules;
+    private bool combateaceptado;
 
     // Este constructor privado impide que otras clases puedan crear instancias
     // de esta.
@@ -25,6 +27,8 @@ public class Facade
         this.WaitingList = new WaitingList();
         this.BattlesList = new BattlesList();
         this.Menu = new Menu();
+        this.rules = false;
+        this.combateaceptado = false;
     }
 
     /// <summary>
@@ -133,9 +137,69 @@ public class Facade
         this.WaitingList.RemoveTrainer(opponentDisplayName);
         
         BattlesList.AddBattle(playerDisplayName, opponentDisplayName);
-        return $"Comienza {playerDisplayName} vs {opponentDisplayName}";
+        return $"Comienza {playerDisplayName} vs {opponentDisplayName}, el jugador {playerDisplayName} puede añadir reglas";
     }
 
+    private string DoRules(string aprobacion)
+    {
+        if (aprobacion == "si")
+        {
+            return "Bien, diga como quiere que sean las reglas";
+            this.rules = true;
+        }
+        if (aprobacion == "no")
+        {
+            return "Ok, se hará el combate sin reglas personalizadas";
+        }
+        return "Diga si quiere o no crear reglas";
+
+    }
+
+    public string ReglasPokemonRestringido(string pokemonrestringido)
+    {
+        if (this.rules == true)
+        {
+            return this.Menu.RestriccionPokemon(pokemonrestringido);
+
+        }
+
+        return "Usted no aceptó que haya reglas";
+    }
+    public string ReglasTipoRestringido(string tiporestringido)
+    {
+        if (this.rules == true)
+        {
+            return this.Menu.RestriccionTipoPokemon(tiporestringido);
+
+        }
+        return "Usted no aceptó que haya reglas";
+    }
+    /*
+    public string ReglasItemRestringido(string itemrestringido)
+    {
+        if (this.rules == true)
+        {
+            return this.Menu.RestriccionItems(itemrestringido);
+
+        }
+        return "Usted no aceptó que haya reglas";
+    }
+    *///No pude Hacer esta parte porque no supe como pasar de string a los tipos requeridos
+
+
+    public string AceptarReglas(string aprobacion)
+    {
+        if (aprobacion == "si")
+        {
+            return "Bien, se usarán las reglas dadas entonces";
+            this.combateaceptado = true;
+        }
+        if (aprobacion == "no")
+        {
+            return "Ok, no se iniciará el combate";
+        }
+        return "Diga si quiere o no aceptar las reglas";
+    }
     /// <summary>
     /// Crea una batalla entre dos jugadores.
     /// </summary>
@@ -157,7 +221,7 @@ public class Facade
             return "No hay nadie esperando";
         }
 
-        if (!OpponentProvided()) // && SomebodyIsWaiting
+        if (!OpponentProvided() && this.combateaceptado == true) // && SomebodyIsWaiting
         {
             opponent = this.WaitingList.GetAnyoneWaiting();
 
