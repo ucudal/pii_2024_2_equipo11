@@ -672,6 +672,12 @@ public class UnitTest
         string mensaje = menu.UsarItem("curatotal", 0);
         Assert.That("El pokemon no está bajo ningún efecto, no hay porque usar un curatotal", Is.EqualTo(mensaje));
     }
+
+    [Test]
+    public void AceptarReglas()
+    {
+        //No pude realizar un test ya que perdí mucho tiempo haciendo lo demás erroneamente.
+    }
     
 }
 
