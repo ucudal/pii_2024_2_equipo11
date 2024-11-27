@@ -117,4 +117,12 @@ public class FacadeTests
         
         Assert.That(result, Is.EqualTo("Comienza user vs opponent\n"+"user tu empezaras el combate\n"+"opponent te va tocar esperar, empieza tu oponente"));
     }
+
+    [Test]
+
+    public void CrearReglas()
+    {
+        string result = Facade.Instance.DoRules("Si");
+        Assert.That(result, Is.EqualTo("Bien, se usarán las reglas dadas entonces"));
+    }
 }

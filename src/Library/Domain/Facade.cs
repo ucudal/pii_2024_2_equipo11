@@ -140,7 +140,7 @@ public class Facade
         return $"Comienza {playerDisplayName} vs {opponentDisplayName}, el jugador {playerDisplayName} puede añadir reglas";
     }
 
-    private string DoRules(string aprobacion)
+    public string DoRules(string aprobacion)
     {
         if (aprobacion == "si")
         {
@@ -187,7 +187,7 @@ public class Facade
     *///No pude Hacer esta parte porque no supe como pasar de string a los tipos requeridos
 
 
-    public string AceptarReglas(string aprobacion)
+    public string AcceptRules(string aprobacion)
     {
         if (aprobacion == "si")
         {
