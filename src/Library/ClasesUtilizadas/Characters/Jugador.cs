@@ -35,7 +35,7 @@ public class Jugador
         this.teamIsAlive = true;
         this.inventarioJugador = new InventarioItems();
     }
-    
+
     /// <summary>
     /// Obtiene si el Pokémon en turno puede atacar.
     /// </summary>
@@ -48,10 +48,11 @@ public class Jugador
     public bool ItemInInventory(string item)
     {
         Item ite = inventarioJugador.GetItemInInventory()[item];
-        if (ite.GetCantidad()>0)
+        if (ite.GetCantidad() > 0)
         {
             return true;
         }
+
         return false;
     }
 
@@ -60,7 +61,7 @@ public class Jugador
         Pokemon pokemon = listaPokemons[numpokemon];
         return pokemon.GetIsAlive();
     }
-    
+
     /// <summary>
     /// Aplica el efecto del Pokémon en turno sobre otro Pokémon.
     /// </summary>
@@ -69,7 +70,7 @@ public class Jugador
     {
         return pokemonEnTurno.HacerEfectoPokemon(pokemon);
     }
-    
+
     /// <summary>
     /// Obtiene el efecto que tiene el Pokémon en turno.
     /// </summary>
@@ -78,7 +79,7 @@ public class Jugador
     {
         return pokemonEnTurno.GetEfecto();
     }
-    
+
     /// <summary>
     /// Recibe un ataque hacia el Pokémon en turno.
     /// </summary>
@@ -114,7 +115,7 @@ public class Jugador
     {
         return pokemonEnTurno.GetIsAlive();
     }
-    
+
     /// <summary>
     /// Obtiene el nombre del jugador.
     /// </summary>
@@ -132,7 +133,7 @@ public class Jugador
     {
         return this.teamIsAlive;
     }
-   
+
     /// <summary>
     /// Obtiene la lista de Pokémon del jugador.
     /// </summary>
@@ -141,7 +142,7 @@ public class Jugador
     {
         return listaPokemons;
     }
-    
+
 
     /// <summary>
     /// Agrega un Pokémon al equipo del jugador.
@@ -149,7 +150,7 @@ public class Jugador
     /// <param name="nombre">El nombre del Pokémon que se quiere agregar al equipo.</param>
     public string AgregarAlEquipo(string nombre)
     {
-        
+
         if (listaPokemons.Count < 6)
         {
             Pokemon pokemonencontrado = Pokedex.EntregarPokemon(nombre);
@@ -157,7 +158,8 @@ public class Jugador
             {
                 string texto = "";
                 listaPokemons.Add(pokemonencontrado);
-                texto += $"Se añadió el pokemon {pokemonencontrado.GetName()} a tu equipo siendo el pokemon {listaPokemons.Count}/6, ¿vas a seguir añadiendo más?\n";
+                texto +=
+                    $"Se añadió el pokemon {pokemonencontrado.GetName()} a tu equipo siendo el pokemon {listaPokemons.Count}/6, ¿vas a seguir añadiendo más?\n";
                 if (listaPokemons.Count == 1)
                 {
                     pokemonEnTurno = pokemonencontrado;
@@ -166,11 +168,13 @@ public class Jugador
 
                 return texto;
             }
+
             return "Ese pokemon no existe";
         }
+
         return "Ya tienes 6 Pokemons!";
     }
-    
+
     /// <summary>
     /// Actualiza el estado del equipo, verificando si al menos un Pokémon está vivo.
     /// </summary>
@@ -248,8 +252,15 @@ public class Jugador
     /// <summary>
     /// Muestra todos los items disponibles en el inventario del jugador.
     /// </summary>
-    public string MostrarItems() //Este método llama al mostrar items de InventarioItems para mostrar los items disponibles que tiene el jugador
+    public string
+        MostrarItems() //Este método llama al mostrar items de InventarioItems para mostrar los items disponibles que tiene el jugador
     {
         return inventarioJugador.MostrarItems();
     }
+
+    public void EliminarItem(string item)
+    {
+        inventarioJugador.EliminarItem(item);
+    }
+    
 }

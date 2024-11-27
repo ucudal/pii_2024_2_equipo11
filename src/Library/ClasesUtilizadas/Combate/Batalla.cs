@@ -42,7 +42,7 @@ namespace Library.Combate
         {
             return JugadorDefensor.PokemonAtacado(ataque);
         }
-
+        
 
         /// <summary>
         /// Agrega un jugador a la batalla, asignándolo como atacante o defensor.
@@ -276,6 +276,12 @@ namespace Library.Combate
             JugadorDefensor = temporal;
             Turnos = !Turnos;
             return $"Ahora es turno de {JugadorAtacante.GetName()} \n";
+        }
+
+        public void Eliminaritem(string item)
+        {
+            JugadorAtacante.EliminarItem(item);
+            JugadorDefensor.EliminarItem(item);
         }
     }
 }

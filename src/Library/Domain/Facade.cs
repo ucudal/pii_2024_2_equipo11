@@ -1,4 +1,5 @@
 using Library.Combate;
+using Ucu.Poo.DiscordBot.ClasesUtilizadas.Reglas_Personalizadas;
 
 namespace Ucu.Poo.DiscordBot.Domain;
 //Clase de Facade cumple con SRP ya que tiene la única responsabilidad de manejar las funciones de menu que teníamos 
@@ -25,6 +26,8 @@ public class Facade
         this.WaitingList = new WaitingList();
         this.BattlesList = new BattlesList();
         this.Menu = new Menu();
+        this.ReglasPersonalizadas = new Reglas_Personalizadas();
+
     }
 
     /// <summary>
@@ -42,6 +45,13 @@ public class Facade
             return _instance;
         }
     }
+    /// <summary>
+    /// Metodo para poder acceder a la instancia de menu
+    /// </summary>
+    public Menu GetMenu()
+    {
+        return Menu;
+    }
 
     /// <summary>
     /// Inicializa este singleton. Es necesario solo en los tests.
@@ -55,6 +65,8 @@ public class Facade
     
     private BattlesList BattlesList { get; }
     public Menu Menu { get; private set; }
+    
+    public Reglas_Personalizadas ReglasPersonalizadas { get; set; }
 
     /// <summary>
     /// Agrega un jugador a la lista de espera.
@@ -199,6 +211,10 @@ public class Facade
     }
     public string InitializeBattle()
     {
+        if (GetReglasPersonalizadas() == "")
+        {
+            return "Alguno debe asignar unas reglas primero o elegir las reglas convencionales para empezar la batalla";
+        }
         return this.Menu.IniciarEnfrentamiento();
     }
 
@@ -276,5 +292,81 @@ public class Facade
     {
         return Menu.GetNamePokemonD();
     }
+    
+    /// <summary>
+    /// Con este metodo accedo al atributo reglaspersonalizadas que a traves de un metodo en su clase trae las reglas y en este metodo las ordeno para mostrarsela a los jugadores
+    /// </summary>
+    public string GetReglasPersonalizadas()
+    {
+        string texto = "";
+        int num = 0;
+        foreach (string regla in ReglasPersonalizadas.GetReglas())
+        {
+            num += 1;
+            texto += $"{num}.{regla}\n";
+        }
 
+        return texto;
+    }
+    
+    /// <summary>
+    /// Metodo que verifica que si las reglas estan vacias, el usuario puede usar las reglas convencionales
+    /// </summary>
+    public string SetReglasConvencionales()
+    {
+        if (GetReglasPersonalizadas()=="")
+        {
+            ReglasPersonalizadas.ReglasConvencionales();
+            ReglasPersonalizadas.GetReglas();
+            return GetReglasPersonalizadas();
+        }
+
+        return $"Ya hay reglas elegidas";
+    }
+    /// <summary>
+    /// metodo para prohibir pokemons antes de comenzar la batalla
+    /// </summary>
+    public string SetReglasProhibirPokemons(string pokemon)
+    {
+        if (IsBattleOngoing())
+        {
+            return "Ya empezo la batalla";
+        }
+        return ReglasPersonalizadas.EliminarPokemon(pokemon);
+    }
+    /// <summary>
+    /// metodo para permitir solo un tipo antes de comnezar la batalla
+    /// </summary>
+    public string SetReglaSoloUnTipo(string tipo)
+    {
+        if (IsBattleOngoing())
+        {
+            return "Ya empezo la batalla";
+        }
+        return ReglasPersonalizadas.SoloUnTipo(tipo);
+    }
+    /// <summary>
+    /// metodo para prohibir un item eliminandolo en la instancia de esta batalla antes de que comience, luego en otra instancia el item vuelve a aparacer
+    /// </summary>
+    public string SetReglaProhibirItem(string item)
+    {
+        if (IsBattleOngoing())
+        {
+            return "Ya empezo la batalla";
+        }
+        return ReglasPersonalizadas.EliminarItems(item);
+    }
+
+    /// <summary>
+    /// metodo para prohibir un tipo antes de que comience la batalla
+    /// </summary>
+    public string SetReglaProhibirTipo(string tipo)
+    {
+        if (IsBattleOngoing())
+        {
+            return "Ya empezo la batalla";
+        }
+        return ReglasPersonalizadas.EliminarTipo(tipo);
+    }
+    
 }

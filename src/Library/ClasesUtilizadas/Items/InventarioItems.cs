@@ -92,4 +92,9 @@ public class InventarioItems
                 return "Seleccione una opción correcta: 'Superpocion', 'Revivir' o 'Curatotal'";
         }
     }
+
+    public void EliminarItem(string item)
+    {
+        items.Remove(item);
+    }
 }

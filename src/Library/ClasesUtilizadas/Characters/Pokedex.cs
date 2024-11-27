@@ -567,4 +567,6 @@ public static class Pokedex
         Pokemon Arbok = new Pokemon("Arbok", movimientosArbok, tiposArbok, 60, 195);
         pokemonsdisponibles.Add(Arbok);
     }
+    
+    
 }

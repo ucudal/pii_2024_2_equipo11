@@ -398,6 +398,11 @@ namespace Library.Combate
     {
         return JugadorD().GetNamePokemonTurno();
     }
-    
+
+    public void EliminarItem(string item)
+    {
+        batallaActual.Eliminaritem(item);
     }
+    }
+   
 }

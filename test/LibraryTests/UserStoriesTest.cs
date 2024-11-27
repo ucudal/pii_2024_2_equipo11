@@ -6,6 +6,7 @@ using Library.Tipos;
 // using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Ucu.Poo.DiscordBot.ClasesUtilizadas.Characters.Strategy_Ataque;
+using Ucu.Poo.DiscordBot.ClasesUtilizadas.Reglas_Personalizadas;
 using Ucu.Poo.DiscordBot.Domain;
 
 namespace Program.Tests.Combate;
@@ -383,4 +384,30 @@ public class UserStoriesTests
         double vidadada = Facade.Instance.Menu.GetHpAtacante();
         Assert.That(vidaesperadasquirtle,Is.EqualTo(vidadada));
     }
+
+    [Test]
+    public void InicioSinReglas()
+    {
+        Facade.Reset();
+        Reglas_Personalizadas.Reset();
+        
+        Facade.Instance.StartBattle("ss", "ww");
+        Facade.Instance.AddPokemosA("Arbok");
+        Facade.Instance.AddPokemosD("Squirtle");
+        
+        Assert.That(Facade.Instance.InitializeBattle(),Is.EqualTo("Alguno debe asignar unas reglas primero o elegir las reglas convencionales para empezar la batalla"));
+    }
+    [Test]
+    public void InicioConReglasConvencionales()
+    {
+        Facade.Reset();
+        Reglas_Personalizadas.Reset();
+        
+        Facade.Instance.StartBattle("ss", "ww");
+        Facade.Instance.AddPokemosA("Arbok");
+        Facade.Instance.AddPokemosD("Squirtle");
+        Facade.Instance.SetReglasConvencionales();
+        Assert.That(Facade.Instance.GetReglasPersonalizadas(),Is.EqualTo("1.Todos los tipos\n"+"2.Todos los pokemons\n"+"3.Todos los items\n"));
+    }
+    
 }
